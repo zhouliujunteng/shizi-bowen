@@ -1,0 +1,5180 @@
+{
+ "meta": {
+  "name": "博闻识字字库",
+  "version": "1.0",
+  "generatedAt": "2026-08-26",
+  "structure": "L0字根(象形独体字) -> L1汉字(合体/高频) -> L2词语 -> L3短句",
+  "methodology": "部件识字法 + 四五快读编排规律（早组词、早组句、虚词前置）",
+  "counts": {
+   "L0": 40,
+   "L1": 115,
+   "L2": 96,
+   "L3": 50,
+   "relations": 377
+  }
+ },
+ "items": [
+  {
+   "id": "R001",
+   "type": "字根",
+   "level": 0,
+   "group": "数字",
+   "content": "一",
+   "pinyin": "yī",
+   "meaning": "数字1",
+   "componentsNote": "象形独体字",
+   "teachingTip": "一根小棒横着放",
+   "sortOrder": 1,
+   "status": "启用"
+  },
+  {
+   "id": "R002",
+   "type": "字根",
+   "level": 0,
+   "group": "数字",
+   "content": "二",
+   "pinyin": "èr",
+   "meaning": "数字2",
+   "componentsNote": "象形独体字",
+   "teachingTip": "两根小棒上下放",
+   "sortOrder": 2,
+   "status": "启用"
+  },
+  {
+   "id": "R003",
+   "type": "字根",
+   "level": 0,
+   "group": "数字",
+   "content": "三",
+   "pinyin": "sān",
+   "meaning": "数字3",
+   "componentsNote": "象形独体字",
+   "teachingTip": "三根小棒叠起来",
+   "sortOrder": 3,
+   "status": "启用"
+  },
+  {
+   "id": "R004",
+   "type": "字根",
+   "level": 0,
+   "group": "数字",
+   "content": "四",
+   "pinyin": "sì",
+   "meaning": "数字4",
+   "componentsNote": "象形独体字",
+   "teachingTip": "像一个小窗口",
+   "sortOrder": 4,
+   "status": "启用"
+  },
+  {
+   "id": "R005",
+   "type": "字根",
+   "level": 0,
+   "group": "数字",
+   "content": "五",
+   "pinyin": "wǔ",
+   "meaning": "数字5",
+   "componentsNote": "象形独体字",
+   "teachingTip": "伸出一只手，五个手指头",
+   "sortOrder": 5,
+   "status": "启用"
+  },
+  {
+   "id": "R006",
+   "type": "字根",
+   "level": 0,
+   "group": "数字",
+   "content": "六",
+   "pinyin": "liù",
+   "meaning": "数字6",
+   "componentsNote": "象形独体字",
+   "teachingTip": "一只手加一个手指头",
+   "sortOrder": 6,
+   "status": "启用"
+  },
+  {
+   "id": "R007",
+   "type": "字根",
+   "level": 0,
+   "group": "数字",
+   "content": "七",
+   "pinyin": "qī",
+   "meaning": "数字7",
+   "componentsNote": "象形独体字",
+   "teachingTip": "像一把小锄头",
+   "sortOrder": 7,
+   "status": "启用"
+  },
+  {
+   "id": "R008",
+   "type": "字根",
+   "level": 0,
+   "group": "数字",
+   "content": "八",
+   "pinyin": "bā",
+   "meaning": "数字8",
+   "componentsNote": "象形独体字",
+   "teachingTip": "两笔分开像八字胡",
+   "sortOrder": 8,
+   "status": "启用"
+  },
+  {
+   "id": "R009",
+   "type": "字根",
+   "level": 0,
+   "group": "数字",
+   "content": "九",
+   "pinyin": "jiǔ",
+   "meaning": "数字9",
+   "componentsNote": "象形独体字",
+   "teachingTip": "像个小钩子",
+   "sortOrder": 9,
+   "status": "启用"
+  },
+  {
+   "id": "R010",
+   "type": "字根",
+   "level": 0,
+   "group": "数字",
+   "content": "十",
+   "pinyin": "shí",
+   "meaning": "数字10",
+   "componentsNote": "象形独体字",
+   "teachingTip": "一横一竖十字路",
+   "sortOrder": 10,
+   "status": "启用"
+  },
+  {
+   "id": "R011",
+   "type": "字根",
+   "level": 0,
+   "group": "自然",
+   "content": "日",
+   "pinyin": "rì",
+   "meaning": "太阳",
+   "componentsNote": "象形独体字",
+   "teachingTip": "圆圆的太阳，中间一点是光芒",
+   "sortOrder": 11,
+   "status": "启用"
+  },
+  {
+   "id": "R012",
+   "type": "字根",
+   "level": 0,
+   "group": "自然",
+   "content": "月",
+   "pinyin": "yuè",
+   "meaning": "月亮",
+   "componentsNote": "象形独体字",
+   "teachingTip": "弯弯的月亮挂天边",
+   "sortOrder": 12,
+   "status": "启用"
+  },
+  {
+   "id": "R013",
+   "type": "字根",
+   "level": 0,
+   "group": "自然",
+   "content": "水",
+   "pinyin": "shuǐ",
+   "meaning": "水",
+   "componentsNote": "象形独体字",
+   "teachingTip": "中间是水流，两边是水花",
+   "sortOrder": 13,
+   "status": "启用"
+  },
+  {
+   "id": "R014",
+   "type": "字根",
+   "level": 0,
+   "group": "自然",
+   "content": "火",
+   "pinyin": "huǒ",
+   "meaning": "火",
+   "componentsNote": "象形独体字",
+   "teachingTip": "像跳动的火苗",
+   "sortOrder": 14,
+   "status": "启用"
+  },
+  {
+   "id": "R015",
+   "type": "字根",
+   "level": 0,
+   "group": "自然",
+   "content": "山",
+   "pinyin": "shān",
+   "meaning": "高山",
+   "componentsNote": "象形独体字",
+   "teachingTip": "三座山峰中间高",
+   "sortOrder": 15,
+   "status": "启用"
+  },
+  {
+   "id": "R016",
+   "type": "字根",
+   "level": 0,
+   "group": "自然",
+   "content": "石",
+   "pinyin": "shí",
+   "meaning": "石头",
+   "componentsNote": "象形独体字",
+   "teachingTip": "山坡下一块硬石头",
+   "sortOrder": 16,
+   "status": "启用"
+  },
+  {
+   "id": "R017",
+   "type": "字根",
+   "level": 0,
+   "group": "自然",
+   "content": "田",
+   "pinyin": "tián",
+   "meaning": "田地",
+   "componentsNote": "象形独体字",
+   "teachingTip": "方方的田地分四块",
+   "sortOrder": 17,
+   "status": "启用"
+  },
+  {
+   "id": "R018",
+   "type": "字根",
+   "level": 0,
+   "group": "自然",
+   "content": "土",
+   "pinyin": "tǔ",
+   "meaning": "泥土",
+   "componentsNote": "象形独体字",
+   "teachingTip": "地上长出一棵小苗",
+   "sortOrder": 18,
+   "status": "启用"
+  },
+  {
+   "id": "R019",
+   "type": "字根",
+   "level": 0,
+   "group": "自然",
+   "content": "木",
+   "pinyin": "mù",
+   "meaning": "树木",
+   "componentsNote": "象形独体字",
+   "teachingTip": "树干树枝和树根",
+   "sortOrder": 19,
+   "status": "启用"
+  },
+  {
+   "id": "R020",
+   "type": "字根",
+   "level": 0,
+   "group": "自然",
+   "content": "禾",
+   "pinyin": "hé",
+   "meaning": "禾苗",
+   "componentsNote": "象形独体字",
+   "teachingTip": "木字上面垂下稻穗",
+   "sortOrder": 20,
+   "status": "启用"
+  },
+  {
+   "id": "R021",
+   "type": "字根",
+   "level": 0,
+   "group": "自然",
+   "content": "雨",
+   "pinyin": "yǔ",
+   "meaning": "下雨",
+   "componentsNote": "象形独体字",
+   "teachingTip": "云朵里落下四滴雨",
+   "sortOrder": 21,
+   "status": "启用"
+  },
+  {
+   "id": "R022",
+   "type": "字根",
+   "level": 0,
+   "group": "人身",
+   "content": "人",
+   "pinyin": "rén",
+   "meaning": "人",
+   "componentsNote": "象形独体字",
+   "teachingTip": "迈开双腿走路的人",
+   "sortOrder": 22,
+   "status": "启用"
+  },
+  {
+   "id": "R023",
+   "type": "字根",
+   "level": 0,
+   "group": "人身",
+   "content": "口",
+   "pinyin": "kǒu",
+   "meaning": "嘴巴",
+   "componentsNote": "象形独体字",
+   "teachingTip": "张开的小嘴巴",
+   "sortOrder": 23,
+   "status": "启用"
+  },
+  {
+   "id": "R024",
+   "type": "字根",
+   "level": 0,
+   "group": "人身",
+   "content": "手",
+   "pinyin": "shǒu",
+   "meaning": "手",
+   "componentsNote": "象形独体字",
+   "teachingTip": "伸出五根手指头",
+   "sortOrder": 24,
+   "status": "启用"
+  },
+  {
+   "id": "R025",
+   "type": "字根",
+   "level": 0,
+   "group": "人身",
+   "content": "足",
+   "pinyin": "zú",
+   "meaning": "脚",
+   "componentsNote": "象形独体字",
+   "teachingTip": "口是膝盖下面是脚",
+   "sortOrder": 25,
+   "status": "启用"
+  },
+  {
+   "id": "R026",
+   "type": "字根",
+   "level": 0,
+   "group": "人身",
+   "content": "耳",
+   "pinyin": "ěr",
+   "meaning": "耳朵",
+   "componentsNote": "象形独体字",
+   "teachingTip": "像只小耳朵",
+   "sortOrder": 26,
+   "status": "启用"
+  },
+  {
+   "id": "R027",
+   "type": "字根",
+   "level": 0,
+   "group": "人身",
+   "content": "目",
+   "pinyin": "mù",
+   "meaning": "眼睛",
+   "componentsNote": "象形独体字",
+   "teachingTip": "竖起来的眼睛，两笔是眼珠",
+   "sortOrder": 27,
+   "status": "启用"
+  },
+  {
+   "id": "R028",
+   "type": "字根",
+   "level": 0,
+   "group": "人身",
+   "content": "心",
+   "pinyin": "xīn",
+   "meaning": "心脏",
+   "componentsNote": "象形独体字",
+   "teachingTip": "心字三点跳不停",
+   "sortOrder": 28,
+   "status": "启用"
+  },
+  {
+   "id": "R029",
+   "type": "字根",
+   "level": 0,
+   "group": "人身",
+   "content": "女",
+   "pinyin": "nǚ",
+   "meaning": "女子",
+   "componentsNote": "象形独体字",
+   "teachingTip": "像一位端坐的女子",
+   "sortOrder": 29,
+   "status": "启用"
+  },
+  {
+   "id": "R030",
+   "type": "字根",
+   "level": 0,
+   "group": "人身",
+   "content": "子",
+   "pinyin": "zǐ",
+   "meaning": "孩子",
+   "componentsNote": "象形独体字",
+   "teachingTip": "张开双臂的小娃娃",
+   "sortOrder": 30,
+   "status": "启用"
+  },
+  {
+   "id": "R031",
+   "type": "字根",
+   "level": 0,
+   "group": "人身",
+   "content": "大",
+   "pinyin": "dà",
+   "meaning": "大",
+   "componentsNote": "象形独体字",
+   "teachingTip": "人张开手臂说：真大呀",
+   "sortOrder": 31,
+   "status": "启用"
+  },
+  {
+   "id": "R032",
+   "type": "字根",
+   "level": 0,
+   "group": "动植物",
+   "content": "虫",
+   "pinyin": "chóng",
+   "meaning": "虫子",
+   "componentsNote": "象形独体字",
+   "teachingTip": "弯弯曲曲的小虫",
+   "sortOrder": 32,
+   "status": "启用"
+  },
+  {
+   "id": "R033",
+   "type": "字根",
+   "level": 0,
+   "group": "动植物",
+   "content": "鱼",
+   "pinyin": "yú",
+   "meaning": "鱼",
+   "componentsNote": "象形独体字",
+   "teachingTip": "鱼头鱼身和鱼尾",
+   "sortOrder": 33,
+   "status": "启用"
+  },
+  {
+   "id": "R034",
+   "type": "字根",
+   "level": 0,
+   "group": "动植物",
+   "content": "鸟",
+   "pinyin": "niǎo",
+   "meaning": "小鸟",
+   "componentsNote": "象形独体字",
+   "teachingTip": "有头有尾的小鸟，一点是眼睛",
+   "sortOrder": 34,
+   "status": "启用"
+  },
+  {
+   "id": "R035",
+   "type": "字根",
+   "level": 0,
+   "group": "动植物",
+   "content": "马",
+   "pinyin": "mǎ",
+   "meaning": "马",
+   "componentsNote": "象形独体字",
+   "teachingTip": "马儿扬着头奔跑",
+   "sortOrder": 35,
+   "status": "启用"
+  },
+  {
+   "id": "R036",
+   "type": "字根",
+   "level": 0,
+   "group": "动植物",
+   "content": "牛",
+   "pinyin": "niú",
+   "meaning": "牛",
+   "componentsNote": "象形独体字",
+   "teachingTip": "头上长着两只角",
+   "sortOrder": 36,
+   "status": "启用"
+  },
+  {
+   "id": "R037",
+   "type": "字根",
+   "level": 0,
+   "group": "动植物",
+   "content": "羊",
+   "pinyin": "yáng",
+   "meaning": "羊",
+   "componentsNote": "象形独体字",
+   "teachingTip": "两只羊角弯弯卷",
+   "sortOrder": 37,
+   "status": "启用"
+  },
+  {
+   "id": "R038",
+   "type": "字根",
+   "level": 0,
+   "group": "动植物",
+   "content": "米",
+   "pinyin": "mǐ",
+   "meaning": "大米",
+   "componentsNote": "象形独体字",
+   "teachingTip": "十字架上四粒米",
+   "sortOrder": 38,
+   "status": "启用"
+  },
+  {
+   "id": "R039",
+   "type": "字根",
+   "level": 0,
+   "group": "动植物",
+   "content": "草",
+   "pinyin": "cǎo",
+   "meaning": "小草",
+   "componentsNote": "象形独体字",
+   "teachingTip": "草字头下早早发芽",
+   "sortOrder": 39,
+   "status": "启用"
+  },
+  {
+   "id": "R040",
+   "type": "字根",
+   "level": 0,
+   "group": "动植物",
+   "content": "花",
+   "pinyin": "huā",
+   "meaning": "花朵",
+   "componentsNote": "象形独体字",
+   "teachingTip": "草字头下开出的花",
+   "sortOrder": 40,
+   "status": "启用"
+  },
+  {
+   "id": "C001",
+   "type": "汉字",
+   "level": 1,
+   "content": "明",
+   "pinyin": "míng",
+   "meaning": null,
+   "componentsNote": "日+月",
+   "teachingTip": "太阳和月亮在一起，世界真明亮",
+   "sortOrder": 1,
+   "status": "启用"
+  },
+  {
+   "id": "C002",
+   "type": "汉字",
+   "level": 1,
+   "content": "林",
+   "pinyin": "lín",
+   "meaning": null,
+   "componentsNote": "木+木",
+   "teachingTip": "两棵树站在一起是小树林",
+   "sortOrder": 2,
+   "status": "启用"
+  },
+  {
+   "id": "C003",
+   "type": "汉字",
+   "level": 1,
+   "content": "森",
+   "pinyin": "sēn",
+   "meaning": null,
+   "componentsNote": "木+木+木",
+   "teachingTip": "三棵树连成大森林",
+   "sortOrder": 3,
+   "status": "启用"
+  },
+  {
+   "id": "C004",
+   "type": "汉字",
+   "level": 1,
+   "content": "休",
+   "pinyin": "xiū",
+   "meaning": null,
+   "componentsNote": "亻(人)+木",
+   "teachingTip": "人靠在树旁歇一歇",
+   "sortOrder": 4,
+   "status": "启用"
+  },
+  {
+   "id": "C005",
+   "type": "汉字",
+   "level": 1,
+   "content": "从",
+   "pinyin": "cóng",
+   "meaning": null,
+   "componentsNote": "人+人",
+   "teachingTip": "一个人跟着一个人走",
+   "sortOrder": 5,
+   "status": "启用"
+  },
+  {
+   "id": "C006",
+   "type": "汉字",
+   "level": 1,
+   "content": "众",
+   "pinyin": "zhòng",
+   "meaning": null,
+   "componentsNote": "人+人+人",
+   "teachingTip": "三个人就是一群人",
+   "sortOrder": 6,
+   "status": "启用"
+  },
+  {
+   "id": "C007",
+   "type": "汉字",
+   "level": 1,
+   "content": "朋",
+   "pinyin": "péng",
+   "meaning": null,
+   "componentsNote": "月+月",
+   "teachingTip": "两个月亮肩并肩做朋友",
+   "sortOrder": 7,
+   "status": "启用"
+  },
+  {
+   "id": "C008",
+   "type": "汉字",
+   "level": 1,
+   "content": "晶",
+   "pinyin": "jīng",
+   "meaning": null,
+   "componentsNote": "日+日+日",
+   "teachingTip": "三个太阳亮晶晶",
+   "sortOrder": 8,
+   "status": "启用"
+  },
+  {
+   "id": "C009",
+   "type": "汉字",
+   "level": 1,
+   "content": "好",
+   "pinyin": "hǎo",
+   "meaning": null,
+   "componentsNote": "女+子",
+   "teachingTip": "女子和孩子在一起，真好",
+   "sortOrder": 9,
+   "status": "启用"
+  },
+  {
+   "id": "C010",
+   "type": "汉字",
+   "level": 1,
+   "content": "男",
+   "pinyin": "nán",
+   "meaning": null,
+   "componentsNote": "田+力",
+   "teachingTip": "在田里出力气的人",
+   "sortOrder": 10,
+   "status": "启用"
+  },
+  {
+   "id": "C011",
+   "type": "汉字",
+   "level": 1,
+   "content": "尖",
+   "pinyin": "jiān",
+   "meaning": null,
+   "componentsNote": "小+大",
+   "teachingTip": "上面小下面大，尖尖的铅笔头",
+   "sortOrder": 11,
+   "status": "启用"
+  },
+  {
+   "id": "C012",
+   "type": "汉字",
+   "level": 1,
+   "content": "尘",
+   "pinyin": "chén",
+   "meaning": null,
+   "componentsNote": "小+土",
+   "teachingTip": "小小的土粒就是灰尘",
+   "sortOrder": 12,
+   "status": "启用"
+  },
+  {
+   "id": "C013",
+   "type": "汉字",
+   "level": 1,
+   "content": "苗",
+   "pinyin": "miáo",
+   "meaning": null,
+   "componentsNote": "艹(草)+田",
+   "teachingTip": "田里长出的青草苗",
+   "sortOrder": 13,
+   "status": "启用"
+  },
+  {
+   "id": "C014",
+   "type": "汉字",
+   "level": 1,
+   "content": "看",
+   "pinyin": "kàn",
+   "meaning": null,
+   "componentsNote": "手+目",
+   "teachingTip": "手搭在眼睛上往远看",
+   "sortOrder": 14,
+   "status": "启用"
+  },
+  {
+   "id": "C015",
+   "type": "汉字",
+   "level": 1,
+   "content": "泪",
+   "pinyin": "lèi",
+   "meaning": null,
+   "componentsNote": "氵(水)+目",
+   "teachingTip": "眼睛里流出来的水",
+   "sortOrder": 15,
+   "status": "启用"
+  },
+  {
+   "id": "C016",
+   "type": "汉字",
+   "level": 1,
+   "content": "相",
+   "pinyin": "xiāng",
+   "meaning": null,
+   "componentsNote": "木+目",
+   "teachingTip": "用眼睛仔细看树木",
+   "sortOrder": 16,
+   "status": "启用"
+  },
+  {
+   "id": "C017",
+   "type": "汉字",
+   "level": 1,
+   "content": "坐",
+   "pinyin": "zuò",
+   "meaning": null,
+   "componentsNote": "人+人+土",
+   "teachingTip": "两个人坐在土地上",
+   "sortOrder": 17,
+   "status": "启用"
+  },
+  {
+   "id": "C018",
+   "type": "汉字",
+   "level": 1,
+   "content": "鸣",
+   "pinyin": "míng",
+   "meaning": null,
+   "componentsNote": "口+鸟",
+   "teachingTip": "小鸟张开嘴巴叫",
+   "sortOrder": 18,
+   "status": "启用"
+  },
+  {
+   "id": "C019",
+   "type": "汉字",
+   "level": 1,
+   "content": "吠",
+   "pinyin": "fèi",
+   "meaning": null,
+   "componentsNote": "口+犬",
+   "teachingTip": "小狗汪汪叫",
+   "sortOrder": 19,
+   "status": "启用"
+  },
+  {
+   "id": "C020",
+   "type": "汉字",
+   "level": 1,
+   "content": "鲜",
+   "pinyin": "xiān",
+   "meaning": null,
+   "componentsNote": "鱼+羊",
+   "teachingTip": "鱼肉羊肉煮一起，味道鲜",
+   "sortOrder": 20,
+   "status": "启用"
+  },
+  {
+   "id": "C021",
+   "type": "汉字",
+   "level": 1,
+   "content": "天",
+   "pinyin": "tiān",
+   "meaning": null,
+   "componentsNote": "大+一",
+   "teachingTip": "人的头顶上就是天",
+   "sortOrder": 21,
+   "status": "启用"
+  },
+  {
+   "id": "C022",
+   "type": "汉字",
+   "level": 1,
+   "content": "地",
+   "pinyin": "dì",
+   "meaning": null,
+   "componentsNote": "土+也",
+   "teachingTip": "脚下的土地就是地",
+   "sortOrder": 22,
+   "status": "启用"
+  },
+  {
+   "id": "C023",
+   "type": "汉字",
+   "level": 1,
+   "content": "风",
+   "pinyin": "fēng",
+   "meaning": null,
+   "componentsNote": "象形",
+   "teachingTip": "风吹过来凉凉的",
+   "sortOrder": 23,
+   "status": "启用"
+  },
+  {
+   "id": "C024",
+   "type": "汉字",
+   "level": 1,
+   "content": "云",
+   "pinyin": "yún",
+   "meaning": null,
+   "componentsNote": "象形",
+   "teachingTip": "天上一朵一朵的云",
+   "sortOrder": 24,
+   "status": "启用"
+  },
+  {
+   "id": "C025",
+   "type": "汉字",
+   "level": 1,
+   "content": "雪",
+   "pinyin": "xuě",
+   "meaning": null,
+   "componentsNote": "雨+彐",
+   "teachingTip": "雨变成白白的一片就是雪",
+   "sortOrder": 25,
+   "status": "启用"
+  },
+  {
+   "id": "C026",
+   "type": "汉字",
+   "level": 1,
+   "content": "雷",
+   "pinyin": "léi",
+   "meaning": null,
+   "componentsNote": "雨+田",
+   "teachingTip": "雨点砸在田上轰隆隆",
+   "sortOrder": 26,
+   "status": "启用"
+  },
+  {
+   "id": "C027",
+   "type": "汉字",
+   "level": 1,
+   "content": "星",
+   "pinyin": "xīng",
+   "meaning": null,
+   "componentsNote": "日+生",
+   "teachingTip": "天上生出许多小太阳",
+   "sortOrder": 27,
+   "status": "启用"
+  },
+  {
+   "id": "C028",
+   "type": "汉字",
+   "level": 1,
+   "content": "早",
+   "pinyin": "zǎo",
+   "meaning": null,
+   "componentsNote": "日+十",
+   "teachingTip": "太阳升到十字高，早上到",
+   "sortOrder": 28,
+   "status": "启用"
+  },
+  {
+   "id": "C029",
+   "type": "汉字",
+   "level": 1,
+   "content": "晚",
+   "pinyin": "wǎn",
+   "meaning": null,
+   "componentsNote": "日+免",
+   "teachingTip": "太阳躲起来，天就晚了",
+   "sortOrder": 29,
+   "status": "启用"
+  },
+  {
+   "id": "C030",
+   "type": "汉字",
+   "level": 1,
+   "content": "春",
+   "pinyin": "chūn",
+   "meaning": null,
+   "componentsNote": "三人+日",
+   "teachingTip": "大家晒太阳，春天暖洋洋",
+   "sortOrder": 30,
+   "status": "启用"
+  },
+  {
+   "id": "C031",
+   "type": "汉字",
+   "level": 1,
+   "content": "夏",
+   "pinyin": "xià",
+   "meaning": null,
+   "componentsNote": "会意",
+   "teachingTip": "夏天戴草帽流汗",
+   "sortOrder": 31,
+   "status": "启用"
+  },
+  {
+   "id": "C032",
+   "type": "汉字",
+   "level": 1,
+   "content": "秋",
+   "pinyin": "qiū",
+   "meaning": null,
+   "componentsNote": "禾+火",
+   "teachingTip": "禾苗熟了像火一样红",
+   "sortOrder": 32,
+   "status": "启用"
+  },
+  {
+   "id": "C033",
+   "type": "汉字",
+   "level": 1,
+   "content": "冬",
+   "pinyin": "dōng",
+   "meaning": null,
+   "componentsNote": "会意",
+   "teachingTip": "下面两点是冰，冬天冷",
+   "sortOrder": 33,
+   "status": "启用"
+  },
+  {
+   "id": "C034",
+   "type": "汉字",
+   "level": 1,
+   "content": "晴",
+   "pinyin": "qíng",
+   "meaning": null,
+   "componentsNote": "日+青",
+   "teachingTip": "太阳出来天放晴",
+   "sortOrder": 34,
+   "status": "启用"
+  },
+  {
+   "id": "C035",
+   "type": "汉字",
+   "level": 1,
+   "content": "我",
+   "pinyin": "wǒ",
+   "meaning": null,
+   "componentsNote": "独体字",
+   "teachingTip": "指指我自己",
+   "sortOrder": 35,
+   "status": "启用"
+  },
+  {
+   "id": "C036",
+   "type": "汉字",
+   "level": 1,
+   "content": "你",
+   "pinyin": "nǐ",
+   "meaning": null,
+   "componentsNote": "亻(人)+尔",
+   "teachingTip": "对面的人就是你",
+   "sortOrder": 36,
+   "status": "启用"
+  },
+  {
+   "id": "C037",
+   "type": "汉字",
+   "level": 1,
+   "content": "他",
+   "pinyin": "tā",
+   "meaning": null,
+   "componentsNote": "亻(人)+也",
+   "teachingTip": "旁边那个人就是他",
+   "sortOrder": 37,
+   "status": "启用"
+  },
+  {
+   "id": "C038",
+   "type": "汉字",
+   "level": 1,
+   "content": "她",
+   "pinyin": "tā",
+   "meaning": null,
+   "componentsNote": "女+也",
+   "teachingTip": "女字旁的她",
+   "sortOrder": 38,
+   "status": "启用"
+  },
+  {
+   "id": "C039",
+   "type": "汉字",
+   "level": 1,
+   "content": "们",
+   "pinyin": "men",
+   "meaning": null,
+   "componentsNote": "亻(人)+门",
+   "teachingTip": "人加们字成一群",
+   "sortOrder": 39,
+   "status": "启用"
+  },
+  {
+   "id": "C040",
+   "type": "汉字",
+   "level": 1,
+   "content": "的",
+   "pinyin": "de",
+   "meaning": null,
+   "componentsNote": "白+勺",
+   "teachingTip": "最常用的小帮手字",
+   "sortOrder": 40,
+   "status": "启用"
+  },
+  {
+   "id": "C041",
+   "type": "汉字",
+   "level": 1,
+   "content": "是",
+   "pinyin": "shì",
+   "meaning": null,
+   "componentsNote": "日+疋",
+   "teachingTip": "点点头说：是的",
+   "sortOrder": 41,
+   "status": "启用"
+  },
+  {
+   "id": "C042",
+   "type": "汉字",
+   "level": 1,
+   "content": "在",
+   "pinyin": "zài",
+   "meaning": null,
+   "componentsNote": "会意",
+   "teachingTip": "人站在这里就是在",
+   "sortOrder": 42,
+   "status": "启用"
+  },
+  {
+   "id": "C043",
+   "type": "汉字",
+   "level": 1,
+   "content": "有",
+   "pinyin": "yǒu",
+   "meaning": null,
+   "componentsNote": "会意",
+   "teachingTip": "手里拿着肉就是有",
+   "sortOrder": 43,
+   "status": "启用"
+  },
+  {
+   "id": "C044",
+   "type": "汉字",
+   "level": 1,
+   "content": "和",
+   "pinyin": "hé",
+   "meaning": null,
+   "componentsNote": "禾+口",
+   "teachingTip": "禾苗和嘴巴，和气相处",
+   "sortOrder": 44,
+   "status": "启用"
+  },
+  {
+   "id": "C045",
+   "type": "汉字",
+   "level": 1,
+   "content": "也",
+   "pinyin": "yě",
+   "meaning": null,
+   "componentsNote": "独体字",
+   "teachingTip": "你高兴，我也高兴",
+   "sortOrder": 45,
+   "status": "启用"
+  },
+  {
+   "id": "C046",
+   "type": "汉字",
+   "level": 1,
+   "content": "都",
+   "pinyin": "dōu",
+   "meaning": null,
+   "componentsNote": "者+阝",
+   "teachingTip": "大家一起就是都",
+   "sortOrder": 46,
+   "status": "启用"
+  },
+  {
+   "id": "C047",
+   "type": "汉字",
+   "level": 1,
+   "content": "不",
+   "pinyin": "bù",
+   "meaning": null,
+   "componentsNote": "指事",
+   "teachingTip": "摇摇头说：不",
+   "sortOrder": 47,
+   "status": "启用"
+  },
+  {
+   "id": "C048",
+   "type": "汉字",
+   "level": 1,
+   "content": "了",
+   "pinyin": "le",
+   "meaning": null,
+   "componentsNote": "独体字",
+   "teachingTip": "做完了就说：好了",
+   "sortOrder": 48,
+   "status": "启用"
+  },
+  {
+   "id": "C049",
+   "type": "汉字",
+   "level": 1,
+   "content": "走",
+   "pinyin": "zǒu",
+   "meaning": null,
+   "componentsNote": "土+龰",
+   "teachingTip": "迈开大步向前走",
+   "sortOrder": 49,
+   "status": "启用"
+  },
+  {
+   "id": "C050",
+   "type": "汉字",
+   "level": 1,
+   "content": "跑",
+   "pinyin": "pǎo",
+   "meaning": null,
+   "componentsNote": "足+包",
+   "teachingTip": "脚上用力快快跑",
+   "sortOrder": 50,
+   "status": "启用"
+  },
+  {
+   "id": "C051",
+   "type": "汉字",
+   "level": 1,
+   "content": "跳",
+   "pinyin": "tiào",
+   "meaning": null,
+   "componentsNote": "足+兆",
+   "teachingTip": "脚一离地跳起来",
+   "sortOrder": 51,
+   "status": "启用"
+  },
+  {
+   "id": "C052",
+   "type": "汉字",
+   "level": 1,
+   "content": "站",
+   "pinyin": "zhàn",
+   "meaning": null,
+   "componentsNote": "立+占",
+   "teachingTip": "立正站直不弯腰",
+   "sortOrder": 52,
+   "status": "启用"
+  },
+  {
+   "id": "C053",
+   "type": "汉字",
+   "level": 1,
+   "content": "听",
+   "pinyin": "tīng",
+   "meaning": null,
+   "componentsNote": "口+斤",
+   "teachingTip": "竖起耳朵仔细听",
+   "sortOrder": 53,
+   "status": "启用"
+  },
+  {
+   "id": "C054",
+   "type": "汉字",
+   "level": 1,
+   "content": "说",
+   "pinyin": "shuō",
+   "meaning": null,
+   "componentsNote": "讠+兑",
+   "teachingTip": "张开嘴巴来说话",
+   "sortOrder": 54,
+   "status": "启用"
+  },
+  {
+   "id": "C055",
+   "type": "汉字",
+   "level": 1,
+   "content": "读",
+   "pinyin": "dú",
+   "meaning": null,
+   "componentsNote": "讠+卖",
+   "teachingTip": "捧着书本大声读",
+   "sortOrder": 55,
+   "status": "启用"
+  },
+  {
+   "id": "C056",
+   "type": "汉字",
+   "level": 1,
+   "content": "写",
+   "pinyin": "xiě",
+   "meaning": null,
+   "componentsNote": "冖+与",
+   "teachingTip": "拿起笔来写一写",
+   "sortOrder": 56,
+   "status": "启用"
+  },
+  {
+   "id": "C057",
+   "type": "汉字",
+   "level": 1,
+   "content": "画",
+   "pinyin": "huà",
+   "meaning": null,
+   "componentsNote": "一+田+凵",
+   "teachingTip": "画出田地和山川",
+   "sortOrder": 57,
+   "status": "启用"
+  },
+  {
+   "id": "C058",
+   "type": "汉字",
+   "level": 1,
+   "content": "唱",
+   "pinyin": "chàng",
+   "meaning": null,
+   "componentsNote": "口+昌",
+   "teachingTip": "张开嘴巴大声唱",
+   "sortOrder": 58,
+   "status": "启用"
+  },
+  {
+   "id": "C059",
+   "type": "汉字",
+   "level": 1,
+   "content": "吃",
+   "pinyin": "chī",
+   "meaning": null,
+   "componentsNote": "口+乞",
+   "teachingTip": "张开嘴巴吃东西",
+   "sortOrder": 59,
+   "status": "启用"
+  },
+  {
+   "id": "C060",
+   "type": "汉字",
+   "level": 1,
+   "content": "喝",
+   "pinyin": "hē",
+   "meaning": null,
+   "componentsNote": "口+曷",
+   "teachingTip": "口渴了要喝水",
+   "sortOrder": 60,
+   "status": "启用"
+  },
+  {
+   "id": "C061",
+   "type": "汉字",
+   "level": 1,
+   "content": "玩",
+   "pinyin": "wán",
+   "meaning": null,
+   "componentsNote": "王+元",
+   "teachingTip": "玩具伴我开心玩",
+   "sortOrder": 61,
+   "status": "启用"
+  },
+  {
+   "id": "C062",
+   "type": "汉字",
+   "level": 1,
+   "content": "笑",
+   "pinyin": "xiào",
+   "meaning": null,
+   "componentsNote": "竹+夭",
+   "teachingTip": "眼睛弯弯像竹叶，哈哈笑",
+   "sortOrder": 62,
+   "status": "启用"
+  },
+  {
+   "id": "C063",
+   "type": "汉字",
+   "level": 1,
+   "content": "哭",
+   "pinyin": "kū",
+   "meaning": null,
+   "componentsNote": "口+口+犬",
+   "teachingTip": "两只眼睛掉泪珠",
+   "sortOrder": 63,
+   "status": "启用"
+  },
+  {
+   "id": "C064",
+   "type": "汉字",
+   "level": 1,
+   "content": "爱",
+   "pinyin": "ài",
+   "meaning": null,
+   "componentsNote": "爫+冖+友",
+   "teachingTip": "心里装着朋友就是爱",
+   "sortOrder": 64,
+   "status": "启用"
+  },
+  {
+   "id": "C065",
+   "type": "汉字",
+   "level": 1,
+   "content": "学",
+   "pinyin": "xué",
+   "meaning": null,
+   "componentsNote": "⺍+冖+子",
+   "teachingTip": "孩子坐在桌前学本领",
+   "sortOrder": 65,
+   "status": "启用"
+  },
+  {
+   "id": "C066",
+   "type": "汉字",
+   "level": 1,
+   "content": "来",
+   "pinyin": "lái",
+   "meaning": null,
+   "componentsNote": "会意",
+   "teachingTip": "招招手：快过来",
+   "sortOrder": 66,
+   "status": "启用"
+  },
+  {
+   "id": "C067",
+   "type": "汉字",
+   "level": 1,
+   "content": "去",
+   "pinyin": "qù",
+   "meaning": null,
+   "componentsNote": "土+厶",
+   "teachingTip": "挥挥手：再见啦",
+   "sortOrder": 67,
+   "status": "启用"
+  },
+  {
+   "id": "C068",
+   "type": "汉字",
+   "level": 1,
+   "content": "开",
+   "pinyin": "kāi",
+   "meaning": null,
+   "componentsNote": "会意",
+   "teachingTip": "双手推开门打开",
+   "sortOrder": 68,
+   "status": "启用"
+  },
+  {
+   "id": "C069",
+   "type": "汉字",
+   "level": 1,
+   "content": "关",
+   "pinyin": "guān",
+   "meaning": null,
+   "componentsNote": "会意",
+   "teachingTip": "两扇门关起来",
+   "sortOrder": 69,
+   "status": "启用"
+  },
+  {
+   "id": "C070",
+   "type": "汉字",
+   "level": 1,
+   "content": "飞",
+   "pinyin": "fēi",
+   "meaning": null,
+   "componentsNote": "象形",
+   "teachingTip": "张开翅膀飞上天",
+   "sortOrder": 70,
+   "status": "启用"
+  },
+  {
+   "id": "C071",
+   "type": "汉字",
+   "level": 1,
+   "content": "回",
+   "pinyin": "huí",
+   "meaning": null,
+   "componentsNote": "口+口",
+   "teachingTip": "转个圈圈回到家",
+   "sortOrder": 71,
+   "status": "启用"
+  },
+  {
+   "id": "C072",
+   "type": "汉字",
+   "level": 1,
+   "content": "又",
+   "pinyin": "yòu",
+   "meaning": null,
+   "componentsNote": "象形",
+   "teachingTip": "再来一次就是又",
+   "sortOrder": 72,
+   "status": "启用"
+  },
+  {
+   "id": "C073",
+   "type": "汉字",
+   "level": 1,
+   "content": "爸",
+   "pinyin": "bà",
+   "meaning": null,
+   "componentsNote": "父+巴",
+   "teachingTip": "爸爸的胡子",
+   "sortOrder": 73,
+   "status": "启用"
+  },
+  {
+   "id": "C074",
+   "type": "汉字",
+   "level": 1,
+   "content": "妈",
+   "pinyin": "mā",
+   "meaning": null,
+   "componentsNote": "女+马",
+   "teachingTip": "妈妈像马儿一样勤劳",
+   "sortOrder": 74,
+   "status": "启用"
+  },
+  {
+   "id": "C075",
+   "type": "汉字",
+   "level": 1,
+   "content": "爷",
+   "pinyin": "yé",
+   "meaning": null,
+   "componentsNote": "父+卩",
+   "teachingTip": "爷爷笑眯眯",
+   "sortOrder": 75,
+   "status": "启用"
+  },
+  {
+   "id": "C076",
+   "type": "汉字",
+   "level": 1,
+   "content": "奶",
+   "pinyin": "nǎi",
+   "meaning": null,
+   "componentsNote": "女+乃",
+   "teachingTip": "奶奶的怀抱",
+   "sortOrder": 76,
+   "status": "启用"
+  },
+  {
+   "id": "C077",
+   "type": "汉字",
+   "level": 1,
+   "content": "哥",
+   "pinyin": "gē",
+   "meaning": null,
+   "componentsNote": "可+可",
+   "teachingTip": "哥哥唱歌可好听",
+   "sortOrder": 77,
+   "status": "启用"
+  },
+  {
+   "id": "C078",
+   "type": "汉字",
+   "level": 1,
+   "content": "姐",
+   "pinyin": "jiě",
+   "meaning": null,
+   "componentsNote": "女+且",
+   "teachingTip": "姐姐爱护弟弟",
+   "sortOrder": 78,
+   "status": "启用"
+  },
+  {
+   "id": "C079",
+   "type": "汉字",
+   "level": 1,
+   "content": "弟",
+   "pinyin": "dì",
+   "meaning": null,
+   "componentsNote": "会意",
+   "teachingTip": "弟弟跟在后面",
+   "sortOrder": 79,
+   "status": "启用"
+  },
+  {
+   "id": "C080",
+   "type": "汉字",
+   "level": 1,
+   "content": "妹",
+   "pinyin": "mèi",
+   "meaning": null,
+   "componentsNote": "女+未",
+   "teachingTip": "妹妹年龄小",
+   "sortOrder": 80,
+   "status": "启用"
+  },
+  {
+   "id": "C081",
+   "type": "汉字",
+   "level": 1,
+   "content": "红",
+   "pinyin": "hóng",
+   "meaning": null,
+   "componentsNote": "纟+工",
+   "teachingTip": "苹果红红的",
+   "sortOrder": 81,
+   "status": "启用"
+  },
+  {
+   "id": "C082",
+   "type": "汉字",
+   "level": 1,
+   "content": "黄",
+   "pinyin": "huáng",
+   "meaning": null,
+   "componentsNote": "会意",
+   "teachingTip": "香蕉黄黄的",
+   "sortOrder": 82,
+   "status": "启用"
+  },
+  {
+   "id": "C083",
+   "type": "汉字",
+   "level": 1,
+   "content": "蓝",
+   "pinyin": "lán",
+   "meaning": null,
+   "componentsNote": "艹+监",
+   "teachingTip": "天空蓝蓝的",
+   "sortOrder": 83,
+   "status": "启用"
+  },
+  {
+   "id": "C084",
+   "type": "汉字",
+   "level": 1,
+   "content": "绿",
+   "pinyin": "lǜ",
+   "meaning": null,
+   "componentsNote": "纟+录",
+   "teachingTip": "小草绿绿的",
+   "sortOrder": 84,
+   "status": "启用"
+  },
+  {
+   "id": "C085",
+   "type": "汉字",
+   "level": 1,
+   "content": "白",
+   "pinyin": "bái",
+   "meaning": null,
+   "componentsNote": "象形",
+   "teachingTip": "云朵白白的",
+   "sortOrder": 85,
+   "status": "启用"
+  },
+  {
+   "id": "C086",
+   "type": "汉字",
+   "level": 1,
+   "content": "黑",
+   "pinyin": "hēi",
+   "meaning": null,
+   "componentsNote": "象形",
+   "teachingTip": "夜晚黑黑的",
+   "sortOrder": 86,
+   "status": "启用"
+  },
+  {
+   "id": "C087",
+   "type": "汉字",
+   "level": 1,
+   "content": "多",
+   "pinyin": "duō",
+   "meaning": null,
+   "componentsNote": "夕+夕",
+   "teachingTip": "两个夕字排一起，真多",
+   "sortOrder": 87,
+   "status": "启用"
+  },
+  {
+   "id": "C088",
+   "type": "汉字",
+   "level": 1,
+   "content": "少",
+   "pinyin": "shǎo",
+   "meaning": null,
+   "componentsNote": "小+丿",
+   "teachingTip": "小字加一撇就是少",
+   "sortOrder": 88,
+   "status": "启用"
+  },
+  {
+   "id": "C089",
+   "type": "汉字",
+   "level": 1,
+   "content": "新",
+   "pinyin": "xīn",
+   "meaning": null,
+   "componentsNote": "亲+斤",
+   "teachingTip": "新衣服新书包",
+   "sortOrder": 89,
+   "status": "启用"
+  },
+  {
+   "id": "C090",
+   "type": "汉字",
+   "level": 1,
+   "content": "快",
+   "pinyin": "kuài",
+   "meaning": null,
+   "componentsNote": "忄(心)+夬",
+   "teachingTip": "心里着急脚步快",
+   "sortOrder": 90,
+   "status": "启用"
+  },
+  {
+   "id": "C091",
+   "type": "汉字",
+   "level": 1,
+   "content": "乐",
+   "pinyin": "lè",
+   "meaning": null,
+   "componentsNote": "象形",
+   "teachingTip": "高兴得跳起来",
+   "sortOrder": 91,
+   "status": "启用"
+  },
+  {
+   "id": "C092",
+   "type": "汉字",
+   "level": 1,
+   "content": "长",
+   "pinyin": "cháng/zhǎng",
+   "meaning": null,
+   "componentsNote": "象形",
+   "teachingTip": "禾苗天天在长高",
+   "sortOrder": 92,
+   "status": "启用"
+  },
+  {
+   "id": "C093",
+   "type": "汉字",
+   "level": 1,
+   "content": "太",
+   "pinyin": "tài",
+   "meaning": null,
+   "componentsNote": "大+丶",
+   "teachingTip": "大字加一点就是太",
+   "sortOrder": 93,
+   "status": "启用"
+  },
+  {
+   "id": "C094",
+   "type": "汉字",
+   "level": 1,
+   "content": "阳",
+   "pinyin": "yáng",
+   "meaning": null,
+   "componentsNote": "阝+日",
+   "teachingTip": "太阳照在山坡上",
+   "sortOrder": 94,
+   "status": "启用"
+  },
+  {
+   "id": "C095",
+   "type": "汉字",
+   "level": 1,
+   "content": "高",
+   "pinyin": "gāo",
+   "meaning": null,
+   "componentsNote": "象形",
+   "teachingTip": "高高的楼房",
+   "sortOrder": 95,
+   "status": "启用"
+  },
+  {
+   "id": "C096",
+   "type": "汉字",
+   "level": 1,
+   "content": "友",
+   "pinyin": "yǒu",
+   "meaning": null,
+   "componentsNote": "会意",
+   "teachingTip": "手拉手好朋友",
+   "sortOrder": 96,
+   "status": "启用"
+  },
+  {
+   "id": "C097",
+   "type": "汉字",
+   "level": 1,
+   "content": "家",
+   "pinyin": "jiā",
+   "meaning": null,
+   "componentsNote": "宀+豕",
+   "teachingTip": "屋顶下面暖暖的家",
+   "sortOrder": 97,
+   "status": "启用"
+  },
+  {
+   "id": "C098",
+   "type": "汉字",
+   "level": 1,
+   "content": "今",
+   "pinyin": "jīn",
+   "meaning": null,
+   "componentsNote": "会意",
+   "teachingTip": "今天的事今天做",
+   "sortOrder": 98,
+   "status": "启用"
+  },
+  {
+   "id": "C099",
+   "type": "汉字",
+   "level": 1,
+   "content": "树",
+   "pinyin": "shù",
+   "meaning": null,
+   "componentsNote": "木+对",
+   "teachingTip": "木字旁的都是树",
+   "sortOrder": 99,
+   "status": "启用"
+  },
+  {
+   "id": "C100",
+   "type": "汉字",
+   "level": 1,
+   "content": "饭",
+   "pinyin": "fàn",
+   "meaning": null,
+   "componentsNote": "饣+反",
+   "teachingTip": "到点要吃饭",
+   "sortOrder": 100,
+   "status": "启用"
+  },
+  {
+   "id": "C101",
+   "type": "汉字",
+   "level": 1,
+   "content": "儿",
+   "pinyin": "ér",
+   "meaning": null,
+   "componentsNote": "象形",
+   "teachingTip": "小宝宝张开腿",
+   "sortOrder": 101,
+   "status": "启用"
+  },
+  {
+   "id": "C102",
+   "type": "汉字",
+   "level": 1,
+   "content": "里",
+   "pinyin": "lǐ",
+   "meaning": null,
+   "componentsNote": "日+土",
+   "teachingTip": "太阳照在土地里",
+   "sortOrder": 102,
+   "status": "启用"
+  },
+  {
+   "id": "C103",
+   "type": "汉字",
+   "level": 1,
+   "content": "园",
+   "pinyin": "yuán",
+   "meaning": null,
+   "componentsNote": "囗+元",
+   "teachingTip": "围起来的地方就是园",
+   "sortOrder": 103,
+   "status": "启用"
+  },
+  {
+   "id": "C104",
+   "type": "汉字",
+   "level": 1,
+   "content": "个",
+   "pinyin": "gè",
+   "meaning": null,
+   "componentsNote": "会意",
+   "teachingTip": "一个两个数一数",
+   "sortOrder": 104,
+   "status": "启用"
+  },
+  {
+   "id": "C105",
+   "type": "汉字",
+   "level": 1,
+   "content": "上",
+   "pinyin": "shàng",
+   "meaning": null,
+   "componentsNote": "指事",
+   "teachingTip": "横线上面加一点",
+   "sortOrder": 105,
+   "status": "启用"
+  },
+  {
+   "id": "C106",
+   "type": "汉字",
+   "level": 1,
+   "content": "下",
+   "pinyin": "xià",
+   "meaning": null,
+   "componentsNote": "指事",
+   "teachingTip": "横线下面加一点",
+   "sortOrder": 106,
+   "status": "启用"
+  },
+  {
+   "id": "C107",
+   "type": "汉字",
+   "level": 1,
+   "content": "小",
+   "pinyin": "xiǎo",
+   "meaning": null,
+   "componentsNote": "象形",
+   "teachingTip": "比大更小就是小",
+   "sortOrder": 107,
+   "status": "启用"
+  },
+  {
+   "id": "C108",
+   "type": "汉字",
+   "level": 1,
+   "content": "出",
+   "pinyin": "chū",
+   "meaning": null,
+   "componentsNote": "会意",
+   "teachingTip": "两座山中间走出去",
+   "sortOrder": 108,
+   "status": "启用"
+  },
+  {
+   "id": "C109",
+   "type": "汉字",
+   "level": 1,
+   "content": "色",
+   "pinyin": "sè",
+   "meaning": null,
+   "componentsNote": "会意",
+   "teachingTip": "五颜六色真好看",
+   "sortOrder": 109,
+   "status": "启用"
+  },
+  {
+   "id": "C110",
+   "type": "汉字",
+   "level": 1,
+   "content": "书",
+   "pinyin": "shū",
+   "meaning": null,
+   "componentsNote": "会意",
+   "teachingTip": "手里拿着一本书",
+   "sortOrder": 110,
+   "status": "启用"
+  },
+  {
+   "id": "C111",
+   "type": "汉字",
+   "level": 1,
+   "content": "门",
+   "pinyin": "mén",
+   "meaning": null,
+   "componentsNote": "象形",
+   "teachingTip": "两扇门板就是门",
+   "sortOrder": 111,
+   "status": "启用"
+  },
+  {
+   "id": "C112",
+   "type": "汉字",
+   "level": 1,
+   "content": "歌",
+   "pinyin": "gē",
+   "meaning": null,
+   "componentsNote": "哥+欠",
+   "teachingTip": "哥哥开口在唱歌",
+   "sortOrder": 112,
+   "status": "启用"
+  },
+  {
+   "id": "C113",
+   "type": "汉字",
+   "level": 1,
+   "content": "孩",
+   "pinyin": "hái",
+   "meaning": null,
+   "componentsNote": "子+亥",
+   "teachingTip": "子字旁的都是孩子",
+   "sortOrder": 113,
+   "status": "启用"
+  },
+  {
+   "id": "C114",
+   "type": "汉字",
+   "level": 1,
+   "content": "真",
+   "pinyin": "zhēn",
+   "meaning": null,
+   "componentsNote": "会意",
+   "teachingTip": "真的事情不骗人",
+   "sortOrder": 114,
+   "status": "启用"
+  },
+  {
+   "id": "C115",
+   "type": "汉字",
+   "level": 1,
+   "content": "很",
+   "pinyin": "hěn",
+   "meaning": null,
+   "componentsNote": "彳+艮",
+   "teachingTip": "很字表示程度深",
+   "sortOrder": 115,
+   "status": "启用"
+  },
+  {
+   "id": "W001",
+   "type": "词语",
+   "level": 2,
+   "content": "一个",
+   "pinyin": "yí gè",
+   "meaning": null,
+   "componentsNote": "一",
+   "teachingTip": "最常用的数量词",
+   "sortOrder": 1,
+   "status": "启用"
+  },
+  {
+   "id": "W002",
+   "type": "词语",
+   "level": 2,
+   "content": "三个",
+   "pinyin": "sān gè",
+   "meaning": null,
+   "componentsNote": "三",
+   "teachingTip": "三个小朋友",
+   "sortOrder": 2,
+   "status": "启用"
+  },
+  {
+   "id": "W003",
+   "type": "词语",
+   "level": 2,
+   "content": "五天",
+   "pinyin": "wǔ tiān",
+   "meaning": null,
+   "componentsNote": "五+天",
+   "teachingTip": "数一数天数",
+   "sortOrder": 3,
+   "status": "启用"
+  },
+  {
+   "id": "W004",
+   "type": "词语",
+   "level": 2,
+   "content": "十个",
+   "pinyin": "shí gè",
+   "meaning": null,
+   "componentsNote": "十",
+   "teachingTip": "十个手指头",
+   "sortOrder": 4,
+   "status": "启用"
+  },
+  {
+   "id": "W005",
+   "type": "词语",
+   "level": 2,
+   "content": "太阳",
+   "pinyin": "tài yáng",
+   "meaning": null,
+   "componentsNote": "太+阳",
+   "teachingTip": "天上大火球",
+   "sortOrder": 5,
+   "status": "启用"
+  },
+  {
+   "id": "W006",
+   "type": "词语",
+   "level": 2,
+   "content": "月亮",
+   "pinyin": "yuè liang",
+   "meaning": null,
+   "componentsNote": "月",
+   "teachingTip": "晚上挂天边",
+   "sortOrder": 6,
+   "status": "启用"
+  },
+  {
+   "id": "W007",
+   "type": "词语",
+   "level": 2,
+   "content": "星星",
+   "pinyin": "xīng xing",
+   "meaning": null,
+   "componentsNote": "星",
+   "teachingTip": "一闪一闪亮晶晶",
+   "sortOrder": 7,
+   "status": "启用"
+  },
+  {
+   "id": "W008",
+   "type": "词语",
+   "level": 2,
+   "content": "山水",
+   "pinyin": "shān shuǐ",
+   "meaning": null,
+   "componentsNote": "山+水",
+   "teachingTip": "有山有水好地方",
+   "sortOrder": 8,
+   "status": "启用"
+  },
+  {
+   "id": "W009",
+   "type": "词语",
+   "level": 2,
+   "content": "火山",
+   "pinyin": "huǒ shān",
+   "meaning": null,
+   "componentsNote": "火+山",
+   "teachingTip": "会喷火的山",
+   "sortOrder": 9,
+   "status": "启用"
+  },
+  {
+   "id": "W010",
+   "type": "词语",
+   "level": 2,
+   "content": "大山",
+   "pinyin": "dà shān",
+   "meaning": null,
+   "componentsNote": "大+山",
+   "teachingTip": "高高的山",
+   "sortOrder": 10,
+   "status": "启用"
+  },
+  {
+   "id": "W011",
+   "type": "词语",
+   "level": 2,
+   "content": "石头",
+   "pinyin": "shí tou",
+   "meaning": null,
+   "componentsNote": "石",
+   "teachingTip": "硬硬的石头",
+   "sortOrder": 11,
+   "status": "启用"
+  },
+  {
+   "id": "W012",
+   "type": "词语",
+   "level": 2,
+   "content": "田地",
+   "pinyin": "tián dì",
+   "meaning": null,
+   "componentsNote": "田+地",
+   "teachingTip": "庄稼长的地方",
+   "sortOrder": 12,
+   "status": "启用"
+  },
+  {
+   "id": "W013",
+   "type": "词语",
+   "level": 2,
+   "content": "土地",
+   "pinyin": "tǔ dì",
+   "meaning": null,
+   "componentsNote": "土+地",
+   "teachingTip": "脚踩的土地",
+   "sortOrder": 13,
+   "status": "启用"
+  },
+  {
+   "id": "W014",
+   "type": "词语",
+   "level": 2,
+   "content": "木头",
+   "pinyin": "mù tou",
+   "meaning": null,
+   "componentsNote": "木",
+   "teachingTip": "树砍下来是木头",
+   "sortOrder": 14,
+   "status": "启用"
+  },
+  {
+   "id": "W015",
+   "type": "词语",
+   "level": 2,
+   "content": "禾苗",
+   "pinyin": "hé miáo",
+   "meaning": null,
+   "componentsNote": "禾+苗",
+   "teachingTip": "田里的小绿苗",
+   "sortOrder": 15,
+   "status": "启用"
+  },
+  {
+   "id": "W016",
+   "type": "词语",
+   "level": 2,
+   "content": "大米",
+   "pinyin": "dà mǐ",
+   "meaning": null,
+   "componentsNote": "大+米",
+   "teachingTip": "白白的大米饭",
+   "sortOrder": 16,
+   "status": "启用"
+  },
+  {
+   "id": "W017",
+   "type": "词语",
+   "level": 2,
+   "content": "花朵",
+   "pinyin": "huā duǒ",
+   "meaning": null,
+   "componentsNote": "花",
+   "teachingTip": "美丽的花",
+   "sortOrder": 17,
+   "status": "启用"
+  },
+  {
+   "id": "W018",
+   "type": "词语",
+   "level": 2,
+   "content": "花草",
+   "pinyin": "huā cǎo",
+   "meaning": null,
+   "componentsNote": "花+草",
+   "teachingTip": "公园里的花和草",
+   "sortOrder": 18,
+   "status": "启用"
+  },
+  {
+   "id": "W019",
+   "type": "词语",
+   "level": 2,
+   "content": "下雨",
+   "pinyin": "xià yǔ",
+   "meaning": null,
+   "componentsNote": "雨",
+   "teachingTip": "天上落下水滴",
+   "sortOrder": 19,
+   "status": "启用"
+  },
+  {
+   "id": "W020",
+   "type": "词语",
+   "level": 2,
+   "content": "雨天",
+   "pinyin": "yǔ tiān",
+   "meaning": null,
+   "componentsNote": "雨+天",
+   "teachingTip": "下雨的日子",
+   "sortOrder": 20,
+   "status": "启用"
+  },
+  {
+   "id": "W021",
+   "type": "词语",
+   "level": 2,
+   "content": "风雨",
+   "pinyin": "fēng yǔ",
+   "meaning": null,
+   "componentsNote": "风+雨",
+   "teachingTip": "又刮风又下雨",
+   "sortOrder": 21,
+   "status": "启用"
+  },
+  {
+   "id": "W022",
+   "type": "词语",
+   "level": 2,
+   "content": "白云",
+   "pinyin": "bái yún",
+   "meaning": null,
+   "componentsNote": "白+云",
+   "teachingTip": "白白的云朵",
+   "sortOrder": 22,
+   "status": "启用"
+  },
+  {
+   "id": "W023",
+   "type": "词语",
+   "level": 2,
+   "content": "雪花",
+   "pinyin": "xuě huā",
+   "meaning": null,
+   "componentsNote": "雪+花",
+   "teachingTip": "冬天飘下的白花",
+   "sortOrder": 23,
+   "status": "启用"
+  },
+  {
+   "id": "W024",
+   "type": "词语",
+   "level": 2,
+   "content": "打雷",
+   "pinyin": "dǎ léi",
+   "meaning": null,
+   "componentsNote": "雷",
+   "teachingTip": "轰隆隆真响",
+   "sortOrder": 24,
+   "status": "启用"
+  },
+  {
+   "id": "W025",
+   "type": "词语",
+   "level": 2,
+   "content": "晴天",
+   "pinyin": "qíng tiān",
+   "meaning": null,
+   "componentsNote": "晴+天",
+   "teachingTip": "太阳出来啦",
+   "sortOrder": 25,
+   "status": "启用"
+  },
+  {
+   "id": "W026",
+   "type": "词语",
+   "level": 2,
+   "content": "天上",
+   "pinyin": "tiān shàng",
+   "meaning": null,
+   "componentsNote": "天",
+   "teachingTip": "抬头看天上",
+   "sortOrder": 26,
+   "status": "启用"
+  },
+  {
+   "id": "W027",
+   "type": "词语",
+   "level": 2,
+   "content": "地上",
+   "pinyin": "dì shàng",
+   "meaning": null,
+   "componentsNote": "地",
+   "teachingTip": "脚踩在地上",
+   "sortOrder": 27,
+   "status": "启用"
+  },
+  {
+   "id": "W028",
+   "type": "词语",
+   "level": 2,
+   "content": "人口",
+   "pinyin": "rén kǒu",
+   "meaning": null,
+   "componentsNote": "人+口",
+   "teachingTip": "有多少人",
+   "sortOrder": 28,
+   "status": "启用"
+  },
+  {
+   "id": "W029",
+   "type": "词语",
+   "level": 2,
+   "content": "大手",
+   "pinyin": "dà shǒu",
+   "meaning": null,
+   "componentsNote": "大+手",
+   "teachingTip": "爸爸的大手",
+   "sortOrder": 29,
+   "status": "启用"
+  },
+  {
+   "id": "W030",
+   "type": "词语",
+   "level": 2,
+   "content": "小手",
+   "pinyin": "xiǎo shǒu",
+   "meaning": null,
+   "componentsNote": "手",
+   "teachingTip": "宝宝的小手",
+   "sortOrder": 30,
+   "status": "启用"
+  },
+  {
+   "id": "W031",
+   "type": "词语",
+   "level": 2,
+   "content": "手心",
+   "pinyin": "shǒu xīn",
+   "meaning": null,
+   "componentsNote": "手+心",
+   "teachingTip": "手摊开的中间",
+   "sortOrder": 31,
+   "status": "启用"
+  },
+  {
+   "id": "W032",
+   "type": "词语",
+   "level": 2,
+   "content": "耳朵",
+   "pinyin": "ěr duo",
+   "meaning": null,
+   "componentsNote": "耳",
+   "teachingTip": "听话要用耳朵",
+   "sortOrder": 32,
+   "status": "启用"
+  },
+  {
+   "id": "W033",
+   "type": "词语",
+   "level": 2,
+   "content": "眼睛",
+   "pinyin": "yǎn jing",
+   "meaning": null,
+   "componentsNote": "目",
+   "teachingTip": "看东西用眼睛",
+   "sortOrder": 33,
+   "status": "启用"
+  },
+  {
+   "id": "W034",
+   "type": "词语",
+   "level": 2,
+   "content": "心里",
+   "pinyin": "xīn lǐ",
+   "meaning": null,
+   "componentsNote": "心+里",
+   "teachingTip": "心里想的事",
+   "sortOrder": 34,
+   "status": "启用"
+  },
+  {
+   "id": "W035",
+   "type": "词语",
+   "level": 2,
+   "content": "开心",
+   "pinyin": "kāi xīn",
+   "meaning": null,
+   "componentsNote": "开+心",
+   "teachingTip": "高高兴兴",
+   "sortOrder": 35,
+   "status": "启用"
+  },
+  {
+   "id": "W036",
+   "type": "词语",
+   "level": 2,
+   "content": "女儿",
+   "pinyin": "nǚ ér",
+   "meaning": null,
+   "componentsNote": "女+儿",
+   "teachingTip": "家里的小公主",
+   "sortOrder": 36,
+   "status": "启用"
+  },
+  {
+   "id": "W037",
+   "type": "词语",
+   "level": 2,
+   "content": "儿子",
+   "pinyin": "ér zi",
+   "meaning": null,
+   "componentsNote": "儿+子",
+   "teachingTip": "家里的小王子",
+   "sortOrder": 37,
+   "status": "启用"
+  },
+  {
+   "id": "W038",
+   "type": "词语",
+   "level": 2,
+   "content": "大人",
+   "pinyin": "dà rén",
+   "meaning": null,
+   "componentsNote": "大+人",
+   "teachingTip": "爸爸妈妈是大人",
+   "sortOrder": 38,
+   "status": "启用"
+  },
+  {
+   "id": "W039",
+   "type": "词语",
+   "level": 2,
+   "content": "人们",
+   "pinyin": "rén men",
+   "meaning": null,
+   "componentsNote": "人+们",
+   "teachingTip": "许多许多人",
+   "sortOrder": 39,
+   "status": "启用"
+  },
+  {
+   "id": "W040",
+   "type": "词语",
+   "level": 2,
+   "content": "我们",
+   "pinyin": "wǒ men",
+   "meaning": null,
+   "componentsNote": "我+们",
+   "teachingTip": "你和我在一起",
+   "sortOrder": 40,
+   "status": "启用"
+  },
+  {
+   "id": "W041",
+   "type": "词语",
+   "level": 2,
+   "content": "你们",
+   "pinyin": "nǐ men",
+   "meaning": null,
+   "componentsNote": "你+们",
+   "teachingTip": "小朋友们就是你们",
+   "sortOrder": 41,
+   "status": "启用"
+  },
+  {
+   "id": "W042",
+   "type": "词语",
+   "level": 2,
+   "content": "他们",
+   "pinyin": "tā men",
+   "meaning": null,
+   "componentsNote": "他+们",
+   "teachingTip": "那边的一群人",
+   "sortOrder": 42,
+   "status": "启用"
+  },
+  {
+   "id": "W043",
+   "type": "词语",
+   "level": 2,
+   "content": "朋友",
+   "pinyin": "péng you",
+   "meaning": null,
+   "componentsNote": "朋+友",
+   "teachingTip": "一起玩的好朋友",
+   "sortOrder": 43,
+   "status": "启用"
+  },
+  {
+   "id": "W044",
+   "type": "词语",
+   "level": 2,
+   "content": "虫子",
+   "pinyin": "chóng zi",
+   "meaning": null,
+   "componentsNote": "虫+子",
+   "teachingTip": "小小的虫",
+   "sortOrder": 44,
+   "status": "启用"
+  },
+  {
+   "id": "W045",
+   "type": "词语",
+   "level": 2,
+   "content": "小鱼",
+   "pinyin": "xiǎo yú",
+   "meaning": null,
+   "componentsNote": "鱼",
+   "teachingTip": "水里游的小鱼",
+   "sortOrder": 45,
+   "status": "启用"
+  },
+  {
+   "id": "W046",
+   "type": "词语",
+   "level": 2,
+   "content": "小鸟",
+   "pinyin": "xiǎo niǎo",
+   "meaning": null,
+   "componentsNote": "鸟",
+   "teachingTip": "天上飞的小鸟",
+   "sortOrder": 46,
+   "status": "启用"
+  },
+  {
+   "id": "W047",
+   "type": "词语",
+   "level": 2,
+   "content": "马儿",
+   "pinyin": "mǎ ér",
+   "meaning": null,
+   "componentsNote": "马+儿",
+   "teachingTip": "奔跑的马",
+   "sortOrder": 47,
+   "status": "启用"
+  },
+  {
+   "id": "W048",
+   "type": "词语",
+   "level": 2,
+   "content": "牛奶",
+   "pinyin": "niú nǎi",
+   "meaning": null,
+   "componentsNote": "牛+奶",
+   "teachingTip": "每天喝一杯",
+   "sortOrder": 48,
+   "status": "启用"
+  },
+  {
+   "id": "W049",
+   "type": "词语",
+   "level": 2,
+   "content": "牛羊",
+   "pinyin": "niú yáng",
+   "meaning": null,
+   "componentsNote": "牛+羊",
+   "teachingTip": "草原上的牛和羊",
+   "sortOrder": 49,
+   "status": "启用"
+  },
+  {
+   "id": "W050",
+   "type": "词语",
+   "level": 2,
+   "content": "爸爸",
+   "pinyin": "bà ba",
+   "meaning": null,
+   "componentsNote": "爸",
+   "teachingTip": "家里的顶梁柱",
+   "sortOrder": 50,
+   "status": "启用"
+  },
+  {
+   "id": "W051",
+   "type": "词语",
+   "level": 2,
+   "content": "妈妈",
+   "pinyin": "mā ma",
+   "meaning": null,
+   "componentsNote": "妈",
+   "teachingTip": "最亲的人",
+   "sortOrder": 51,
+   "status": "启用"
+  },
+  {
+   "id": "W052",
+   "type": "词语",
+   "level": 2,
+   "content": "爷爷",
+   "pinyin": "yé ye",
+   "meaning": null,
+   "componentsNote": "爷",
+   "teachingTip": "爸爸的父亲",
+   "sortOrder": 52,
+   "status": "启用"
+  },
+  {
+   "id": "W053",
+   "type": "词语",
+   "level": 2,
+   "content": "奶奶",
+   "pinyin": "nǎi nai",
+   "meaning": null,
+   "componentsNote": "奶",
+   "teachingTip": "会做好吃的",
+   "sortOrder": 53,
+   "status": "启用"
+  },
+  {
+   "id": "W054",
+   "type": "词语",
+   "level": 2,
+   "content": "哥哥",
+   "pinyin": "gē ge",
+   "meaning": null,
+   "componentsNote": "哥",
+   "teachingTip": "比我大的男孩",
+   "sortOrder": 54,
+   "status": "启用"
+  },
+  {
+   "id": "W055",
+   "type": "词语",
+   "level": 2,
+   "content": "姐姐",
+   "pinyin": "jiě jie",
+   "meaning": null,
+   "componentsNote": "姐",
+   "teachingTip": "比我大的女孩",
+   "sortOrder": 55,
+   "status": "启用"
+  },
+  {
+   "id": "W056",
+   "type": "词语",
+   "level": 2,
+   "content": "弟弟",
+   "pinyin": "dì di",
+   "meaning": null,
+   "componentsNote": "弟",
+   "teachingTip": "比我小的男孩",
+   "sortOrder": 56,
+   "status": "启用"
+  },
+  {
+   "id": "W057",
+   "type": "词语",
+   "level": 2,
+   "content": "妹妹",
+   "pinyin": "mèi mei",
+   "meaning": null,
+   "componentsNote": "妹",
+   "teachingTip": "比我小的女孩",
+   "sortOrder": 57,
+   "status": "启用"
+  },
+  {
+   "id": "W058",
+   "type": "词语",
+   "level": 2,
+   "content": "大家",
+   "pinyin": "dà jiā",
+   "meaning": null,
+   "componentsNote": "大+家",
+   "teachingTip": "所有人一起",
+   "sortOrder": 58,
+   "status": "启用"
+  },
+  {
+   "id": "W059",
+   "type": "词语",
+   "level": 2,
+   "content": "看见",
+   "pinyin": "kàn jiàn",
+   "meaning": null,
+   "componentsNote": "看",
+   "teachingTip": "眼睛看到了",
+   "sortOrder": 59,
+   "status": "启用"
+  },
+  {
+   "id": "W060",
+   "type": "词语",
+   "level": 2,
+   "content": "听讲",
+   "pinyin": "tīng jiǎng",
+   "meaning": null,
+   "componentsNote": "听",
+   "teachingTip": "上课认真听",
+   "sortOrder": 60,
+   "status": "启用"
+  },
+  {
+   "id": "W061",
+   "type": "词语",
+   "level": 2,
+   "content": "说话",
+   "pinyin": "shuō huà",
+   "meaning": null,
+   "componentsNote": "说",
+   "teachingTip": "用嘴巴表达",
+   "sortOrder": 61,
+   "status": "启用"
+  },
+  {
+   "id": "W062",
+   "type": "词语",
+   "level": 2,
+   "content": "读书",
+   "pinyin": "dú shū",
+   "meaning": null,
+   "componentsNote": "读",
+   "teachingTip": "每天读一读",
+   "sortOrder": 62,
+   "status": "启用"
+  },
+  {
+   "id": "W063",
+   "type": "词语",
+   "level": 2,
+   "content": "写字",
+   "pinyin": "xiě zì",
+   "meaning": null,
+   "componentsNote": "写",
+   "teachingTip": "一笔一画认真写",
+   "sortOrder": 63,
+   "status": "启用"
+  },
+  {
+   "id": "W064",
+   "type": "词语",
+   "level": 2,
+   "content": "画画",
+   "pinyin": "huà huà",
+   "meaning": null,
+   "componentsNote": "画",
+   "teachingTip": "画出彩色世界",
+   "sortOrder": 64,
+   "status": "启用"
+  },
+  {
+   "id": "W065",
+   "type": "词语",
+   "level": 2,
+   "content": "唱歌",
+   "pinyin": "chàng gē",
+   "meaning": null,
+   "componentsNote": "唱",
+   "teachingTip": "一起大声唱",
+   "sortOrder": 65,
+   "status": "启用"
+  },
+  {
+   "id": "W066",
+   "type": "词语",
+   "level": 2,
+   "content": "吃饭",
+   "pinyin": "chī fàn",
+   "meaning": null,
+   "componentsNote": "吃+饭",
+   "teachingTip": "到点吃饭啦",
+   "sortOrder": 66,
+   "status": "启用"
+  },
+  {
+   "id": "W067",
+   "type": "词语",
+   "level": 2,
+   "content": "喝水",
+   "pinyin": "hē shuǐ",
+   "meaning": null,
+   "componentsNote": "喝+水",
+   "teachingTip": "口渴多喝水",
+   "sortOrder": 67,
+   "status": "启用"
+  },
+  {
+   "id": "W068",
+   "type": "词语",
+   "level": 2,
+   "content": "走路",
+   "pinyin": "zǒu lù",
+   "meaning": null,
+   "componentsNote": "走",
+   "teachingTip": "一步一步走",
+   "sortOrder": 68,
+   "status": "启用"
+  },
+  {
+   "id": "W069",
+   "type": "词语",
+   "level": 2,
+   "content": "跑步",
+   "pinyin": "pǎo bù",
+   "meaning": null,
+   "componentsNote": "跑",
+   "teachingTip": "锻炼身体",
+   "sortOrder": 69,
+   "status": "启用"
+  },
+  {
+   "id": "W070",
+   "type": "词语",
+   "level": 2,
+   "content": "坐下",
+   "pinyin": "zuò xià",
+   "meaning": null,
+   "componentsNote": "坐",
+   "teachingTip": "小板凳坐坐好",
+   "sortOrder": 70,
+   "status": "启用"
+  },
+  {
+   "id": "W071",
+   "type": "词语",
+   "level": 2,
+   "content": "休息",
+   "pinyin": "xiū xi",
+   "meaning": null,
+   "componentsNote": "休",
+   "teachingTip": "累了歇一歇",
+   "sortOrder": 71,
+   "status": "启用"
+  },
+  {
+   "id": "W072",
+   "type": "词语",
+   "level": 2,
+   "content": "学习",
+   "pinyin": "xué xí",
+   "meaning": null,
+   "componentsNote": "学",
+   "teachingTip": "学本领长知识",
+   "sortOrder": 72,
+   "status": "启用"
+  },
+  {
+   "id": "W073",
+   "type": "词语",
+   "level": 2,
+   "content": "开门",
+   "pinyin": "kāi mén",
+   "meaning": null,
+   "componentsNote": "开",
+   "teachingTip": "把门打开",
+   "sortOrder": 73,
+   "status": "启用"
+  },
+  {
+   "id": "W074",
+   "type": "词语",
+   "level": 2,
+   "content": "关门",
+   "pinyin": "guān mén",
+   "meaning": null,
+   "componentsNote": "关",
+   "teachingTip": "随手关好门",
+   "sortOrder": 74,
+   "status": "启用"
+  },
+  {
+   "id": "W075",
+   "type": "词语",
+   "level": 2,
+   "content": "回去",
+   "pinyin": "huí qù",
+   "meaning": null,
+   "componentsNote": "回+去",
+   "teachingTip": "放学回家去",
+   "sortOrder": 75,
+   "status": "启用"
+  },
+  {
+   "id": "W076",
+   "type": "词语",
+   "level": 2,
+   "content": "明白",
+   "pinyin": "míng bai",
+   "meaning": null,
+   "componentsNote": "明",
+   "teachingTip": "听懂了就是明白",
+   "sortOrder": 76,
+   "status": "启用"
+  },
+  {
+   "id": "W077",
+   "type": "词语",
+   "level": 2,
+   "content": "好多",
+   "pinyin": "hǎo duō",
+   "meaning": null,
+   "componentsNote": "好+多",
+   "teachingTip": "很多很多",
+   "sortOrder": 77,
+   "status": "启用"
+  },
+  {
+   "id": "W078",
+   "type": "词语",
+   "level": 2,
+   "content": "多少",
+   "pinyin": "duō shǎo",
+   "meaning": null,
+   "componentsNote": "多+少",
+   "teachingTip": "数一数有多少",
+   "sortOrder": 78,
+   "status": "启用"
+  },
+  {
+   "id": "W079",
+   "type": "词语",
+   "level": 2,
+   "content": "快乐",
+   "pinyin": "kuài lè",
+   "meaning": null,
+   "componentsNote": "快+乐",
+   "teachingTip": "开心每一天",
+   "sortOrder": 79,
+   "status": "启用"
+  },
+  {
+   "id": "W080",
+   "type": "词语",
+   "level": 2,
+   "content": "高兴",
+   "pinyin": "gāo xìng",
+   "meaning": null,
+   "componentsNote": "高",
+   "teachingTip": "心里美美的",
+   "sortOrder": 80,
+   "status": "启用"
+  },
+  {
+   "id": "W081",
+   "type": "词语",
+   "level": 2,
+   "content": "长大",
+   "pinyin": "zhǎng dà",
+   "meaning": null,
+   "componentsNote": "长+大",
+   "teachingTip": "一年比一年高",
+   "sortOrder": 81,
+   "status": "启用"
+  },
+  {
+   "id": "W082",
+   "type": "词语",
+   "level": 2,
+   "content": "红色",
+   "pinyin": "hóng sè",
+   "meaning": null,
+   "componentsNote": "红",
+   "teachingTip": "国旗的颜色",
+   "sortOrder": 82,
+   "status": "启用"
+  },
+  {
+   "id": "W083",
+   "type": "词语",
+   "level": 2,
+   "content": "黄色",
+   "pinyin": "huáng sè",
+   "meaning": null,
+   "componentsNote": "黄",
+   "teachingTip": "香蕉的颜色",
+   "sortOrder": 83,
+   "status": "启用"
+  },
+  {
+   "id": "W084",
+   "type": "词语",
+   "level": 2,
+   "content": "蓝色",
+   "pinyin": "lán sè",
+   "meaning": null,
+   "componentsNote": "蓝",
+   "teachingTip": "大海的颜色",
+   "sortOrder": 84,
+   "status": "启用"
+  },
+  {
+   "id": "W085",
+   "type": "词语",
+   "level": 2,
+   "content": "绿色",
+   "pinyin": "lǜ sè",
+   "meaning": null,
+   "componentsNote": "绿",
+   "teachingTip": "小草的颜色",
+   "sortOrder": 85,
+   "status": "启用"
+  },
+  {
+   "id": "W086",
+   "type": "词语",
+   "level": 2,
+   "content": "白色",
+   "pinyin": "bái sè",
+   "meaning": null,
+   "componentsNote": "白",
+   "teachingTip": "雪花的颜色",
+   "sortOrder": 86,
+   "status": "启用"
+  },
+  {
+   "id": "W087",
+   "type": "词语",
+   "level": 2,
+   "content": "黑色",
+   "pinyin": "hēi sè",
+   "meaning": null,
+   "componentsNote": "黑",
+   "teachingTip": "夜晚的颜色",
+   "sortOrder": 87,
+   "status": "启用"
+  },
+  {
+   "id": "W088",
+   "type": "词语",
+   "level": 2,
+   "content": "早上",
+   "pinyin": "zǎo shang",
+   "meaning": null,
+   "componentsNote": "早",
+   "teachingTip": "太阳刚出来",
+   "sortOrder": 88,
+   "status": "启用"
+  },
+  {
+   "id": "W089",
+   "type": "词语",
+   "level": 2,
+   "content": "晚上",
+   "pinyin": "wǎn shang",
+   "meaning": null,
+   "componentsNote": "晚",
+   "teachingTip": "月亮出来了",
+   "sortOrder": 89,
+   "status": "启用"
+  },
+  {
+   "id": "W090",
+   "type": "词语",
+   "level": 2,
+   "content": "昨天",
+   "pinyin": "zuó tiān",
+   "meaning": null,
+   "componentsNote": "天",
+   "teachingTip": "今天的前一天",
+   "sortOrder": 90,
+   "status": "启用"
+  },
+  {
+   "id": "W091",
+   "type": "词语",
+   "level": 2,
+   "content": "今天",
+   "pinyin": "jīn tiān",
+   "meaning": null,
+   "componentsNote": "今+天",
+   "teachingTip": "就是现在这一天",
+   "sortOrder": 91,
+   "status": "启用"
+  },
+  {
+   "id": "W092",
+   "type": "词语",
+   "level": 2,
+   "content": "春天",
+   "pinyin": "chūn tiān",
+   "meaning": null,
+   "componentsNote": "春+天",
+   "teachingTip": "花开的季节",
+   "sortOrder": 92,
+   "status": "启用"
+  },
+  {
+   "id": "W093",
+   "type": "词语",
+   "level": 2,
+   "content": "夏天",
+   "pinyin": "xià tiān",
+   "meaning": null,
+   "componentsNote": "夏+天",
+   "teachingTip": "最热的季节",
+   "sortOrder": 93,
+   "status": "启用"
+  },
+  {
+   "id": "W094",
+   "type": "词语",
+   "level": 2,
+   "content": "秋天",
+   "pinyin": "qiū tiān",
+   "meaning": null,
+   "componentsNote": "秋+天",
+   "teachingTip": "果实成熟的季节",
+   "sortOrder": 94,
+   "status": "启用"
+  },
+  {
+   "id": "W095",
+   "type": "词语",
+   "level": 2,
+   "content": "冬天",
+   "pinyin": "dōng tiān",
+   "meaning": null,
+   "componentsNote": "冬+天",
+   "teachingTip": "下雪的季节",
+   "sortOrder": 95,
+   "status": "启用"
+  },
+  {
+   "id": "W096",
+   "type": "词语",
+   "level": 2,
+   "content": "幼儿园",
+   "pinyin": "yòu ér yuán",
+   "meaning": null,
+   "componentsNote": "儿+园",
+   "teachingTip": "我们的快乐天地",
+   "sortOrder": 96,
+   "status": "启用"
+  },
+  {
+   "id": "S001",
+   "type": "短句",
+   "level": 3,
+   "content": "一二三，上山去。",
+   "pinyin": null,
+   "meaning": null,
+   "componentsNote": "一、二、三、山、去",
+   "teachingTip": "数字儿歌第一句",
+   "sortOrder": 1,
+   "status": "启用"
+  },
+  {
+   "id": "S002",
+   "type": "短句",
+   "level": 3,
+   "content": "太阳出来了。",
+   "pinyin": null,
+   "meaning": null,
+   "componentsNote": "太阳、来、了",
+   "teachingTip": "早晨看到的景象",
+   "sortOrder": 2,
+   "status": "启用"
+  },
+  {
+   "id": "S003",
+   "type": "短句",
+   "level": 3,
+   "content": "月亮出来了。",
+   "pinyin": null,
+   "meaning": null,
+   "componentsNote": "月亮、来、了",
+   "teachingTip": "夜晚看到的景象",
+   "sortOrder": 3,
+   "status": "启用"
+  },
+  {
+   "id": "S004",
+   "type": "短句",
+   "level": 3,
+   "content": "天上有一朵白云。",
+   "pinyin": null,
+   "meaning": null,
+   "componentsNote": "天上、有、白云",
+   "teachingTip": "抬头看天说句子",
+   "sortOrder": 4,
+   "status": "启用"
+  },
+  {
+   "id": "S005",
+   "type": "短句",
+   "level": 3,
+   "content": "下雨了。",
+   "pinyin": null,
+   "meaning": null,
+   "componentsNote": "下雨、了",
+   "teachingTip": "最简单的天气句",
+   "sortOrder": 5,
+   "status": "启用"
+  },
+  {
+   "id": "S006",
+   "type": "短句",
+   "level": 3,
+   "content": "风来了，云走了。",
+   "pinyin": null,
+   "meaning": null,
+   "componentsNote": "风、来、云、走",
+   "teachingTip": "风和云的游戏",
+   "sortOrder": 6,
+   "status": "启用"
+  },
+  {
+   "id": "S007",
+   "type": "短句",
+   "level": 3,
+   "content": "雪花飘下来。",
+   "pinyin": null,
+   "meaning": null,
+   "componentsNote": "雪花",
+   "teachingTip": "冬天的景象",
+   "sortOrder": 7,
+   "status": "启用"
+  },
+  {
+   "id": "S008",
+   "type": "短句",
+   "level": 3,
+   "content": "山上有大树。",
+   "pinyin": null,
+   "meaning": null,
+   "componentsNote": "山、有、大、树",
+   "teachingTip": "山上看一看",
+   "sortOrder": 8,
+   "status": "启用"
+  },
+  {
+   "id": "S009",
+   "type": "短句",
+   "level": 3,
+   "content": "水里有小鱼。",
+   "pinyin": null,
+   "meaning": null,
+   "componentsNote": "水、里、有、小鱼",
+   "teachingTip": "水里找一找",
+   "sortOrder": 9,
+   "status": "启用"
+  },
+  {
+   "id": "S010",
+   "type": "短句",
+   "level": 3,
+   "content": "小鱼水里游。",
+   "pinyin": null,
+   "meaning": null,
+   "componentsNote": "小鱼、水、里",
+   "teachingTip": "观察小鱼",
+   "sortOrder": 10,
+   "status": "启用"
+  },
+  {
+   "id": "S011",
+   "type": "短句",
+   "level": 3,
+   "content": "小鸟天上飞。",
+   "pinyin": null,
+   "meaning": null,
+   "componentsNote": "小鸟、天上、飞",
+   "teachingTip": "观察小鸟",
+   "sortOrder": 11,
+   "status": "启用"
+  },
+  {
+   "id": "S012",
+   "type": "短句",
+   "level": 3,
+   "content": "小鸟在唱歌。",
+   "pinyin": null,
+   "meaning": null,
+   "componentsNote": "小鸟、在、唱歌",
+   "teachingTip": "听，小鸟的声音",
+   "sortOrder": 12,
+   "status": "启用"
+  },
+  {
+   "id": "S013",
+   "type": "短句",
+   "level": 3,
+   "content": "马儿快快跑。",
+   "pinyin": null,
+   "meaning": null,
+   "componentsNote": "马儿、快、跑",
+   "teachingTip": "看马儿奔跑",
+   "sortOrder": 13,
+   "status": "启用"
+  },
+  {
+   "id": "S014",
+   "type": "短句",
+   "level": 3,
+   "content": "牛羊吃青草。",
+   "pinyin": null,
+   "meaning": null,
+   "componentsNote": "牛羊、吃、草",
+   "teachingTip": "草原上的一幕",
+   "sortOrder": 14,
+   "status": "启用"
+  },
+  {
+   "id": "S015",
+   "type": "短句",
+   "level": 3,
+   "content": "我爱爸爸。",
+   "pinyin": null,
+   "meaning": null,
+   "componentsNote": "我、爱、爸爸",
+   "teachingTip": "表达爱",
+   "sortOrder": 15,
+   "status": "启用"
+  },
+  {
+   "id": "S016",
+   "type": "短句",
+   "level": 3,
+   "content": "我爱妈妈。",
+   "pinyin": null,
+   "meaning": null,
+   "componentsNote": "我、爱、妈妈",
+   "teachingTip": "表达爱",
+   "sortOrder": 16,
+   "status": "启用"
+  },
+  {
+   "id": "S017",
+   "type": "短句",
+   "level": 3,
+   "content": "爸爸妈妈也爱我。",
+   "pinyin": null,
+   "meaning": null,
+   "componentsNote": "爸爸、妈妈、也、爱、我",
+   "teachingTip": "家是暖暖的",
+   "sortOrder": 17,
+   "status": "启用"
+  },
+  {
+   "id": "S018",
+   "type": "短句",
+   "level": 3,
+   "content": "爷爷笑了。",
+   "pinyin": null,
+   "meaning": null,
+   "componentsNote": "爷爷、笑、了",
+   "teachingTip": "爷爷真高兴",
+   "sortOrder": 18,
+   "status": "启用"
+  },
+  {
+   "id": "S019",
+   "type": "短句",
+   "level": 3,
+   "content": "奶奶笑了。",
+   "pinyin": null,
+   "meaning": null,
+   "componentsNote": "奶奶、笑、了",
+   "teachingTip": "奶奶真高兴",
+   "sortOrder": 19,
+   "status": "启用"
+  },
+  {
+   "id": "S020",
+   "type": "短句",
+   "level": 3,
+   "content": "哥哥去上学。",
+   "pinyin": null,
+   "meaning": null,
+   "componentsNote": "哥哥、去、上学",
+   "teachingTip": "哥哥真能干",
+   "sortOrder": 20,
+   "status": "启用"
+  },
+  {
+   "id": "S021",
+   "type": "短句",
+   "level": 3,
+   "content": "姐姐在画画。",
+   "pinyin": null,
+   "meaning": null,
+   "componentsNote": "姐姐、在、画画",
+   "teachingTip": "姐姐真认真",
+   "sortOrder": 21,
+   "status": "启用"
+  },
+  {
+   "id": "S022",
+   "type": "短句",
+   "level": 3,
+   "content": "弟弟哭了。",
+   "pinyin": null,
+   "meaning": null,
+   "componentsNote": "弟弟、哭、了",
+   "teachingTip": "弟弟怎么了",
+   "sortOrder": 22,
+   "status": "启用"
+  },
+  {
+   "id": "S023",
+   "type": "短句",
+   "level": 3,
+   "content": "妹妹笑了。",
+   "pinyin": null,
+   "meaning": null,
+   "componentsNote": "妹妹、笑、了",
+   "teachingTip": "妹妹真开心",
+   "sortOrder": 23,
+   "status": "启用"
+  },
+  {
+   "id": "S024",
+   "type": "短句",
+   "level": 3,
+   "content": "我们是好朋友。",
+   "pinyin": null,
+   "meaning": null,
+   "componentsNote": "我们、是、好、朋友",
+   "teachingTip": "友谊的句子",
+   "sortOrder": 24,
+   "status": "启用"
+  },
+  {
+   "id": "S025",
+   "type": "短句",
+   "level": 3,
+   "content": "大家一起玩。",
+   "pinyin": null,
+   "meaning": null,
+   "componentsNote": "大家、玩",
+   "teachingTip": "分享的快乐",
+   "sortOrder": 25,
+   "status": "启用"
+  },
+  {
+   "id": "S026",
+   "type": "短句",
+   "level": 3,
+   "content": "早上好！",
+   "pinyin": null,
+   "meaning": null,
+   "componentsNote": "早上、好",
+   "teachingTip": "见面打招呼",
+   "sortOrder": 26,
+   "status": "启用"
+  },
+  {
+   "id": "S027",
+   "type": "短句",
+   "level": 3,
+   "content": "我很好。",
+   "pinyin": null,
+   "meaning": null,
+   "componentsNote": "我、好",
+   "teachingTip": "回答问候",
+   "sortOrder": 27,
+   "status": "启用"
+  },
+  {
+   "id": "S028",
+   "type": "短句",
+   "level": 3,
+   "content": "今天天气真好。",
+   "pinyin": null,
+   "meaning": null,
+   "componentsNote": "今天、天气、好",
+   "teachingTip": "出门前的感叹",
+   "sortOrder": 28,
+   "status": "启用"
+  },
+  {
+   "id": "S029",
+   "type": "短句",
+   "level": 3,
+   "content": "花儿开了。",
+   "pinyin": null,
+   "meaning": null,
+   "componentsNote": "花、儿、开、了",
+   "teachingTip": "春天的消息",
+   "sortOrder": 29,
+   "status": "启用"
+  },
+  {
+   "id": "S030",
+   "type": "短句",
+   "level": 3,
+   "content": "草儿绿了。",
+   "pinyin": null,
+   "meaning": null,
+   "componentsNote": "草、儿、绿、了",
+   "teachingTip": "春天来了",
+   "sortOrder": 30,
+   "status": "启用"
+  },
+  {
+   "id": "S031",
+   "type": "短句",
+   "level": 3,
+   "content": "树叶黄了。",
+   "pinyin": null,
+   "meaning": null,
+   "componentsNote": "树、黄、了",
+   "teachingTip": "秋天来了",
+   "sortOrder": 31,
+   "status": "启用"
+  },
+  {
+   "id": "S032",
+   "type": "短句",
+   "level": 3,
+   "content": "我吃饭。",
+   "pinyin": null,
+   "meaning": null,
+   "componentsNote": "我、吃饭",
+   "teachingTip": "自己的事情自己做",
+   "sortOrder": 32,
+   "status": "启用"
+  },
+  {
+   "id": "S033",
+   "type": "短句",
+   "level": 3,
+   "content": "我喝水。",
+   "pinyin": null,
+   "meaning": null,
+   "componentsNote": "我、喝水",
+   "teachingTip": "口渴了自己倒",
+   "sortOrder": 33,
+   "status": "启用"
+  },
+  {
+   "id": "S034",
+   "type": "短句",
+   "level": 3,
+   "content": "我爱吃水果。",
+   "pinyin": null,
+   "meaning": null,
+   "componentsNote": "我、爱、吃、果",
+   "teachingTip": "水果真好吃",
+   "sortOrder": 34,
+   "status": "启用"
+  },
+  {
+   "id": "S035",
+   "type": "短句",
+   "level": 3,
+   "content": "我们学写字。",
+   "pinyin": null,
+   "meaning": null,
+   "componentsNote": "我们、学、写字",
+   "teachingTip": "认真学本领",
+   "sortOrder": 35,
+   "status": "启用"
+  },
+  {
+   "id": "S036",
+   "type": "短句",
+   "level": 3,
+   "content": "大家一起唱歌。",
+   "pinyin": null,
+   "meaning": null,
+   "componentsNote": "大家、唱歌",
+   "teachingTip": "音乐课真热闹",
+   "sortOrder": 36,
+   "status": "启用"
+  },
+  {
+   "id": "S037",
+   "type": "短句",
+   "level": 3,
+   "content": "我是好孩子。",
+   "pinyin": null,
+   "meaning": null,
+   "componentsNote": "我、是、好、孩子",
+   "teachingTip": "自信地说",
+   "sortOrder": 37,
+   "status": "启用"
+  },
+  {
+   "id": "S038",
+   "type": "短句",
+   "level": 3,
+   "content": "你是我的朋友。",
+   "pinyin": null,
+   "meaning": null,
+   "componentsNote": "你、是、我、的、朋友",
+   "teachingTip": "介绍好朋友",
+   "sortOrder": 38,
+   "status": "启用"
+  },
+  {
+   "id": "S039",
+   "type": "短句",
+   "level": 3,
+   "content": "他是我哥哥。",
+   "pinyin": null,
+   "meaning": null,
+   "componentsNote": "他、是、我、哥哥",
+   "teachingTip": "介绍家人",
+   "sortOrder": 39,
+   "status": "启用"
+  },
+  {
+   "id": "S040",
+   "type": "短句",
+   "level": 3,
+   "content": "她是我姐姐。",
+   "pinyin": null,
+   "meaning": null,
+   "componentsNote": "她、是、我、姐姐",
+   "teachingTip": "介绍家人",
+   "sortOrder": 40,
+   "status": "启用"
+  },
+  {
+   "id": "S041",
+   "type": "短句",
+   "level": 3,
+   "content": "我们爱学习。",
+   "pinyin": null,
+   "meaning": null,
+   "componentsNote": "我们、爱、学习",
+   "teachingTip": "学习真快乐",
+   "sortOrder": 41,
+   "status": "启用"
+  },
+  {
+   "id": "S042",
+   "type": "短句",
+   "level": 3,
+   "content": "春天来了。",
+   "pinyin": null,
+   "meaning": null,
+   "componentsNote": "春天、来、了",
+   "teachingTip": "季节的变化",
+   "sortOrder": 42,
+   "status": "启用"
+  },
+  {
+   "id": "S043",
+   "type": "短句",
+   "level": 3,
+   "content": "夏天来了。",
+   "pinyin": null,
+   "meaning": null,
+   "componentsNote": "夏天、来、了",
+   "teachingTip": "好热呀",
+   "sortOrder": 43,
+   "status": "启用"
+  },
+  {
+   "id": "S044",
+   "type": "短句",
+   "level": 3,
+   "content": "秋天来了。",
+   "pinyin": null,
+   "meaning": null,
+   "componentsNote": "秋天、来、了",
+   "teachingTip": "果子熟了",
+   "sortOrder": 44,
+   "status": "启用"
+  },
+  {
+   "id": "S045",
+   "type": "短句",
+   "level": 3,
+   "content": "冬天下雪了。",
+   "pinyin": null,
+   "meaning": null,
+   "componentsNote": "冬天、下雪、了",
+   "teachingTip": "堆雪人去",
+   "sortOrder": 45,
+   "status": "启用"
+  },
+  {
+   "id": "S046",
+   "type": "短句",
+   "level": 3,
+   "content": "开开心心来上学。",
+   "pinyin": null,
+   "meaning": null,
+   "componentsNote": "开心、来、上学",
+   "teachingTip": "每天的心情",
+   "sortOrder": 46,
+   "status": "启用"
+  },
+  {
+   "id": "S047",
+   "type": "短句",
+   "level": 3,
+   "content": "天黑了，回家了。",
+   "pinyin": null,
+   "meaning": null,
+   "componentsNote": "天、黑、了、回、家",
+   "teachingTip": "放学的时候",
+   "sortOrder": 47,
+   "status": "启用"
+  },
+  {
+   "id": "S048",
+   "type": "短句",
+   "level": 3,
+   "content": "我爱我的家。",
+   "pinyin": null,
+   "meaning": null,
+   "componentsNote": "我、爱、我、的、家",
+   "teachingTip": "家是最暖的地方",
+   "sortOrder": 48,
+   "status": "启用"
+  },
+  {
+   "id": "S049",
+   "type": "短句",
+   "level": 3,
+   "content": "幼儿园里真快乐。",
+   "pinyin": null,
+   "meaning": null,
+   "componentsNote": "幼儿园、里、快乐",
+   "teachingTip": "我们的幼儿园",
+   "sortOrder": 49,
+   "status": "启用"
+  },
+  {
+   "id": "S050",
+   "type": "短句",
+   "level": 3,
+   "content": "大手拉小手。",
+   "pinyin": null,
+   "meaning": null,
+   "componentsNote": "大手、小手",
+   "teachingTip": "和爸爸妈妈散步",
+   "sortOrder": 50,
+   "status": "启用"
+  }
+ ],
+ "relations": [
+  {
+   "parentId": "C001",
+   "childId": "R011"
+  },
+  {
+   "parentId": "C001",
+   "childId": "R012"
+  },
+  {
+   "parentId": "C002",
+   "childId": "R019"
+  },
+  {
+   "parentId": "C003",
+   "childId": "R019"
+  },
+  {
+   "parentId": "C004",
+   "childId": "R019"
+  },
+  {
+   "parentId": "C004",
+   "childId": "R022"
+  },
+  {
+   "parentId": "C005",
+   "childId": "R022"
+  },
+  {
+   "parentId": "C006",
+   "childId": "R022"
+  },
+  {
+   "parentId": "C007",
+   "childId": "R012"
+  },
+  {
+   "parentId": "C008",
+   "childId": "R011"
+  },
+  {
+   "parentId": "C009",
+   "childId": "R029"
+  },
+  {
+   "parentId": "C009",
+   "childId": "R030"
+  },
+  {
+   "parentId": "C010",
+   "childId": "R017"
+  },
+  {
+   "parentId": "C012",
+   "childId": "R018"
+  },
+  {
+   "parentId": "C013",
+   "childId": "R017"
+  },
+  {
+   "parentId": "C013",
+   "childId": "R039"
+  },
+  {
+   "parentId": "C014",
+   "childId": "R024"
+  },
+  {
+   "parentId": "C014",
+   "childId": "R027"
+  },
+  {
+   "parentId": "C015",
+   "childId": "R013"
+  },
+  {
+   "parentId": "C015",
+   "childId": "R027"
+  },
+  {
+   "parentId": "C016",
+   "childId": "R019"
+  },
+  {
+   "parentId": "C016",
+   "childId": "R027"
+  },
+  {
+   "parentId": "C017",
+   "childId": "R018"
+  },
+  {
+   "parentId": "C017",
+   "childId": "R022"
+  },
+  {
+   "parentId": "C018",
+   "childId": "R023"
+  },
+  {
+   "parentId": "C018",
+   "childId": "R034"
+  },
+  {
+   "parentId": "C019",
+   "childId": "R023"
+  },
+  {
+   "parentId": "C020",
+   "childId": "R033"
+  },
+  {
+   "parentId": "C020",
+   "childId": "R037"
+  },
+  {
+   "parentId": "C021",
+   "childId": "R031"
+  },
+  {
+   "parentId": "C022",
+   "childId": "R018"
+  },
+  {
+   "parentId": "C025",
+   "childId": "R021"
+  },
+  {
+   "parentId": "C026",
+   "childId": "R017"
+  },
+  {
+   "parentId": "C026",
+   "childId": "R021"
+  },
+  {
+   "parentId": "C027",
+   "childId": "R011"
+  },
+  {
+   "parentId": "C028",
+   "childId": "R010"
+  },
+  {
+   "parentId": "C028",
+   "childId": "R011"
+  },
+  {
+   "parentId": "C029",
+   "childId": "R011"
+  },
+  {
+   "parentId": "C030",
+   "childId": "R011"
+  },
+  {
+   "parentId": "C032",
+   "childId": "R014"
+  },
+  {
+   "parentId": "C032",
+   "childId": "R020"
+  },
+  {
+   "parentId": "C034",
+   "childId": "R011"
+  },
+  {
+   "parentId": "C036",
+   "childId": "R022"
+  },
+  {
+   "parentId": "C037",
+   "childId": "R022"
+  },
+  {
+   "parentId": "C038",
+   "childId": "R029"
+  },
+  {
+   "parentId": "C039",
+   "childId": "R022"
+  },
+  {
+   "parentId": "C041",
+   "childId": "R011"
+  },
+  {
+   "parentId": "C044",
+   "childId": "R020"
+  },
+  {
+   "parentId": "C044",
+   "childId": "R023"
+  },
+  {
+   "parentId": "C049",
+   "childId": "R018"
+  },
+  {
+   "parentId": "C050",
+   "childId": "R025"
+  },
+  {
+   "parentId": "C051",
+   "childId": "R025"
+  },
+  {
+   "parentId": "C053",
+   "childId": "R023"
+  },
+  {
+   "parentId": "C054",
+   "childId": "R023"
+  },
+  {
+   "parentId": "C057",
+   "childId": "R017"
+  },
+  {
+   "parentId": "C058",
+   "childId": "R011"
+  },
+  {
+   "parentId": "C058",
+   "childId": "R023"
+  },
+  {
+   "parentId": "C059",
+   "childId": "R023"
+  },
+  {
+   "parentId": "C060",
+   "childId": "R023"
+  },
+  {
+   "parentId": "C063",
+   "childId": "R023"
+  },
+  {
+   "parentId": "C064",
+   "childId": "R028"
+  },
+  {
+   "parentId": "C065",
+   "childId": "R030"
+  },
+  {
+   "parentId": "C067",
+   "childId": "R018"
+  },
+  {
+   "parentId": "C071",
+   "childId": "R023"
+  },
+  {
+   "parentId": "C074",
+   "childId": "R029"
+  },
+  {
+   "parentId": "C074",
+   "childId": "R035"
+  },
+  {
+   "parentId": "C076",
+   "childId": "R029"
+  },
+  {
+   "parentId": "C078",
+   "childId": "R029"
+  },
+  {
+   "parentId": "C080",
+   "childId": "R029"
+  },
+  {
+   "parentId": "C083",
+   "childId": "R039"
+  },
+  {
+   "parentId": "C084",
+   "childId": "R039"
+  },
+  {
+   "parentId": "C090",
+   "childId": "R028"
+  },
+  {
+   "parentId": "C092",
+   "childId": "R020"
+  },
+  {
+   "parentId": "C093",
+   "childId": "R031"
+  },
+  {
+   "parentId": "C094",
+   "childId": "R011"
+  },
+  {
+   "parentId": "C096",
+   "childId": "R024"
+  },
+  {
+   "parentId": "C099",
+   "childId": "R019"
+  },
+  {
+   "parentId": "C102",
+   "childId": "R011"
+  },
+  {
+   "parentId": "C102",
+   "childId": "R018"
+  },
+  {
+   "parentId": "C108",
+   "childId": "R015"
+  },
+  {
+   "parentId": "C112",
+   "childId": "C077"
+  },
+  {
+   "parentId": "C113",
+   "childId": "R030"
+  },
+  {
+   "parentId": "W001",
+   "childId": "R001"
+  },
+  {
+   "parentId": "W002",
+   "childId": "R003"
+  },
+  {
+   "parentId": "W003",
+   "childId": "R005"
+  },
+  {
+   "parentId": "W003",
+   "childId": "C021"
+  },
+  {
+   "parentId": "W004",
+   "childId": "R010"
+  },
+  {
+   "parentId": "W005",
+   "childId": "C093"
+  },
+  {
+   "parentId": "W005",
+   "childId": "C094"
+  },
+  {
+   "parentId": "W006",
+   "childId": "R012"
+  },
+  {
+   "parentId": "W007",
+   "childId": "C027"
+  },
+  {
+   "parentId": "W008",
+   "childId": "R013"
+  },
+  {
+   "parentId": "W008",
+   "childId": "R015"
+  },
+  {
+   "parentId": "W009",
+   "childId": "R014"
+  },
+  {
+   "parentId": "W009",
+   "childId": "R015"
+  },
+  {
+   "parentId": "W010",
+   "childId": "R015"
+  },
+  {
+   "parentId": "W010",
+   "childId": "R031"
+  },
+  {
+   "parentId": "W011",
+   "childId": "R016"
+  },
+  {
+   "parentId": "W012",
+   "childId": "R017"
+  },
+  {
+   "parentId": "W012",
+   "childId": "C022"
+  },
+  {
+   "parentId": "W013",
+   "childId": "R018"
+  },
+  {
+   "parentId": "W013",
+   "childId": "C022"
+  },
+  {
+   "parentId": "W014",
+   "childId": "R019"
+  },
+  {
+   "parentId": "W015",
+   "childId": "R020"
+  },
+  {
+   "parentId": "W015",
+   "childId": "C013"
+  },
+  {
+   "parentId": "W016",
+   "childId": "R031"
+  },
+  {
+   "parentId": "W016",
+   "childId": "R038"
+  },
+  {
+   "parentId": "W017",
+   "childId": "R040"
+  },
+  {
+   "parentId": "W018",
+   "childId": "R039"
+  },
+  {
+   "parentId": "W018",
+   "childId": "R040"
+  },
+  {
+   "parentId": "W019",
+   "childId": "R021"
+  },
+  {
+   "parentId": "W020",
+   "childId": "R021"
+  },
+  {
+   "parentId": "W020",
+   "childId": "C021"
+  },
+  {
+   "parentId": "W021",
+   "childId": "R021"
+  },
+  {
+   "parentId": "W021",
+   "childId": "C023"
+  },
+  {
+   "parentId": "W022",
+   "childId": "C024"
+  },
+  {
+   "parentId": "W022",
+   "childId": "C085"
+  },
+  {
+   "parentId": "W023",
+   "childId": "R040"
+  },
+  {
+   "parentId": "W023",
+   "childId": "C025"
+  },
+  {
+   "parentId": "W024",
+   "childId": "C026"
+  },
+  {
+   "parentId": "W025",
+   "childId": "C021"
+  },
+  {
+   "parentId": "W025",
+   "childId": "C034"
+  },
+  {
+   "parentId": "W026",
+   "childId": "C021"
+  },
+  {
+   "parentId": "W027",
+   "childId": "C022"
+  },
+  {
+   "parentId": "W028",
+   "childId": "R022"
+  },
+  {
+   "parentId": "W028",
+   "childId": "R023"
+  },
+  {
+   "parentId": "W029",
+   "childId": "R024"
+  },
+  {
+   "parentId": "W029",
+   "childId": "R031"
+  },
+  {
+   "parentId": "W030",
+   "childId": "R024"
+  },
+  {
+   "parentId": "W031",
+   "childId": "R024"
+  },
+  {
+   "parentId": "W031",
+   "childId": "R028"
+  },
+  {
+   "parentId": "W032",
+   "childId": "R026"
+  },
+  {
+   "parentId": "W033",
+   "childId": "R027"
+  },
+  {
+   "parentId": "W034",
+   "childId": "R028"
+  },
+  {
+   "parentId": "W034",
+   "childId": "C102"
+  },
+  {
+   "parentId": "W035",
+   "childId": "R028"
+  },
+  {
+   "parentId": "W035",
+   "childId": "C068"
+  },
+  {
+   "parentId": "W036",
+   "childId": "R029"
+  },
+  {
+   "parentId": "W036",
+   "childId": "C101"
+  },
+  {
+   "parentId": "W037",
+   "childId": "R030"
+  },
+  {
+   "parentId": "W037",
+   "childId": "C101"
+  },
+  {
+   "parentId": "W038",
+   "childId": "R022"
+  },
+  {
+   "parentId": "W038",
+   "childId": "R031"
+  },
+  {
+   "parentId": "W039",
+   "childId": "R022"
+  },
+  {
+   "parentId": "W039",
+   "childId": "C039"
+  },
+  {
+   "parentId": "W040",
+   "childId": "C035"
+  },
+  {
+   "parentId": "W040",
+   "childId": "C039"
+  },
+  {
+   "parentId": "W041",
+   "childId": "C036"
+  },
+  {
+   "parentId": "W041",
+   "childId": "C039"
+  },
+  {
+   "parentId": "W042",
+   "childId": "C037"
+  },
+  {
+   "parentId": "W042",
+   "childId": "C039"
+  },
+  {
+   "parentId": "W043",
+   "childId": "C007"
+  },
+  {
+   "parentId": "W043",
+   "childId": "C096"
+  },
+  {
+   "parentId": "W044",
+   "childId": "R030"
+  },
+  {
+   "parentId": "W044",
+   "childId": "R032"
+  },
+  {
+   "parentId": "W045",
+   "childId": "R033"
+  },
+  {
+   "parentId": "W046",
+   "childId": "R034"
+  },
+  {
+   "parentId": "W047",
+   "childId": "R035"
+  },
+  {
+   "parentId": "W047",
+   "childId": "C101"
+  },
+  {
+   "parentId": "W048",
+   "childId": "R036"
+  },
+  {
+   "parentId": "W048",
+   "childId": "C076"
+  },
+  {
+   "parentId": "W049",
+   "childId": "R036"
+  },
+  {
+   "parentId": "W049",
+   "childId": "R037"
+  },
+  {
+   "parentId": "W050",
+   "childId": "C073"
+  },
+  {
+   "parentId": "W051",
+   "childId": "C074"
+  },
+  {
+   "parentId": "W052",
+   "childId": "C075"
+  },
+  {
+   "parentId": "W053",
+   "childId": "C076"
+  },
+  {
+   "parentId": "W054",
+   "childId": "C077"
+  },
+  {
+   "parentId": "W055",
+   "childId": "C078"
+  },
+  {
+   "parentId": "W056",
+   "childId": "C079"
+  },
+  {
+   "parentId": "W057",
+   "childId": "C080"
+  },
+  {
+   "parentId": "W058",
+   "childId": "R031"
+  },
+  {
+   "parentId": "W058",
+   "childId": "C097"
+  },
+  {
+   "parentId": "W059",
+   "childId": "C014"
+  },
+  {
+   "parentId": "W060",
+   "childId": "C053"
+  },
+  {
+   "parentId": "W061",
+   "childId": "C054"
+  },
+  {
+   "parentId": "W062",
+   "childId": "C055"
+  },
+  {
+   "parentId": "W063",
+   "childId": "C056"
+  },
+  {
+   "parentId": "W064",
+   "childId": "C057"
+  },
+  {
+   "parentId": "W065",
+   "childId": "C058"
+  },
+  {
+   "parentId": "W066",
+   "childId": "C059"
+  },
+  {
+   "parentId": "W066",
+   "childId": "C100"
+  },
+  {
+   "parentId": "W067",
+   "childId": "R013"
+  },
+  {
+   "parentId": "W067",
+   "childId": "C060"
+  },
+  {
+   "parentId": "W068",
+   "childId": "C049"
+  },
+  {
+   "parentId": "W069",
+   "childId": "C050"
+  },
+  {
+   "parentId": "W070",
+   "childId": "C017"
+  },
+  {
+   "parentId": "W071",
+   "childId": "C004"
+  },
+  {
+   "parentId": "W072",
+   "childId": "C065"
+  },
+  {
+   "parentId": "W073",
+   "childId": "C068"
+  },
+  {
+   "parentId": "W074",
+   "childId": "C069"
+  },
+  {
+   "parentId": "W075",
+   "childId": "C067"
+  },
+  {
+   "parentId": "W075",
+   "childId": "C071"
+  },
+  {
+   "parentId": "W076",
+   "childId": "C001"
+  },
+  {
+   "parentId": "W077",
+   "childId": "C009"
+  },
+  {
+   "parentId": "W077",
+   "childId": "C087"
+  },
+  {
+   "parentId": "W078",
+   "childId": "C087"
+  },
+  {
+   "parentId": "W078",
+   "childId": "C088"
+  },
+  {
+   "parentId": "W079",
+   "childId": "C090"
+  },
+  {
+   "parentId": "W079",
+   "childId": "C091"
+  },
+  {
+   "parentId": "W080",
+   "childId": "C095"
+  },
+  {
+   "parentId": "W081",
+   "childId": "R031"
+  },
+  {
+   "parentId": "W081",
+   "childId": "C092"
+  },
+  {
+   "parentId": "W082",
+   "childId": "C081"
+  },
+  {
+   "parentId": "W083",
+   "childId": "C082"
+  },
+  {
+   "parentId": "W084",
+   "childId": "C083"
+  },
+  {
+   "parentId": "W085",
+   "childId": "C084"
+  },
+  {
+   "parentId": "W086",
+   "childId": "C085"
+  },
+  {
+   "parentId": "W087",
+   "childId": "C086"
+  },
+  {
+   "parentId": "W088",
+   "childId": "C028"
+  },
+  {
+   "parentId": "W089",
+   "childId": "C029"
+  },
+  {
+   "parentId": "W090",
+   "childId": "C021"
+  },
+  {
+   "parentId": "W091",
+   "childId": "C021"
+  },
+  {
+   "parentId": "W091",
+   "childId": "C098"
+  },
+  {
+   "parentId": "W092",
+   "childId": "C021"
+  },
+  {
+   "parentId": "W092",
+   "childId": "C030"
+  },
+  {
+   "parentId": "W093",
+   "childId": "C021"
+  },
+  {
+   "parentId": "W093",
+   "childId": "C031"
+  },
+  {
+   "parentId": "W094",
+   "childId": "C021"
+  },
+  {
+   "parentId": "W094",
+   "childId": "C032"
+  },
+  {
+   "parentId": "W095",
+   "childId": "C021"
+  },
+  {
+   "parentId": "W095",
+   "childId": "C033"
+  },
+  {
+   "parentId": "W096",
+   "childId": "C101"
+  },
+  {
+   "parentId": "W096",
+   "childId": "C103"
+  },
+  {
+   "parentId": "S001",
+   "childId": "R001"
+  },
+  {
+   "parentId": "S001",
+   "childId": "R002"
+  },
+  {
+   "parentId": "S001",
+   "childId": "R003"
+  },
+  {
+   "parentId": "S001",
+   "childId": "R015"
+  },
+  {
+   "parentId": "S001",
+   "childId": "C067"
+  },
+  {
+   "parentId": "S002",
+   "childId": "C048"
+  },
+  {
+   "parentId": "S002",
+   "childId": "C066"
+  },
+  {
+   "parentId": "S002",
+   "childId": "W005"
+  },
+  {
+   "parentId": "S003",
+   "childId": "C048"
+  },
+  {
+   "parentId": "S003",
+   "childId": "C066"
+  },
+  {
+   "parentId": "S003",
+   "childId": "W006"
+  },
+  {
+   "parentId": "S004",
+   "childId": "C043"
+  },
+  {
+   "parentId": "S004",
+   "childId": "W022"
+  },
+  {
+   "parentId": "S004",
+   "childId": "W026"
+  },
+  {
+   "parentId": "S005",
+   "childId": "C048"
+  },
+  {
+   "parentId": "S005",
+   "childId": "W019"
+  },
+  {
+   "parentId": "S006",
+   "childId": "C023"
+  },
+  {
+   "parentId": "S006",
+   "childId": "C024"
+  },
+  {
+   "parentId": "S006",
+   "childId": "C049"
+  },
+  {
+   "parentId": "S006",
+   "childId": "C066"
+  },
+  {
+   "parentId": "S007",
+   "childId": "W023"
+  },
+  {
+   "parentId": "S008",
+   "childId": "R015"
+  },
+  {
+   "parentId": "S008",
+   "childId": "R031"
+  },
+  {
+   "parentId": "S008",
+   "childId": "C043"
+  },
+  {
+   "parentId": "S008",
+   "childId": "C099"
+  },
+  {
+   "parentId": "S009",
+   "childId": "R013"
+  },
+  {
+   "parentId": "S009",
+   "childId": "C043"
+  },
+  {
+   "parentId": "S009",
+   "childId": "C102"
+  },
+  {
+   "parentId": "S009",
+   "childId": "W045"
+  },
+  {
+   "parentId": "S010",
+   "childId": "R013"
+  },
+  {
+   "parentId": "S010",
+   "childId": "C102"
+  },
+  {
+   "parentId": "S010",
+   "childId": "W045"
+  },
+  {
+   "parentId": "S011",
+   "childId": "C070"
+  },
+  {
+   "parentId": "S011",
+   "childId": "W026"
+  },
+  {
+   "parentId": "S011",
+   "childId": "W046"
+  },
+  {
+   "parentId": "S012",
+   "childId": "C042"
+  },
+  {
+   "parentId": "S012",
+   "childId": "W046"
+  },
+  {
+   "parentId": "S012",
+   "childId": "W065"
+  },
+  {
+   "parentId": "S013",
+   "childId": "C050"
+  },
+  {
+   "parentId": "S013",
+   "childId": "C090"
+  },
+  {
+   "parentId": "S013",
+   "childId": "W047"
+  },
+  {
+   "parentId": "S014",
+   "childId": "R039"
+  },
+  {
+   "parentId": "S014",
+   "childId": "C059"
+  },
+  {
+   "parentId": "S014",
+   "childId": "W049"
+  },
+  {
+   "parentId": "S015",
+   "childId": "C035"
+  },
+  {
+   "parentId": "S015",
+   "childId": "C064"
+  },
+  {
+   "parentId": "S015",
+   "childId": "W050"
+  },
+  {
+   "parentId": "S016",
+   "childId": "C035"
+  },
+  {
+   "parentId": "S016",
+   "childId": "C064"
+  },
+  {
+   "parentId": "S016",
+   "childId": "W051"
+  },
+  {
+   "parentId": "S017",
+   "childId": "C035"
+  },
+  {
+   "parentId": "S017",
+   "childId": "C045"
+  },
+  {
+   "parentId": "S017",
+   "childId": "C064"
+  },
+  {
+   "parentId": "S017",
+   "childId": "W050"
+  },
+  {
+   "parentId": "S017",
+   "childId": "W051"
+  },
+  {
+   "parentId": "S018",
+   "childId": "C048"
+  },
+  {
+   "parentId": "S018",
+   "childId": "C062"
+  },
+  {
+   "parentId": "S018",
+   "childId": "W052"
+  },
+  {
+   "parentId": "S019",
+   "childId": "C048"
+  },
+  {
+   "parentId": "S019",
+   "childId": "C062"
+  },
+  {
+   "parentId": "S019",
+   "childId": "W053"
+  },
+  {
+   "parentId": "S020",
+   "childId": "C067"
+  },
+  {
+   "parentId": "S020",
+   "childId": "W054"
+  },
+  {
+   "parentId": "S021",
+   "childId": "C042"
+  },
+  {
+   "parentId": "S021",
+   "childId": "W055"
+  },
+  {
+   "parentId": "S021",
+   "childId": "W064"
+  },
+  {
+   "parentId": "S022",
+   "childId": "C048"
+  },
+  {
+   "parentId": "S022",
+   "childId": "C063"
+  },
+  {
+   "parentId": "S022",
+   "childId": "W056"
+  },
+  {
+   "parentId": "S023",
+   "childId": "C048"
+  },
+  {
+   "parentId": "S023",
+   "childId": "C062"
+  },
+  {
+   "parentId": "S023",
+   "childId": "W057"
+  },
+  {
+   "parentId": "S024",
+   "childId": "C009"
+  },
+  {
+   "parentId": "S024",
+   "childId": "C041"
+  },
+  {
+   "parentId": "S024",
+   "childId": "W040"
+  },
+  {
+   "parentId": "S024",
+   "childId": "W043"
+  },
+  {
+   "parentId": "S025",
+   "childId": "C061"
+  },
+  {
+   "parentId": "S025",
+   "childId": "W058"
+  },
+  {
+   "parentId": "S026",
+   "childId": "C009"
+  },
+  {
+   "parentId": "S026",
+   "childId": "W088"
+  },
+  {
+   "parentId": "S027",
+   "childId": "C009"
+  },
+  {
+   "parentId": "S027",
+   "childId": "C035"
+  },
+  {
+   "parentId": "S028",
+   "childId": "C009"
+  },
+  {
+   "parentId": "S028",
+   "childId": "W091"
+  },
+  {
+   "parentId": "S029",
+   "childId": "R040"
+  },
+  {
+   "parentId": "S029",
+   "childId": "C048"
+  },
+  {
+   "parentId": "S029",
+   "childId": "C068"
+  },
+  {
+   "parentId": "S029",
+   "childId": "C101"
+  },
+  {
+   "parentId": "S030",
+   "childId": "R039"
+  },
+  {
+   "parentId": "S030",
+   "childId": "C048"
+  },
+  {
+   "parentId": "S030",
+   "childId": "C084"
+  },
+  {
+   "parentId": "S030",
+   "childId": "C101"
+  },
+  {
+   "parentId": "S031",
+   "childId": "C048"
+  },
+  {
+   "parentId": "S031",
+   "childId": "C082"
+  },
+  {
+   "parentId": "S031",
+   "childId": "C099"
+  },
+  {
+   "parentId": "S032",
+   "childId": "C035"
+  },
+  {
+   "parentId": "S032",
+   "childId": "W066"
+  },
+  {
+   "parentId": "S033",
+   "childId": "C035"
+  },
+  {
+   "parentId": "S033",
+   "childId": "W067"
+  },
+  {
+   "parentId": "S034",
+   "childId": "C035"
+  },
+  {
+   "parentId": "S034",
+   "childId": "C059"
+  },
+  {
+   "parentId": "S034",
+   "childId": "C064"
+  },
+  {
+   "parentId": "S035",
+   "childId": "C065"
+  },
+  {
+   "parentId": "S035",
+   "childId": "W040"
+  },
+  {
+   "parentId": "S035",
+   "childId": "W063"
+  },
+  {
+   "parentId": "S036",
+   "childId": "W058"
+  },
+  {
+   "parentId": "S036",
+   "childId": "W065"
+  },
+  {
+   "parentId": "S037",
+   "childId": "C009"
+  },
+  {
+   "parentId": "S037",
+   "childId": "C035"
+  },
+  {
+   "parentId": "S037",
+   "childId": "C041"
+  },
+  {
+   "parentId": "S038",
+   "childId": "C035"
+  },
+  {
+   "parentId": "S038",
+   "childId": "C036"
+  },
+  {
+   "parentId": "S038",
+   "childId": "C040"
+  },
+  {
+   "parentId": "S038",
+   "childId": "C041"
+  },
+  {
+   "parentId": "S038",
+   "childId": "W043"
+  },
+  {
+   "parentId": "S039",
+   "childId": "C035"
+  },
+  {
+   "parentId": "S039",
+   "childId": "C037"
+  },
+  {
+   "parentId": "S039",
+   "childId": "C041"
+  },
+  {
+   "parentId": "S039",
+   "childId": "W054"
+  },
+  {
+   "parentId": "S040",
+   "childId": "C035"
+  },
+  {
+   "parentId": "S040",
+   "childId": "C038"
+  },
+  {
+   "parentId": "S040",
+   "childId": "C041"
+  },
+  {
+   "parentId": "S040",
+   "childId": "W055"
+  },
+  {
+   "parentId": "S041",
+   "childId": "C064"
+  },
+  {
+   "parentId": "S041",
+   "childId": "W040"
+  },
+  {
+   "parentId": "S041",
+   "childId": "W072"
+  },
+  {
+   "parentId": "S042",
+   "childId": "C048"
+  },
+  {
+   "parentId": "S042",
+   "childId": "C066"
+  },
+  {
+   "parentId": "S042",
+   "childId": "W092"
+  },
+  {
+   "parentId": "S043",
+   "childId": "C048"
+  },
+  {
+   "parentId": "S043",
+   "childId": "C066"
+  },
+  {
+   "parentId": "S043",
+   "childId": "W093"
+  },
+  {
+   "parentId": "S044",
+   "childId": "C048"
+  },
+  {
+   "parentId": "S044",
+   "childId": "C066"
+  },
+  {
+   "parentId": "S044",
+   "childId": "W094"
+  },
+  {
+   "parentId": "S045",
+   "childId": "C048"
+  },
+  {
+   "parentId": "S045",
+   "childId": "W095"
+  },
+  {
+   "parentId": "S046",
+   "childId": "C066"
+  },
+  {
+   "parentId": "S046",
+   "childId": "W035"
+  },
+  {
+   "parentId": "S047",
+   "childId": "C021"
+  },
+  {
+   "parentId": "S047",
+   "childId": "C048"
+  },
+  {
+   "parentId": "S047",
+   "childId": "C071"
+  },
+  {
+   "parentId": "S047",
+   "childId": "C086"
+  },
+  {
+   "parentId": "S047",
+   "childId": "C097"
+  },
+  {
+   "parentId": "S048",
+   "childId": "C035"
+  },
+  {
+   "parentId": "S048",
+   "childId": "C040"
+  },
+  {
+   "parentId": "S048",
+   "childId": "C064"
+  },
+  {
+   "parentId": "S048",
+   "childId": "C097"
+  },
+  {
+   "parentId": "S049",
+   "childId": "C102"
+  },
+  {
+   "parentId": "S049",
+   "childId": "W079"
+  },
+  {
+   "parentId": "S049",
+   "childId": "W096"
+  },
+  {
+   "parentId": "S050",
+   "childId": "W029"
+  },
+  {
+   "parentId": "S050",
+   "childId": "W030"
+  }
+ ]
+}

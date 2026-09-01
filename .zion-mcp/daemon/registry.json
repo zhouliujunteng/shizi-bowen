@@ -1,0 +1,30 @@
+[
+  {
+    "uid": "d81b0917-d7e2-4af4-b2ab-dfb020a9d871",
+    "pid": 48035,
+    "socketPath": "/Users/zhouliujunteng/WorkBuddy/博文幼儿园/.zion-mcp/daemon/sockets/7aba1c35234585b2.sock",
+    "token": "c4ea62f4-0081-4cee-ac39-2f454a1d1a54",
+    "logPath": "/Users/zhouliujunteng/WorkBuddy/博文幼儿园/.zion-mcp/daemon/logs/7aba1c35234585b2.log",
+    "status": "idle",
+    "startedAt": "2026-09-01T10:29:40.609Z",
+    "lastBusyAt": "2026-09-01T10:29:40.609Z",
+    "compatibility": {
+      "agentVersion": "2.7.4",
+      "nodeMajor": "22",
+      "platform": "darwin",
+      "arch": "arm64",
+      "ztypeVersion": "2026.9.1-3bc6c4c903.dirty",
+      "ztypeSchemaVersion": "2.0.9",
+      "crdtHelperVersion": "3.0.0",
+      "jsonJoyVersion": "18.28.0",
+      "product": "zion-mcp",
+      "apiBaseUrl": "https://zionbackend.functorz.com",
+      "authUserId": "Bw68qzAw1M6",
+      "workspaceRoot": "/Users/zhouliujunteng/WorkBuddy/博文幼儿园",
+      "typeSystemMode": "pre_type_system_refactor",
+      "startupFlags": [
+        "default"
+      ]
+    }
+  }
+]
