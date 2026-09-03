@@ -250,7 +250,15 @@
           >{{ li.item.content }}</span>
         </div>
         <CoursewareCard v-if="cwSelected" :item="cwSelected" :key="cwSelected.id" />
-        <el-empty v-else-if="!cw.loading" description="该课节尚未绑定教学内容，请联系平台管理员配置" :image-size="80" />
+        <!-- 无绑定条目但有教学大纲时（如脑力训练），大纲即课件 -->
+        <div v-else-if="!cw.loading && cwViewLesson?.outline" class="cw-outline">
+          <div class="cw-outline-head">
+            <span class="cw-outline-title">教学大纲</span>
+            <span v-if="cwViewLesson.topic" class="cw-outline-topic">{{ cwViewLesson.topic }}</span>
+          </div>
+          <div class="cw-outline-body">{{ cwViewLesson.outline }}</div>
+        </div>
+        <el-empty v-else-if="!cw.loading" description="该课节暂无课件内容，请联系平台管理员配置" :image-size="80" />
       </div>
     </el-dialog>
   </el-card>
@@ -347,6 +355,14 @@ const cw = reactive({
   loading: false,
 })
 const cwSelected = computed(() => cw.lessonItems.find((li) => li.item.id === cw.selectedItemId)?.item)
+/** 当前查看的课节对象：无绑定条目时用其教学大纲作为课件（脑力训练） */
+const cwViewLesson = computed(() => {
+  for (const c of courses.value) {
+    const l = c.lessons.find((x) => x.id === cw.viewLessonId)
+    if (l) return l
+  }
+  return null
+})
 /** 该分组已完成、可复习的课节 */
 const cwReviewLessons = computed(() => {
   const done = completedByGroup.value[cw.groupId] || new Set()
@@ -662,4 +678,9 @@ onMounted(async () => {
 .cw-chip { padding: 6px 12px; border: 1px solid var(--bw-border); border-radius: 6px; cursor: pointer; font-family: 'Kaiti SC', KaiTi, serif; font-size: 18px; background: #fff; transition: all .15s; }
 .cw-chip:hover { border-color: var(--el-color-primary); }
 .cw-chip.active { border-color: var(--el-color-primary); background: var(--el-color-primary-light-9); color: var(--el-color-primary); font-weight: 600; }
+.cw-outline { background: #fff; border: 1px solid var(--bw-border); border-radius: 10px; padding: 20px 24px; }
+.cw-outline-head { display: flex; align-items: baseline; gap: 10px; margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px dashed var(--bw-border); }
+.cw-outline-title { font-weight: 600; font-size: 15px; }
+.cw-outline-topic { color: var(--bw-muted); font-size: 13px; }
+.cw-outline-body { white-space: pre-wrap; line-height: 1.9; font-size: 15px; color: #333; }
 </style>
