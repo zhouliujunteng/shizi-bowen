@@ -1,13 +1,13 @@
 [
   {
-    "uid": "d81b0917-d7e2-4af4-b2ab-dfb020a9d871",
-    "pid": 48035,
-    "socketPath": "/Users/zhouliujunteng/WorkBuddy/博文幼儿园/.zion-mcp/daemon/sockets/7aba1c35234585b2.sock",
-    "token": "c4ea62f4-0081-4cee-ac39-2f454a1d1a54",
-    "logPath": "/Users/zhouliujunteng/WorkBuddy/博文幼儿园/.zion-mcp/daemon/logs/7aba1c35234585b2.log",
+    "uid": "4977a883-1612-492d-be45-e0e3a129e49c",
+    "pid": 39921,
+    "socketPath": "/Users/zhouliujunteng/WorkBuddy/博文幼儿园/.zion-mcp/daemon/sockets/9e2af937064254c4.sock",
+    "token": "e0de8a0f-033a-4015-9f04-49f4faf23ef2",
+    "logPath": "/Users/zhouliujunteng/WorkBuddy/博文幼儿园/.zion-mcp/daemon/logs/9e2af937064254c4.log",
     "status": "idle",
-    "startedAt": "2026-09-01T10:29:40.609Z",
-    "lastBusyAt": "2026-09-01T10:29:40.609Z",
+    "startedAt": "2026-09-04T15:31:42.963Z",
+    "lastBusyAt": "2026-09-04T15:31:42.963Z",
     "compatibility": {
       "agentVersion": "2.7.4",
       "nodeMajor": "22",

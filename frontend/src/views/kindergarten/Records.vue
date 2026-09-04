@@ -54,7 +54,7 @@
       <h4>学员出勤与表现</h4>
       <div class="student-list">
         <div v-for="s in fill.students" :key="s.id" class="student-row">
-          <span class="s-name">{{ s.child.name }}</span>
+          <span class="s-name">{{ s.name }}</span>
           <el-radio-group v-model="s.attendance" size="small">
             <el-radio-button value="出勤">出勤</el-radio-button>
             <el-radio-button value="缺勤">缺勤</el-radio-button>
