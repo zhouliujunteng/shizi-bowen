@@ -13,7 +13,7 @@
     <div v-if="role === '素材员' || role === '平台管理员'" class="task-bar">
       <template v-if="role === '素材员'">
         <span class="task-label">领取任务（每次 20 个）：</span>
-        <el-button size="small" type="primary" plain :loading="claiming" @click="claimBatch('部首')">领取部首</el-button>
+        <el-button size="small" type="primary" plain :loading="claiming" @click="claimBatch('偏旁')">领取部首</el-button>
         <el-button size="small" type="primary" plain :loading="claiming" @click="claimBatch('字根')">领取字根</el-button>
         <el-button size="small" type="primary" plain :loading="claiming" @click="claimBatch('汉字')">领取汉字</el-button>
         <span class="task-stats">我的任务：{{ myClaims.length }} 个 · 已通过 {{ myDoneCount }} 个</span>
