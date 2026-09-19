@@ -29,8 +29,9 @@
           <el-tag :type="row.account_id ? 'success' : 'danger'" size="small">{{ row.account_id ? '已开通' : '未开通' }}</el-tag>
         </template>
       </el-table-column>
-      <el-table-column label="操作" width="120" align="center">
+      <el-table-column label="操作" width="140" align="center">
         <template #default="{ row }">
+          <el-button link type="primary" size="small" @click="openEdit(row)">编辑</el-button>
           <el-button
             link
             :type="row.status === '在职' ? 'danger' : 'success'"
@@ -40,6 +41,29 @@
         </template>
       </el-table-column>
     </el-table>
+
+    <!-- 编辑账号 -->
+    <el-dialog v-model="edit.visible" title="编辑账号" width="440px">
+      <el-form :model="edit.form" label-width="90px">
+        <el-form-item label="手机号">
+          <el-input :model-value="edit.form.phone" disabled />
+          <div class="muted pwd-tip">手机号为登录账号，不可修改</div>
+        </el-form-item>
+        <el-form-item label="姓名" required>
+          <el-input v-model="edit.form.name" placeholder="真实姓名/昵称" />
+        </el-form-item>
+        <el-form-item label="身份" required>
+          <el-radio-group v-model="edit.form.role">
+            <el-radio-button value="素材员">素材员</el-radio-button>
+            <el-radio-button value="审核员">审核员</el-radio-button>
+          </el-radio-group>
+        </el-form-item>
+      </el-form>
+      <template #footer>
+        <el-button @click="edit.visible = false">取消</el-button>
+        <el-button type="primary" :loading="saving" @click="handleEditSave">保存</el-button>
+      </template>
+    </el-dialog>
 
     <el-dialog v-model="dialog.visible" title="添加素材账号" width="440px">
       <el-form :model="dialog.form" label-width="90px">
@@ -74,7 +98,7 @@
 <script setup>
 import { ref, reactive, onMounted } from 'vue'
 import { ElMessage } from 'element-plus'
-import { fetchPlatformStaff, createStaffWithAccount, setPlatformStaffStatus } from '../../api/data'
+import { fetchPlatformStaff, createStaffWithAccount, setPlatformStaffStatus, saveStaff } from '../../api/data'
 
 const list = ref([])
 const loading = ref(false)
@@ -83,6 +107,34 @@ const dialog = reactive({
   visible: false,
   form: { name: '', phone: '', role: '素材员', password: '' },
 })
+const edit = reactive({
+  visible: false,
+  form: { id: null, name: '', phone: '', role: '素材员' },
+})
+
+function openEdit(row) {
+  edit.form = { id: row.id, name: row.name, phone: row.phone, role: row.role }
+  edit.visible = true
+}
+
+async function handleEditSave() {
+  const f = edit.form
+  if (!f.name.trim()) {
+    ElMessage.warning('姓名不能为空')
+    return
+  }
+  saving.value = true
+  try {
+    await saveStaff({ name: f.name.trim(), role: f.role }, f.id)
+    ElMessage.success('已保存')
+    edit.visible = false
+    await load()
+  } catch (e) {
+    ElMessage.error(e.message || '保存失败')
+  } finally {
+    saving.value = false
+  }
+}
 
 async function load() {
   loading.value = true
