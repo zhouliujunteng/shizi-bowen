@@ -190,6 +190,7 @@
 
 <script setup>
 import { ref, reactive, computed, onMounted } from 'vue'
+import { useRoute } from 'vue-router'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import CharStrokes from '../../components/CharStrokes.vue'
 import { fetchLiteracyItems, saveCourseware, reviewCourseware, fetchTaskClaims, claimTasks, releaseTaskClaim, releaseTaskClaims } from '../../api/data'
