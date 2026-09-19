@@ -56,7 +56,11 @@
           </el-radio-group>
         </el-form-item>
         <el-form-item label="默认密码" required>
-          <el-input v-model="dialog.form.password" placeholder="至少 8 位，建议字母+数字" />
+          <div class="pwd-row">
+            <el-input v-model="dialog.form.password" placeholder="至少 8 位，建议字母+数字" />
+            <el-button @click="genPassword">随机生成</el-button>
+          </div>
+          <div class="muted pwd-tip">首次登录后可在右上角「修改密码」自行更换</div>
         </el-form-item>
       </el-form>
       <template #footer>
@@ -92,6 +96,14 @@ async function load() {
 function openDialog() {
   dialog.form = { name: '', phone: '', role: '素材员', password: '' }
   dialog.visible = true
+}
+
+/** 系统生成随机默认密码（3 字母+4 数字+3 字母，好读好记） */
+function genPassword() {
+  const letters = 'abcdefghjkmnpqrstuvwxyz'
+  const digits = '23456789'
+  const pick = (pool, n) => Array.from({ length: n }, () => pool[Math.floor(Math.random() * pool.length)]).join('')
+  dialog.form.password = pick(letters, 3) + pick(digits, 4) + pick(letters, 3)
 }
 
 async function handleSave() {
@@ -130,4 +142,7 @@ onMounted(load)
 <style scoped>
 .card-header { display: flex; justify-content: space-between; align-items: center; }
 .tip { margin-bottom: 14px; }
+.pwd-row { display: flex; gap: 8px; width: 100%; }
+.pwd-tip { margin-top: 4px; }
+.muted { color: var(--bw-muted); font-size: 12px; }
 </style>
