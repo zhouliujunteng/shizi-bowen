@@ -47,6 +47,9 @@ async function redirectByProfile() {
   if (role === '平台管理员') {
     return router.push(route.query.redirect?.startsWith('/platform') ? route.query.redirect : '/platform')
   }
+  if (role === '素材员' || role === '审核员') {
+    return router.push(route.query.redirect?.startsWith('/platform/literacy') ? route.query.redirect : '/platform/literacy')
+  }
   if (role === '园所管理员' || role === '老师') {
     return router.push(route.query.redirect?.startsWith('/kindergarten') ? route.query.redirect : '/kindergarten')
   }

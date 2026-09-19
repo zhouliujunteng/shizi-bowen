@@ -1,8 +1,9 @@
 <template>
   <el-container class="layout">
     <el-aside width="220px" class="aside">
-      <div class="logo"><h2>平台管理端</h2></div>
+      <div class="logo"><h2>{{ auth.isPlatformAdmin ? '平台管理端' : '素材工作台' }}</h2></div>
       <el-menu :default-active="activeMenu" router class="menu">
+        <template v-if="auth.isPlatformAdmin">
         <el-menu-item index="/platform">
           <el-icon><DataLine /></el-icon><span>数据看板</span>
         </el-menu-item>
@@ -15,8 +16,12 @@
         <el-menu-item index="/platform/courses">
           <el-icon><Collection /></el-icon><span>课程内容</span>
         </el-menu-item>
+        </template>
         <el-menu-item index="/platform/literacy">
           <el-icon><Reading /></el-icon><span>字库课件</span>
+        </el-menu-item>
+        <el-menu-item v-if="auth.isPlatformAdmin" index="/platform/accounts">
+          <el-icon><User /></el-icon><span>素材账号</span>
         </el-menu-item>
       </el-menu>
     </el-aside>
@@ -40,7 +45,7 @@ import { computed, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useAuthStore } from '../stores/auth'
 import ChangePasswordDialog from '../components/ChangePasswordDialog.vue'
-import { DataLine, OfficeBuilding, Grid, Reading, Collection } from '@element-plus/icons-vue'
+import { DataLine, OfficeBuilding, Grid, Reading, Collection, User } from '@element-plus/icons-vue'
 
 const route = useRoute()
 const router = useRouter()

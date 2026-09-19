@@ -7,13 +7,14 @@ const routes = [
   {
     path: '/platform',
     component: () => import('../views/PlatformLayout.vue'),
-    meta: { roles: ['平台管理员'] },
+    meta: { roles: ['平台管理员', '素材员', '审核员'] },
     children: [
-      { path: '', name: 'platform-dashboard', component: () => import('../views/platform/Dashboard.vue') },
-      { path: 'kindergartens', name: 'platform-kgs', component: () => import('../views/platform/Kindergartens.vue') },
-      { path: 'packages', name: 'platform-packages', component: () => import('../views/platform/Packages.vue') },
+      { path: '', name: 'platform-dashboard', component: () => import('../views/platform/Dashboard.vue'), meta: { roles: ['平台管理员'] } },
+      { path: 'kindergartens', name: 'platform-kgs', component: () => import('../views/platform/Kindergartens.vue'), meta: { roles: ['平台管理员'] } },
+      { path: 'packages', name: 'platform-packages', component: () => import('../views/platform/Packages.vue'), meta: { roles: ['平台管理员'] } },
       { path: 'literacy', name: 'platform-literacy', component: () => import('../views/platform/Literacy.vue') },
-      { path: 'courses', name: 'platform-courses', component: () => import('../views/platform/Courses.vue') },
+      { path: 'courses', name: 'platform-courses', component: () => import('../views/platform/Courses.vue'), meta: { roles: ['平台管理员'] } },
+      { path: 'accounts', name: 'platform-accounts', component: () => import('../views/platform/Accounts.vue'), meta: { roles: ['平台管理员'] } },
     ],
   },
   {
@@ -67,7 +68,9 @@ router.beforeEach(async (to) => {
   }
 
   if (merged.roles && !merged.roles.includes(auth.role)) {
-    return auth.isPlatformAdmin ? { name: 'platform-dashboard' } : { name: 'kg-home' }
+    if (auth.isPlatformAdmin) return { name: 'platform-dashboard' }
+    if (['素材员', '审核员'].includes(auth.role)) return { name: 'platform-literacy' }
+    return { name: 'kg-home' }
   }
   return true
 })

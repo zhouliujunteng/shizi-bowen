@@ -429,7 +429,7 @@ export function fetchLiteracyItems(levels = [0, 1]) {
     `query ($levels: [bigint!]!) {
       literacy_item(where: { level: { _in: $levels }, status: { _eq: "启用" } }, order_by: { level: asc, sort_order: asc }) {
         id item_type level content pinyin meaning components_note teaching_tip sort_order
-        courseware { id explanation stroke_groups status }
+        courseware { id explanation stroke_groups status variants image review_status }
       }
     }`,
     { levels },
@@ -454,6 +454,19 @@ export async function saveCourseware(itemId, payload) {
   )
 }
 
+/** 审核汉字课件：待审核 → 已通过 / 草稿（退回） */
+export async function reviewCourseware(itemId, reviewStatus) {
+  const exist = await gql(
+    `query ($itemId: bigint!) { char_courseware(where: { item_id: { _eq: $itemId } }) { id } }`,
+    { itemId },
+  ).then((d) => d.char_courseware[0])
+  if (!exist) throw new Error('该字还没有课件，无法审核')
+  return gql(
+    `mutation ($id: bigint!, $set: char_courseware_set_input!) { update_char_courseware_by_pk(pk_columns: {id: $id}, _set: $set) { id } }`,
+    { id: exist.id, set: { review_status: reviewStatus } },
+  )
+}
+
 /* ============ 学习进度（分组 × 课节解锁） ============ */
 /** 各分组已完成的课节 id（进度推导：排课状态=已完成） */
 export function fetchGroupProgress(kgId) {
@@ -474,12 +487,31 @@ export function fetchLessonItems(lessonId) {
       lesson_item(where: { lesson_id: { _eq: $lid } }, order_by: { sort_order: asc }) {
         id sort_order teaching_note
         item { id content pinyin meaning item_type level teaching_tip
-          courseware { id explanation stroke_groups status }
+          courseware { id explanation stroke_groups status variants image review_status }
         }
       }
     }`,
     { lid: lessonId },
   ).then((d) => d.lesson_item)
+}
+
+/* ============ 平台端：素材账号（素材员/审核员） ============ */
+export function fetchPlatformStaff() {
+  return gql(
+    `query {
+      user(where: { role: { _in: ["素材员", "审核员"] } }, order_by: { id: asc }) {
+        id name phone role status account_id created_at
+      }
+    }`,
+  ).then((d) => d.user)
+}
+
+/** 停用/启用素材账号 */
+export function setPlatformStaffStatus(id, status) {
+  return gql(
+    `mutation ($id: bigint!, $status: String!) { update_user_by_pk(pk_columns: {id: $id}, _set: {status: $status}) { id } }`,
+    { id, status },
+  )
 }
 
 /* ============ 平台端：园所 ============ */

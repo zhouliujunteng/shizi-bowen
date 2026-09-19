@@ -14,79 +14,128 @@
         v-for="it in itemsByTab(tab)"
         :key="it.id"
         class="char-cell"
-        :class="{ configured: !!it.courseware }"
+        :class="cellClass(it)"
         @click="openEditor(it)"
       >
         <div class="char-text">{{ it.content }}</div>
         <div class="char-pinyin">{{ it.pinyin }}</div>
-        <el-tag v-if="it.courseware" size="small" type="success" class="badge">已配课件</el-tag>
-        <el-tag v-else size="small" type="info" class="badge">未配置</el-tag>
+        <el-tag size="small" :type="badgeType(it)" class="badge">{{ badgeText(it) }}</el-tag>
       </div>
     </div>
 
     <!-- ============ 课件编辑器 ============ -->
-    <el-dialog v-model="editor.visible" width="860px" top="3vh" :title="`课件制作 · ${editor.item?.content || ''}`" destroy-on-close>
-      <div v-if="editor.item" class="editor-body">
-        <!-- 左：点选笔画 -->
-        <div class="editor-left">
-          <CharStrokes
-            :char="editor.item.content"
-            :groups="editor.groups"
-            :size="320"
-            :editable="editor.activeGroup >= 0"
-            :active-group-index="editor.activeGroup"
-            default-color="#c0c4cc"
-            @toggle-stroke="toggleStroke"
+    <el-dialog v-model="editor.visible" width="880px" top="3vh" :title="`课件制作 · ${editor.item?.content || ''}`" destroy-on-close>
+      <div v-if="editor.item" class="editor-wrap">
+        <!-- 读音页签（主读音 + 多音字） -->
+        <div class="reading-tabs">
+          <span
+            v-for="(r, ri) in editor.readings"
+            :key="ri"
+            class="reading-tab"
+            :class="{ active: editor.activeReading === ri }"
+            @click="editor.activeReading = ri"
+          >
+            {{ ri === 0 ? '主读音' : '多音' }} · {{ r.pinyin || '未填拼音' }}
+            <span v-if="ri > 0 && canEdit" class="tab-close" @click.stop="removeReading(ri)">×</span>
+          </span>
+          <el-button v-if="canEdit && !isWordItem" size="small" type="primary" plain @click="addVariant">添加多音字</el-button>
+          <el-input
+            v-if="editor.activeReading > 0"
+            v-model="currentReading.pinyin"
+            size="small"
+            placeholder="该读音拼音，如 yuè"
+            class="variant-pinyin-input"
+            :disabled="!canEdit"
           />
-          <div class="muted center-tip">
-            <template v-if="isWordItem">英文内容无需笔画分组，直接填写右侧专属讲解即可</template>
-            <template v-else>{{ editor.activeGroup >= 0 ? '点击笔画，加入/移出当前分组' : '先在右侧新增或选中一个分组，再点选笔画' }}</template>
-          </div>
-          <div class="char-meta">
-            <div><b>{{ editor.item.content }}</b> {{ editor.item.pinyin }}</div>
-            <div class="muted">{{ editor.item.meaning }}</div>
-            <div v-if="editor.item.components_note" class="muted">拆分：{{ editor.item.components_note }}</div>
-          </div>
         </div>
 
-        <!-- 右：分组 + 讲解 -->
-        <div class="editor-right">
-          <template v-if="!isWordItem">
-          <div class="section-title">
-            笔画分组注释
-            <el-button size="small" type="primary" plain @click="addGroup">新增分组</el-button>
-          </div>
-          <div v-if="editor.groups.length === 0" class="muted empty-groups">
-            还没有分组。例如「明」可分为「日」和「月」两组，分别配颜色和注释；也可点选任意几个笔画成组。
-          </div>
-          <div
-            v-for="(g, gi) in editor.groups"
-            :key="gi"
-            class="group-row"
-            :class="{ active: editor.activeGroup === gi }"
-            @click="editor.activeGroup = gi"
-          >
-            <span class="color-dot" :style="{ background: g.color }" @click.stop="cycleColor(g)"></span>
-            <el-input v-model="g.label" size="small" placeholder="分组注释，如：日字旁" class="label-input" @click.stop />
-            <span class="stroke-count">{{ g.strokes.length }}笔</span>
-            <el-button link type="danger" size="small" @click.stop="removeGroup(gi)">删除</el-button>
-          </div>
-          </template>
+        <div class="editor-body">
+          <!-- 左：点选笔画 + 配图 -->
+          <div class="editor-left">
+            <CharStrokes
+              :char="editor.item.content"
+              :groups="currentReading.groups"
+              :size="320"
+              :editable="canEdit && editor.activeGroup >= 0"
+              :active-group-index="editor.activeGroup"
+              default-color="#c0c4cc"
+              @toggle-stroke="toggleStroke"
+            />
+            <div class="muted center-tip">
+              <template v-if="isWordItem">英文内容无需笔画分组，直接填写右侧专属讲解即可</template>
+              <template v-else>{{ canEdit ? (editor.activeGroup >= 0 ? '点击笔画，加入/移出当前分组' : '先在右侧新增或选中一个分组，再点选笔画') : '审核模式：笔画分组只读' }}</template>
+            </div>
+            <div class="char-meta">
+              <div><b>{{ editor.item.content }}</b> {{ editor.item.pinyin }}</div>
+              <div class="muted">{{ editor.item.meaning }}</div>
+              <div v-if="editor.item.components_note" class="muted">拆分：{{ editor.item.components_note }}</div>
+            </div>
 
-          <div class="section-title">专属讲解</div>
-          <el-input
-            v-model="editor.explanation"
-            type="textarea"
-            :rows="5"
-            placeholder="写给老师看的讲解：这个字的教法、故事、易错点……上课时老师会在课件中看到"
-          />
+            <!-- 配图上传（抽象字辅助理解） -->
+            <div class="image-box">
+              <div class="section-sub">配图（抽象字可选）</div>
+              <div v-if="editor.image" class="image-preview">
+                <img :src="editor.image" alt="配图" />
+                <el-button v-if="canEdit" link type="danger" size="small" @click="editor.image = null">移除</el-button>
+              </div>
+              <template v-else>
+                <label v-if="canEdit" class="upload-btn">
+                  上传图片
+                  <input type="file" accept="image/*" hidden @change="handleImageUpload" />
+                </label>
+                <div v-else class="muted">未上传配图</div>
+              </template>
+            </div>
+          </div>
 
-          <div class="preview-tip muted">老师端课件效果：分组按颜色显示 + 注释列表 + 专属讲解，可下载为图片。</div>
+          <!-- 右：分组 + 讲解 -->
+          <div class="editor-right">
+            <template v-if="!isWordItem">
+            <div class="section-title">
+              笔画分组注释<template v-if="editor.readings.length > 1">（{{ currentReading.pinyin || '当前读音' }}）</template>
+              <el-button v-if="canEdit" size="small" type="primary" plain @click="addGroup">新增分组</el-button>
+            </div>
+            <div v-if="currentReading.groups.length === 0" class="muted empty-groups">
+              还没有分组。例如「明」可分为「日」和「月」两组，分别配颜色和注释；也可点选任意几个笔画成组。
+            </div>
+            <div
+              v-for="(g, gi) in currentReading.groups"
+              :key="gi"
+              class="group-row"
+              :class="{ active: editor.activeGroup === gi }"
+              @click="editor.activeGroup = gi"
+            >
+              <span class="color-dot" :style="{ background: g.color }" @click.stop="canEdit && cycleColor(g)"></span>
+              <el-input v-model="g.label" size="small" placeholder="分组注释，如：日字旁" class="label-input" :disabled="!canEdit" @click.stop />
+              <span class="stroke-count">{{ g.strokes.length }}笔</span>
+              <el-button v-if="canEdit" link type="danger" size="small" @click.stop="removeGroup(gi)">删除</el-button>
+            </div>
+            </template>
+
+            <div class="section-title">专属讲解</div>
+            <el-input
+              v-model="currentReading.explanation"
+              type="textarea"
+              :rows="5"
+              :disabled="!canEdit"
+              placeholder="写给老师看的讲解：这个字的教法、故事、易错点……上课时老师会在课件中看到"
+            />
+
+            <div class="preview-tip muted">老师端课件效果：分组按颜色显示 + 注释列表 + 专属讲解 + 配图，可下载为图片。</div>
+          </div>
         </div>
       </div>
       <template #footer>
+        <span class="footer-status muted">当前状态：{{ reviewText(editor.item?.courseware?.review_status) }}</span>
         <el-button @click="editor.visible = false">取消</el-button>
-        <el-button type="primary" :loading="saving" @click="handleSave">保存课件</el-button>
+        <template v-if="canEdit">
+          <el-button :loading="saving" @click="handleSave('草稿')">保存草稿</el-button>
+          <el-button type="warning" plain :loading="saving" @click="handleSave('待审核')">提交审核</el-button>
+        </template>
+        <template v-if="canReview">
+          <el-button type="danger" plain :loading="saving" @click="handleReview('草稿')">退回</el-button>
+          <el-button type="success" :loading="saving" @click="handleReview('已通过')">通过</el-button>
+        </template>
       </template>
     </el-dialog>
   </el-card>
@@ -96,7 +145,8 @@
 import { ref, reactive, computed, onMounted } from 'vue'
 import { ElMessage } from 'element-plus'
 import CharStrokes from '../../components/CharStrokes.vue'
-import { fetchLiteracyItems, saveCourseware } from '../../api/data'
+import { fetchLiteracyItems, saveCourseware, reviewCourseware } from '../../api/data'
+import { useAuthStore } from '../../stores/auth'
 
 const COLORS = ['#E64A3C', '#F0821E', '#2E9E5B', '#2B6CB0', '#805AD5', '#D53F8C', '#0891B2', '#65A30D']
 
@@ -108,6 +158,11 @@ const TABS = [
   { key: '单词', label: '英语单词' },
 ]
 
+const auth = useAuthStore()
+const role = computed(() => auth.profile?.role)
+const canEdit = computed(() => ['平台管理员', '素材员'].includes(role.value))
+const canReview = computed(() => ['平台管理员', '审核员'].includes(role.value))
+
 const items = ref([])
 const tab = ref('汉字')
 const loading = ref(false)
@@ -116,16 +171,39 @@ const saving = ref(false)
 const editor = reactive({
   visible: false,
   item: null,
-  groups: [],
+  readings: [], // [{ pinyin, groups: [{label,color,strokes}], explanation }]，第0个为主读音
+  activeReading: 0,
   activeGroup: -1,
-  explanation: '',
+  image: null,
 })
+const currentReading = computed(() => editor.readings[editor.activeReading] || { pinyin: '', groups: [], explanation: '' })
 
 /** 字母/单词无笔画数据，隐藏分组功能 */
 const isWordItem = computed(() => ['字母', '单词'].includes(editor.item?.item_type))
 
 function itemsByTab(t) {
   return items.value.filter((i) => i.item_type === t)
+}
+
+/* ---------- 状态徽标 ---------- */
+function reviewText(s) {
+  return s === '已通过' ? '已通过' : s === '待审核' ? '待审核' : '草稿'
+}
+function badgeText(it) {
+  if (!it.courseware) return '未配置'
+  return reviewText(it.courseware.review_status)
+}
+function badgeType(it) {
+  if (!it.courseware) return 'info'
+  const s = it.courseware.review_status
+  return s === '已通过' ? 'success' : s === '待审核' ? 'warning' : 'info'
+}
+function cellClass(it) {
+  if (!it.courseware) return {}
+  return {
+    configured: it.courseware.review_status === '已通过',
+    pending: it.courseware.review_status === '待审核',
+  }
 }
 
 async function load() {
@@ -137,24 +215,52 @@ async function load() {
   }
 }
 
+/* ---------- 编辑器 ---------- */
 function openEditor(it) {
+  const cw = it.courseware
   editor.item = it
-  editor.groups = (it.courseware?.stroke_groups || []).map((g) => ({ label: g.label || '', color: g.color || COLORS[0], strokes: [...(g.strokes || [])] }))
-  editor.explanation = it.courseware?.explanation || ''
-  editor.activeGroup = editor.groups.length ? 0 : -1
+  editor.readings = [
+    {
+      pinyin: it.pinyin || '',
+      groups: (cw?.stroke_groups || []).map((g) => ({ label: g.label || '', color: g.color || COLORS[0], strokes: [...(g.strokes || [])] })),
+      explanation: cw?.explanation || '',
+    },
+    ...(cw?.variants || []).map((v) => ({
+      pinyin: v.pinyin || '',
+      groups: (v.stroke_groups || []).map((g) => ({ label: g.label || '', color: g.color || COLORS[0], strokes: [...(g.strokes || [])] })),
+      explanation: v.explanation || '',
+    })),
+  ]
+  editor.activeReading = 0
+  editor.activeGroup = editor.readings[0].groups.length ? 0 : -1
+  editor.image = cw?.image || null
   editor.visible = true
 }
 
+function addVariant() {
+  editor.readings.push({ pinyin: '', groups: [], explanation: '' })
+  editor.activeReading = editor.readings.length - 1
+  editor.activeGroup = -1
+}
+
+function removeReading(ri) {
+  editor.readings.splice(ri, 1)
+  editor.activeReading = 0
+  editor.activeGroup = editor.readings[0].groups.length ? 0 : -1
+}
+
 function addGroup() {
-  const used = new Set(editor.groups.map((g) => g.color))
-  const color = COLORS.find((c) => !used.has(c)) || COLORS[editor.groups.length % COLORS.length]
-  editor.groups.push({ label: '', color, strokes: [] })
-  editor.activeGroup = editor.groups.length - 1
+  const r = currentReading.value
+  const used = new Set(r.groups.map((g) => g.color))
+  const color = COLORS.find((c) => !used.has(c)) || COLORS[r.groups.length % COLORS.length]
+  r.groups.push({ label: '', color, strokes: [] })
+  editor.activeGroup = r.groups.length - 1
 }
 
 function removeGroup(gi) {
-  editor.groups.splice(gi, 1)
-  if (editor.activeGroup === gi) editor.activeGroup = editor.groups.length ? 0 : -1
+  const r = currentReading.value
+  r.groups.splice(gi, 1)
+  if (editor.activeGroup === gi) editor.activeGroup = r.groups.length ? 0 : -1
   else if (editor.activeGroup > gi) editor.activeGroup -= 1
 }
 
@@ -164,10 +270,11 @@ function cycleColor(g) {
 }
 
 function toggleStroke(idx) {
-  const g = editor.groups[editor.activeGroup]
+  const r = currentReading.value
+  const g = r.groups[editor.activeGroup]
   if (!g) return
-  // 若笔画已在其他组，先从其他组移除（一笔只属一组）
-  for (const other of editor.groups) {
+  // 若笔画已在其他组，先从其他组移除（一笔只属一组，按当前读音独立计算）
+  for (const other of r.groups) {
     const at = other.strokes.indexOf(idx)
     if (at >= 0) other.strokes.splice(at, 1)
   }
@@ -175,24 +282,84 @@ function toggleStroke(idx) {
   g.strokes.sort((a, b) => a - b)
 }
 
-async function handleSave() {
-  const groups = editor.groups.filter((g) => g.strokes.length > 0)
-  if (groups.some((g) => !g.label.trim())) {
-    ElMessage.warning('有分组还没有填写注释')
+/* ---------- 配图上传（压缩为 800px JPEG base64） ---------- */
+function handleImageUpload(e) {
+  const file = e.target.files?.[0]
+  e.target.value = ''
+  if (!file) return
+  if (!file.type.startsWith('image/')) {
+    ElMessage.warning('请选择图片文件')
     return
+  }
+  const reader = new FileReader()
+  reader.onload = () => {
+    const img = new Image()
+    img.onload = () => {
+      const max = 800
+      const scale = Math.min(1, max / img.width)
+      const canvas = document.createElement('canvas')
+      canvas.width = Math.round(img.width * scale)
+      canvas.height = Math.round(img.height * scale)
+      canvas.getContext('2d').drawImage(img, 0, 0, canvas.width, canvas.height)
+      editor.image = canvas.toDataURL('image/jpeg', 0.8)
+    }
+    img.onerror = () => ElMessage.error('图片读取失败')
+    img.src = reader.result
+  }
+  reader.readAsDataURL(file)
+}
+
+/* ---------- 保存与审核 ---------- */
+function buildPayload(reviewStatus) {
+  const main = editor.readings[0]
+  const variants = editor.readings.slice(1).map((r) => ({
+    pinyin: r.pinyin.trim(),
+    stroke_groups: r.groups.filter((g) => g.strokes.length > 0),
+    explanation: r.explanation || null,
+  }))
+  return {
+    explanation: main.explanation || null,
+    stroke_groups: main.groups.filter((g) => g.strokes.length > 0),
+    variants: variants.length ? variants : null,
+    image: editor.image || null,
+    review_status: reviewStatus,
+    status: '启用',
+  }
+}
+
+async function handleSave(reviewStatus) {
+  for (const [ri, r] of editor.readings.entries()) {
+    if (r.groups.some((g) => g.strokes.length > 0 && !g.label.trim())) {
+      ElMessage.warning(`${ri === 0 ? '主读音' : '多音字'}有分组还没有填写注释`)
+      return
+    }
+    if (ri > 0 && !r.pinyin.trim()) {
+      ElMessage.warning('多音字还没有填写拼音')
+      return
+    }
   }
   saving.value = true
   try {
-    await saveCourseware(editor.item.id, {
-      explanation: editor.explanation || null,
-      stroke_groups: groups,
-      status: '启用',
-    })
-    ElMessage.success('课件已保存')
+    await saveCourseware(editor.item.id, buildPayload(reviewStatus))
+    ElMessage.success(reviewStatus === '待审核' ? '已提交审核' : '草稿已保存')
     editor.visible = false
     await load()
   } catch (e) {
     ElMessage.error(e.message || '保存失败')
+  } finally {
+    saving.value = false
+  }
+}
+
+async function handleReview(reviewStatus) {
+  saving.value = true
+  try {
+    await reviewCourseware(editor.item.id, reviewStatus)
+    ElMessage.success(reviewStatus === '已通过' ? '已通过审核' : '已退回为草稿')
+    editor.visible = false
+    await load()
+  } catch (e) {
+    ElMessage.error(e.message || '操作失败')
   } finally {
     saving.value = false
   }
@@ -207,15 +374,24 @@ onMounted(load)
 .char-cell { border: 1px solid var(--bw-border); border-radius: 8px; padding: 10px 6px; text-align: center; cursor: pointer; position: relative; transition: all .15s; background: #fff; }
 .char-cell:hover { border-color: var(--el-color-primary); box-shadow: 0 2px 8px rgba(79, 70, 229, 0.12); }
 .char-cell.configured { border-color: var(--el-color-success-light-5); background: var(--el-color-success-light-9); }
+.char-cell.pending { border-color: var(--el-color-warning-light-5); background: var(--el-color-warning-light-9); }
 .char-text { font-size: 30px; font-family: 'Kaiti SC', 'KaiTi', serif; line-height: 1.3; }
 .char-pinyin { font-size: 12px; color: var(--bw-muted); margin: 2px 0 4px; }
 .badge { transform: scale(0.85); }
+.editor-wrap { display: flex; flex-direction: column; gap: 14px; }
+.reading-tabs { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.reading-tab { padding: 5px 12px; border: 1px solid var(--bw-border); border-radius: 6px; cursor: pointer; font-size: 13px; background: #fff; }
+.reading-tab.active { border-color: var(--el-color-primary); background: var(--el-color-primary-light-9); color: var(--el-color-primary); font-weight: 600; }
+.tab-close { margin-left: 6px; color: var(--bw-muted); }
+.tab-close:hover { color: var(--el-color-danger); }
+.variant-pinyin-input { width: 160px; }
 .editor-body { display: flex; gap: 24px; }
 .editor-left { flex: 0 0 340px; display: flex; flex-direction: column; align-items: center; gap: 8px; }
 .center-tip { text-align: center; }
 .char-meta { margin-top: 8px; text-align: center; line-height: 1.8; }
 .editor-right { flex: 1; min-width: 0; }
 .section-title { font-weight: 600; margin: 6px 0 10px; display: flex; justify-content: space-between; align-items: center; }
+.section-sub { font-weight: 600; font-size: 13px; margin-bottom: 6px; }
 .empty-groups { padding: 8px 0 16px; line-height: 1.8; }
 .group-row { display: flex; align-items: center; gap: 8px; padding: 6px 8px; border: 1px solid var(--bw-border); border-radius: 6px; margin-bottom: 8px; cursor: pointer; }
 .group-row.active { border-color: var(--el-color-primary); background: var(--el-color-primary-light-9); }
@@ -224,4 +400,10 @@ onMounted(load)
 .stroke-count { font-size: 12px; color: var(--bw-muted); flex: none; }
 .muted { color: var(--bw-muted); font-size: 12px; line-height: 1.6; }
 .preview-tip { margin-top: 12px; }
+.image-box { width: 100%; margin-top: 10px; border-top: 1px dashed var(--bw-border); padding-top: 10px; }
+.image-preview { display: flex; align-items: center; gap: 10px; }
+.image-preview img { max-width: 200px; max-height: 140px; border-radius: 6px; border: 1px solid var(--bw-border); }
+.upload-btn { display: inline-block; padding: 6px 14px; border: 1px dashed var(--el-color-primary); color: var(--el-color-primary); border-radius: 6px; cursor: pointer; font-size: 13px; }
+.upload-btn:hover { background: var(--el-color-primary-light-9); }
+.footer-status { float: left; line-height: 32px; }
 </style>

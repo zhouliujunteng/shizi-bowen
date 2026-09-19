@@ -1,5 +1,15 @@
 <template>
   <div class="courseware-card" ref="rootRef">
+    <!-- 多音字读音页签 -->
+    <div v-if="readings.length > 1" class="cw-readings">
+      <span
+        v-for="(r, ri) in readings"
+        :key="ri"
+        class="cw-reading-tab"
+        :class="{ active: activeReading === ri }"
+        @click="switchReading(ri)"
+      >{{ r.pinyin || '未注音' }}</span>
+    </div>
     <div class="cw-main">
       <div class="cw-char">
         <CharStrokes
@@ -16,11 +26,14 @@
           </el-button>
           <el-button size="small" @click="revealCount = -1" :disabled="revealCount === -1">显示全字</el-button>
         </div>
+        <div v-if="item.courseware?.image" class="cw-image">
+          <img :src="item.courseware.image" alt="配图" />
+        </div>
       </div>
       <div class="cw-info">
         <div class="cw-title">
           <span class="cw-char-text">{{ item.content }}</span>
-          <span class="cw-pinyin">{{ item.pinyin }}</span>
+          <span class="cw-pinyin">{{ currentPinyin }}</span>
         </div>
         <div class="cw-meaning">{{ item.meaning }}</div>
 
@@ -33,9 +46,9 @@
           </div>
         </div>
 
-        <div v-if="item.courseware?.explanation" class="cw-explain">
+        <div v-if="currentExplanation" class="cw-explain">
           <div class="cw-section">专属讲解</div>
-          <div class="cw-explain-text">{{ item.courseware.explanation }}</div>
+          <div class="cw-explain-text">{{ currentExplanation }}</div>
         </div>
         <div v-else class="muted" style="margin-top: 10px">平台尚未配置专属讲解</div>
       </div>
@@ -60,8 +73,28 @@ const strokesRef = ref(null)
 const revealCount = ref(-1)
 const playing = ref(false)
 const downloading = ref(false)
+const activeReading = ref(0)
 
-const groups = computed(() => props.item.courseware?.stroke_groups || [])
+/** 读音列表：主读音 + 多音字变体 */
+const readings = computed(() => {
+  const cw = props.item.courseware
+  const main = { pinyin: props.item.pinyin, stroke_groups: cw?.stroke_groups || [], explanation: cw?.explanation || '' }
+  const variants = (cw?.variants || []).map((v) => ({
+    pinyin: v.pinyin,
+    stroke_groups: v.stroke_groups || [],
+    explanation: v.explanation || '',
+  }))
+  return [main, ...variants]
+})
+const currentReading = computed(() => readings.value[activeReading.value] || readings.value[0])
+const groups = computed(() => currentReading.value.stroke_groups)
+const currentPinyin = computed(() => currentReading.value.pinyin || props.item.pinyin)
+const currentExplanation = computed(() => currentReading.value.explanation)
+
+function switchReading(ri) {
+  activeReading.value = ri
+  revealCount.value = -1
+}
 
 function playStrokes() {
   if (playing.value) return
@@ -83,6 +116,15 @@ function strokeTotal() {
   return strokesRef.value?.$el?.querySelectorAll('path')?.length || 30
 }
 
+function loadImg(src) {
+  return new Promise((resolve, reject) => {
+    const img = new Image()
+    img.onload = () => resolve(img)
+    img.onerror = reject
+    img.src = src
+  })
+}
+
 /** SVG 序列化 → canvas 合成 → PNG 下载 */
 async function downloadImage() {
   downloading.value = true
@@ -93,8 +135,10 @@ async function downloadImage() {
     const charSize = 480
     const pad = 40
     const lineH = 44
-    const explainLines = wrapText(props.item.courseware?.explanation || '', 24)
-    const H = pad + 90 + charSize + (groups.value.length ? 30 + groups.value.length * lineH : 0) + (explainLines.length ? 40 + explainLines.length * 36 : 0) + pad
+    const explainLines = wrapText(currentExplanation.value || '', 24)
+    const hasPhoto = !!props.item.courseware?.image
+    const photoH = hasPhoto ? 300 : 0
+    const H = pad + 90 + charSize + (hasPhoto ? photoH + 20 : 0) + (groups.value.length ? 30 + groups.value.length * lineH : 0) + (explainLines.length ? 40 + explainLines.length * 36 : 0) + pad
 
     const canvas = document.createElement('canvas')
     canvas.width = W
@@ -110,19 +154,24 @@ async function downloadImage() {
     ctx.fillText(props.item.content, pad, y)
     ctx.font = '26px sans-serif'
     ctx.fillStyle = '#888'
-    ctx.fillText(props.item.pinyin || '', pad + 80, y)
+    ctx.fillText(currentPinyin.value || '', pad + 80, y)
     y += 30
 
     // 字图
     const svgStr = new XMLSerializer().serializeToString(svgEl)
-    const img = new Image()
-    await new Promise((resolve, reject) => {
-      img.onload = resolve
-      img.onerror = reject
-      img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svgStr)
-    })
+    const img = await loadImg('data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svgStr))
     ctx.drawImage(img, (W - charSize) / 2, y, charSize, charSize)
     y += charSize + 20
+
+    // 配图
+    if (hasPhoto) {
+      const photo = await loadImg(props.item.courseware.image)
+      const scale = Math.min(1, (W - pad * 2) / photo.width, photoH / photo.height)
+      const pw = photo.width * scale
+      const ph = photo.height * scale
+      ctx.drawImage(photo, (W - pw) / 2, y, pw, ph)
+      y += ph + 20
+    }
 
     // 分组注释
     if (groups.value.length) {
@@ -187,6 +236,11 @@ function wrapText(text, perLine) {
 
 <style scoped>
 .courseware-card { background: #fff; border: 1px solid var(--bw-border); border-radius: 10px; padding: 20px; }
+.cw-readings { display: flex; gap: 8px; margin-bottom: 14px; }
+.cw-reading-tab { padding: 5px 14px; border: 1px solid var(--bw-border); border-radius: 6px; cursor: pointer; font-size: 14px; }
+.cw-reading-tab.active { border-color: var(--el-color-primary); background: var(--el-color-primary-light-9); color: var(--el-color-primary); font-weight: 600; }
+.cw-image { margin-top: 6px; }
+.cw-image img { max-width: 280px; max-height: 180px; border-radius: 8px; border: 1px solid var(--bw-border); }
 .cw-main { display: flex; gap: 24px; }
 .cw-char { flex: 0 0 300px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
 .cw-actions { display: flex; gap: 8px; }
