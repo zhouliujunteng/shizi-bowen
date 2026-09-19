@@ -9,6 +9,20 @@
       </div>
     </template>
 
+    <!-- 素材任务工具条（素材员领取任务；管理员可见进度） -->
+    <div v-if="role === '素材员' || role === '平台管理员'" class="task-bar">
+      <template v-if="role === '素材员'">
+        <span class="task-label">领取任务（每次 20 个）：</span>
+        <el-button size="small" type="primary" plain :loading="claiming" @click="claimBatch('部首')">领取部首</el-button>
+        <el-button size="small" type="primary" plain :loading="claiming" @click="claimBatch('字根')">领取字根</el-button>
+        <el-button size="small" type="primary" plain :loading="claiming" @click="claimBatch('汉字')">领取汉字</el-button>
+        <span class="task-stats">我的任务：{{ myClaims.length }} 个 · 已通过 {{ myDoneCount }} 个</span>
+      </template>
+      <template v-else>
+        <span class="task-label muted">素材员在此领取任务（每次 20 个，按部首/字根/汉字分类）；被领取的字会锁定并显示领取人。</span>
+      </template>
+    </div>
+
     <div v-loading="loading" class="char-grid">
       <div
         v-for="it in itemsByTab(tab)"
@@ -20,7 +34,9 @@
         <div class="char-text">{{ it.content }}</div>
         <div class="char-pinyin">{{ it.pinyin }}</div>
         <el-tag size="small" :type="badgeType(it)" class="badge">{{ badgeText(it) }}</el-tag>
-        <div v-if="it.courseware?.edited_by || it.courseware?.reviewed_by" class="char-crew">
+        <div v-if="lockOf(it)" class="char-lock">🔒 {{ lockOf(it).user_name }}</div>
+        <div v-else-if="myClaimOf(it)" class="char-mine">我的任务</div>
+        <div v-else-if="it.courseware?.edited_by || it.courseware?.reviewed_by" class="char-crew">
           <span v-if="it.courseware?.edited_by">编·{{ it.courseware.edited_by }}</span>
           <span v-if="it.courseware?.reviewed_by">审·{{ it.courseware.reviewed_by }}</span>
         </div>
@@ -134,7 +150,12 @@
           当前状态：{{ reviewText(editor.item?.courseware?.review_status) }}
           <template v-if="editor.item?.courseware?.edited_by"> · 编辑：{{ editor.item.courseware.edited_by }}</template>
           <template v-if="editor.item?.courseware?.reviewed_by"> · 审核：{{ editor.item.courseware.reviewed_by }}</template>
+          <template v-if="claimsMap[editor.item?.id]"> · 领取：{{ claimsMap[editor.item.id].user_name }}</template>
         </span>
+        <el-button
+          v-if="role === '平台管理员' && claimsMap[editor.item?.id]"
+          link type="danger" @click="handleRelease"
+        >释放任务</el-button>
         <el-button @click="editor.visible = false">取消</el-button>
         <template v-if="canEdit">
           <el-button :loading="saving" @click="handleSave('草稿')">保存草稿</el-button>
@@ -153,7 +174,7 @@
 import { ref, reactive, computed, onMounted } from 'vue'
 import { ElMessage } from 'element-plus'
 import CharStrokes from '../../components/CharStrokes.vue'
-import { fetchLiteracyItems, saveCourseware, reviewCourseware } from '../../api/data'
+import { fetchLiteracyItems, saveCourseware, reviewCourseware, fetchTaskClaims, claimTasks, releaseTaskClaim } from '../../api/data'
 import { useAuthStore } from '../../stores/auth'
 
 const COLORS = ['#E64A3C', '#F0821E', '#2E9E5B', '#2B6CB0', '#805AD5', '#D53F8C', '#0891B2', '#65A30D']
@@ -172,9 +193,62 @@ const canEdit = computed(() => ['平台管理员', '素材员'].includes(role.va
 const canReview = computed(() => ['平台管理员', '审核员'].includes(role.value))
 
 const items = ref([])
+const claims = ref([])
+const claiming = ref(false)
 const tab = ref('汉字')
 const loading = ref(false)
 const saving = ref(false)
+
+/* ---------- 素材任务领取 ---------- */
+const myUserId = computed(() => auth.profile?.userId)
+const claimsMap = computed(() => {
+  const m = {}
+  for (const c of claims.value) m[c.item_id] = c
+  return m
+})
+const myClaims = computed(() => claims.value.filter((c) => c.user_id === myUserId.value))
+const myDoneCount = computed(() => myClaims.value.filter((c) => {
+  const it = items.value.find((i) => i.id === c.item_id)
+  return it?.courseware?.review_status === '已通过'
+}).length)
+
+/** 被他人锁定：有领取记录、非本人、且课件未通过 */
+function lockOf(it) {
+  const c = claimsMap.value[it.id]
+  if (!c || c.user_id === myUserId.value) return null
+  if (it.courseware?.review_status === '已通过') return null
+  return c
+}
+function myClaimOf(it) {
+  const c = claimsMap.value[it.id]
+  return c && c.user_id === myUserId.value ? c : null
+}
+
+/** 领取一批任务：该类别下未通过且未被领取的 20 个（按教学序） */
+async function claimBatch(category) {
+  const taken = new Set(claims.value.map((c) => c.item_id))
+  const candidates = items.value
+    .filter((i) => i.item_type === category && i.courseware?.review_status !== '已通过' && !taken.has(i.id))
+    .sort((a, b) => (a.sort_order || 0) - (b.sort_order || 0))
+    .slice(0, 20)
+  if (candidates.length === 0) {
+    ElMessage.info(`${category}类暂无可领取的任务（都已通过或已被领取）`)
+    return
+  }
+  claiming.value = true
+  try {
+    await claimTasks(candidates.map((i) => ({
+      item_id: i.id, user_id: myUserId.value, user_name: auth.profile?.name || '', category,
+    })))
+    ElMessage.success(`已领取 ${candidates.length} 个${category}任务，完成后记得提交审核`)
+    await load()
+    tab.value = category
+  } catch (e) {
+    ElMessage.error(e.message || '领取失败，请重试')
+  } finally {
+    claiming.value = false
+  }
+}
 
 const editor = reactive({
   visible: false,
@@ -207,17 +281,24 @@ function badgeType(it) {
   return s === '已通过' ? 'success' : s === '待审核' ? 'warning' : 'info'
 }
 function cellClass(it) {
-  if (!it.courseware) return {}
-  return {
-    configured: it.courseware.review_status === '已通过',
-    pending: it.courseware.review_status === '待审核',
-  }
+  const cls = {}
+  if (lockOf(it)) cls.locked = true
+  if (myClaimOf(it)) cls.mine = true
+  if (!it.courseware) return cls
+  cls.configured = it.courseware.review_status === '已通过'
+  cls.pending = it.courseware.review_status === '待审核'
+  return cls
 }
 
 async function load() {
   loading.value = true
   try {
-    items.value = await fetchLiteracyItems([0, 1, 10, 11])
+    const [its, cls] = await Promise.all([
+      fetchLiteracyItems([0, 1, 10, 11]),
+      fetchTaskClaims().catch(() => []),
+    ])
+    items.value = its
+    claims.value = cls
   } finally {
     loading.value = false
   }
@@ -225,6 +306,11 @@ async function load() {
 
 /* ---------- 编辑器 ---------- */
 function openEditor(it) {
+  const lock = lockOf(it)
+  if (lock && role.value === '素材员') {
+    ElMessage.warning(`「${it.content}」已被 ${lock.user_name} 领取，请先完成自己的任务`)
+    return
+  }
   const cw = it.courseware
   editor.item = it
   editor.readings = [
@@ -361,6 +447,18 @@ async function handleSave(reviewStatus) {
   }
 }
 
+async function handleRelease() {
+  const c = claimsMap.value[editor.item?.id]
+  if (!c) return
+  try {
+    await releaseTaskClaim(c.id)
+    ElMessage.success(`已释放「${editor.item.content}」的领取锁定`)
+    await load()
+  } catch (e) {
+    ElMessage.error(e.message || '释放失败')
+  }
+}
+
 async function handleReview(reviewStatus) {
   saving.value = true
   try {
@@ -389,6 +487,13 @@ onMounted(load)
 .char-pinyin { font-size: 12px; color: var(--bw-muted); margin: 2px 0 4px; }
 .badge { transform: scale(0.85); }
 .char-crew { margin-top: 2px; font-size: 11px; color: var(--bw-muted); line-height: 1.4; display: flex; flex-direction: column; }
+.task-bar { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; padding: 10px 14px; background: var(--bw-bg); border-radius: 8px; flex-wrap: wrap; }
+.task-label { font-size: 13px; font-weight: 600; }
+.task-stats { margin-left: auto; font-size: 12px; color: var(--bw-muted); }
+.char-cell.locked { opacity: 0.72; background: repeating-linear-gradient(135deg, #fafafa, #fafafa 6px, #f0f0f0 6px, #f0f0f0 12px); cursor: not-allowed; }
+.char-cell.mine { border-color: var(--el-color-primary); background: var(--el-color-primary-light-9); }
+.char-lock { margin-top: 2px; font-size: 11px; color: var(--el-color-danger); line-height: 1.4; }
+.char-mine { margin-top: 2px; font-size: 11px; color: var(--el-color-primary); font-weight: 600; line-height: 1.4; }
 .editor-wrap { display: flex; flex-direction: column; gap: 14px; }
 .reading-tabs { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
 .reading-tab { padding: 5px 12px; border: 1px solid var(--bw-border); border-radius: 6px; cursor: pointer; font-size: 13px; background: #fff; }

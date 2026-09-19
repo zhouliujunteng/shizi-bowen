@@ -495,6 +495,29 @@ export function fetchLessonItems(lessonId) {
   ).then((d) => d.lesson_item)
 }
 
+/* ============ 素材任务领取 ============ */
+export function fetchTaskClaims() {
+  return gql(
+    `query { task_claim(limit: 5000) { id item_id user_id user_name category created_at } }`,
+  ).then((d) => d.task_claim)
+}
+
+/** 领取任务：批量写入（调用方先筛选出未通过且未被领的条目） */
+export function claimTasks(claims) {
+  return gql(
+    `mutation ($objs: [task_claim_insert_input!]!) { insert_task_claim(objects: $objs) { affected_rows } }`,
+    { objs: claims },
+  )
+}
+
+/** 释放任务（管理员解锁/素材员放弃） */
+export function releaseTaskClaim(id) {
+  return gql(
+    `mutation ($id: bigint!) { delete_task_claim_by_pk(id: $id) { id } }`,
+    { id },
+  )
+}
+
 /* ============ 平台端：素材账号（素材员/审核员） ============ */
 export function fetchPlatformStaff() {
   return gql(
