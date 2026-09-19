@@ -429,7 +429,7 @@ export function fetchLiteracyItems(levels = [0, 1]) {
     `query ($levels: [bigint!]!) {
       literacy_item(where: { level: { _in: $levels }, status: { _eq: "启用" } }, order_by: { level: asc, sort_order: asc }) {
         id item_type level content pinyin meaning components_note teaching_tip sort_order
-        courseware { id explanation stroke_groups status variants image review_status }
+        courseware { id explanation stroke_groups status variants image review_status edited_by reviewed_by }
       }
     }`,
     { levels },
@@ -454,8 +454,8 @@ export async function saveCourseware(itemId, payload) {
   )
 }
 
-/** 审核汉字课件：待审核 → 已通过 / 草稿（退回） */
-export async function reviewCourseware(itemId, reviewStatus) {
+/** 审核汉字课件：待审核 → 已通过 / 草稿（退回）；记录审核人 */
+export async function reviewCourseware(itemId, reviewStatus, reviewerName) {
   const exist = await gql(
     `query ($itemId: bigint!) { char_courseware(where: { item_id: { _eq: $itemId } }) { id } }`,
     { itemId },
@@ -463,7 +463,7 @@ export async function reviewCourseware(itemId, reviewStatus) {
   if (!exist) throw new Error('该字还没有课件，无法审核')
   return gql(
     `mutation ($id: bigint!, $set: char_courseware_set_input!) { update_char_courseware_by_pk(pk_columns: {id: $id}, _set: $set) { id } }`,
-    { id: exist.id, set: { review_status: reviewStatus } },
+    { id: exist.id, set: { review_status: reviewStatus, reviewed_by: reviewerName || null } },
   )
 }
 

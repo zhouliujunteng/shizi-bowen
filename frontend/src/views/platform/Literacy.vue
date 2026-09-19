@@ -20,6 +20,10 @@
         <div class="char-text">{{ it.content }}</div>
         <div class="char-pinyin">{{ it.pinyin }}</div>
         <el-tag size="small" :type="badgeType(it)" class="badge">{{ badgeText(it) }}</el-tag>
+        <div v-if="it.courseware?.edited_by || it.courseware?.reviewed_by" class="char-crew">
+          <span v-if="it.courseware?.edited_by">编·{{ it.courseware.edited_by }}</span>
+          <span v-if="it.courseware?.reviewed_by">审·{{ it.courseware.reviewed_by }}</span>
+        </div>
       </div>
     </div>
 
@@ -126,7 +130,11 @@
         </div>
       </div>
       <template #footer>
-        <span class="footer-status muted">当前状态：{{ reviewText(editor.item?.courseware?.review_status) }}</span>
+        <span class="footer-status muted">
+          当前状态：{{ reviewText(editor.item?.courseware?.review_status) }}
+          <template v-if="editor.item?.courseware?.edited_by"> · 编辑：{{ editor.item.courseware.edited_by }}</template>
+          <template v-if="editor.item?.courseware?.reviewed_by"> · 审核：{{ editor.item.courseware.reviewed_by }}</template>
+        </span>
         <el-button @click="editor.visible = false">取消</el-button>
         <template v-if="canEdit">
           <el-button :loading="saving" @click="handleSave('草稿')">保存草稿</el-button>
@@ -324,6 +332,8 @@ function buildPayload(reviewStatus) {
     image: editor.image || null,
     review_status: reviewStatus,
     status: '启用',
+    edited_by: auth.profile?.name || null,
+    reviewed_by: null, // 重新编辑后前次审核作废，需重新审核
   }
 }
 
@@ -354,7 +364,7 @@ async function handleSave(reviewStatus) {
 async function handleReview(reviewStatus) {
   saving.value = true
   try {
-    await reviewCourseware(editor.item.id, reviewStatus)
+    await reviewCourseware(editor.item.id, reviewStatus, auth.profile?.name)
     ElMessage.success(reviewStatus === '已通过' ? '已通过审核' : '已退回为草稿')
     editor.visible = false
     await load()
@@ -378,6 +388,7 @@ onMounted(load)
 .char-text { font-size: 30px; font-family: 'Kaiti SC', 'KaiTi', serif; line-height: 1.3; }
 .char-pinyin { font-size: 12px; color: var(--bw-muted); margin: 2px 0 4px; }
 .badge { transform: scale(0.85); }
+.char-crew { margin-top: 2px; font-size: 11px; color: var(--bw-muted); line-height: 1.4; display: flex; flex-direction: column; }
 .editor-wrap { display: flex; flex-direction: column; gap: 14px; }
 .reading-tabs { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
 .reading-tab { padding: 5px 12px; border: 1px solid var(--bw-border); border-radius: 6px; cursor: pointer; font-size: 13px; background: #fff; }
