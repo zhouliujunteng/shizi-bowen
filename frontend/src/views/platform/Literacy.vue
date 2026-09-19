@@ -16,10 +16,11 @@
         <el-button size="small" type="primary" plain :loading="claiming" @click="claimBatch('偏旁')">领取部首</el-button>
         <el-button size="small" type="primary" plain :loading="claiming" @click="claimBatch('字根')">领取字根</el-button>
         <el-button size="small" type="primary" plain :loading="claiming" @click="claimBatch('汉字')">领取汉字</el-button>
+        <el-button size="small" type="danger" plain :disabled="!myReleasable.length" :loading="claiming" @click="handleBatchRelease">撤销领取</el-button>
         <span class="task-stats">我的任务：{{ myClaims.length }} 个 · 已通过 {{ myDoneCount }} 个</span>
       </template>
       <template v-else>
-        <span class="task-label muted">素材员在此领取任务（每次 20 个，按部首/字根/汉字分类）；被领取的字会锁定并显示领取人。</span>
+        <span class="task-label muted">素材员在此领取任务（每次 20 个，按部首/字根/汉字分类）；被领取的字会锁定并显示领取人，未提交审核前可自行撤销。</span>
       </template>
     </div>
 
@@ -153,9 +154,9 @@
           <template v-if="claimsMap[editor.item?.id]"> · 领取：{{ claimsMap[editor.item.id].user_name }}</template>
         </span>
         <el-button
-          v-if="role === '平台管理员' && claimsMap[editor.item?.id]"
+          v-if="claimsMap[editor.item?.id] && (role === '平台管理员' || myClaimOf(editor.item))"
           link type="danger" @click="handleRelease"
-        >释放任务</el-button>
+        >{{ role === '平台管理员' ? '释放任务' : '撤销领取' }}</el-button>
         <el-button @click="editor.visible = false">取消</el-button>
         <template v-if="canEdit">
           <el-button :loading="saving" @click="handleSave('草稿')">保存草稿</el-button>
@@ -172,9 +173,9 @@
 
 <script setup>
 import { ref, reactive, computed, onMounted } from 'vue'
-import { ElMessage } from 'element-plus'
+import { ElMessage, ElMessageBox } from 'element-plus'
 import CharStrokes from '../../components/CharStrokes.vue'
-import { fetchLiteracyItems, saveCourseware, reviewCourseware, fetchTaskClaims, claimTasks, releaseTaskClaim } from '../../api/data'
+import { fetchLiteracyItems, saveCourseware, reviewCourseware, fetchTaskClaims, claimTasks, releaseTaskClaim, releaseTaskClaims } from '../../api/data'
 import { useAuthStore } from '../../stores/auth'
 
 const COLORS = ['#E64A3C', '#F0821E', '#2E9E5B', '#2B6CB0', '#805AD5', '#D53F8C', '#0891B2', '#65A30D']
@@ -222,6 +223,33 @@ function lockOf(it) {
 function myClaimOf(it) {
   const c = claimsMap.value[it.id]
   return c && c.user_id === myUserId.value ? c : null
+}
+
+/** 我可撤销的领取：本人领取且课件未提交审核/未通过 */
+const myReleasable = computed(() => myClaims.value.filter((c) => {
+  const it = items.value.find((i) => i.id === c.item_id)
+  return !['待审核', '已通过'].includes(it?.courseware?.review_status)
+}))
+
+/** 批量撤销：释放自己名下所有未提交审核的领取 */
+async function handleBatchRelease() {
+  try {
+    await ElMessageBox.confirm(
+      `将撤销你名下 ${myReleasable.value.length} 个未提交审核的任务（已提交/已通过的保留），确定吗？`,
+      '撤销领取',
+      { confirmButtonText: '确定撤销', cancelButtonText: '取消', type: 'warning' },
+    )
+  } catch { return }
+  claiming.value = true
+  try {
+    await releaseTaskClaims(myReleasable.value.map((c) => c.id))
+    ElMessage.success('已撤销领取，任务已回到待领取池')
+    await load()
+  } catch (e) {
+    ElMessage.error(e.message || '撤销失败，请重试')
+  } finally {
+    claiming.value = false
+  }
 }
 
 /** 领取一批任务：该类别下未通过且未被领取的 20 个（按教学序） */

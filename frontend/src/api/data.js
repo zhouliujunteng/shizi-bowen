@@ -518,6 +518,14 @@ export function releaseTaskClaim(id) {
   )
 }
 
+/** 批量释放任务（素材员撤销自己的领取） */
+export function releaseTaskClaims(ids) {
+  return gql(
+    `mutation ($ids: [bigint!]!) { delete_task_claim(where: { id: { _in: $ids } }) { affected_rows } }`,
+    { ids },
+  )
+}
+
 /* ============ 平台端：素材账号（素材员/审核员） ============ */
 export function fetchPlatformStaff() {
   return gql(
