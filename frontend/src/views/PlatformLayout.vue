@@ -20,6 +20,9 @@
         <el-menu-item index="/platform/literacy">
           <el-icon><Reading /></el-icon><span>字库课件</span>
         </el-menu-item>
+        <el-menu-item v-if="auth.profile?.role === '素材员'" index="/platform/my-tasks">
+          <el-icon><Tickets /></el-icon><span>我的任务</span>
+        </el-menu-item>
         <el-menu-item v-if="auth.isPlatformAdmin" index="/platform/accounts">
           <el-icon><User /></el-icon><span>素材账号</span>
         </el-menu-item>
@@ -45,7 +48,7 @@ import { computed, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useAuthStore } from '../stores/auth'
 import ChangePasswordDialog from '../components/ChangePasswordDialog.vue'
-import { DataLine, OfficeBuilding, Grid, Reading, Collection, User } from '@element-plus/icons-vue'
+import { DataLine, OfficeBuilding, Grid, Reading, Collection, User, Tickets } from '@element-plus/icons-vue'
 
 const route = useRoute()
 const router = useRouter()

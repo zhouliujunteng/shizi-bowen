@@ -24,22 +24,30 @@
       </template>
     </div>
 
-    <div v-loading="loading" class="char-grid">
-      <div
-        v-for="it in itemsByTab(tab)"
-        :key="it.id"
-        class="char-cell"
-        :class="cellClass(it)"
-        @click="openEditor(it)"
-      >
-        <div class="char-text">{{ it.content }}</div>
-        <div class="char-pinyin">{{ it.pinyin }}</div>
-        <el-tag size="small" :type="badgeType(it)" class="badge">{{ badgeText(it) }}</el-tag>
-        <div v-if="lockOf(it)" class="char-lock">🔒 {{ lockOf(it).user_name }}</div>
-        <div v-else-if="myClaimOf(it)" class="char-mine">我的任务</div>
-        <div v-else-if="it.courseware?.edited_by || it.courseware?.reviewed_by" class="char-crew">
-          <span v-if="it.courseware?.edited_by">编·{{ it.courseware.edited_by }}</span>
-          <span v-if="it.courseware?.reviewed_by">审·{{ it.courseware.reviewed_by }}</span>
+    <div v-loading="loading">
+      <div v-for="g in displayGroups" :key="g.key" class="module-section">
+        <div v-if="g.label" class="module-title">
+          <span class="module-name">{{ g.label }}</span>
+          <span class="muted">{{ g.items.length }} 个 · 已通过 {{ g.items.filter((i) => i.courseware?.review_status === '已通过').length }}</span>
+        </div>
+        <div class="char-grid">
+          <div
+            v-for="it in g.items"
+            :key="it.id"
+            class="char-cell"
+            :class="cellClass(it)"
+            @click="openEditor(it)"
+          >
+            <div class="char-text">{{ it.content }}</div>
+            <div class="char-pinyin">{{ it.pinyin }}</div>
+            <el-tag size="small" :type="badgeType(it)" class="badge">{{ badgeText(it) }}</el-tag>
+            <div v-if="lockOf(it)" class="char-lock">🔒 {{ lockOf(it).user_name }}</div>
+            <div v-else-if="myClaimOf(it)" class="char-mine">我的任务</div>
+            <div v-else-if="it.courseware?.edited_by || it.courseware?.reviewed_by" class="char-crew">
+              <span v-if="it.courseware?.edited_by">编·{{ it.courseware.edited_by }}</span>
+              <span v-if="it.courseware?.reviewed_by">审·{{ it.courseware.reviewed_by }}</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -68,6 +76,15 @@
             class="variant-pinyin-input"
             :disabled="!canEdit"
           />
+        </div>
+
+        <!-- 偏旁已通过讲解提示（编辑含该偏旁的字时自动展示） -->
+        <div v-if="radicalHints.length" class="radical-hints">
+          <div class="hint-title">本字包含的偏旁已有审核通过的讲解，请参考保持口径一致：</div>
+          <div v-for="h in radicalHints" :key="h.content" class="hint-item">
+            <b>「{{ h.content }}」<span v-if="h.pinyin"> {{ h.pinyin }}</span></b>
+            <span class="hint-text">{{ h.explanation }}</span>
+          </div>
         </div>
 
         <div class="editor-body">
@@ -188,7 +205,18 @@ const TABS = [
   { key: '单词', label: '英语单词' },
 ]
 
+/** 偏旁教学模块（顺序即教学顺序，可调整；不在列表中的偏旁归入「其他」） */
+const MODULES = [
+  { key: 'M1', label: 'M1 我们的身体' },
+  { key: 'M2', label: 'M2 大自然的脾气' },
+  { key: 'M3', label: 'M3 天地与草木' },
+  { key: 'M4', label: 'M4 动物朋友' },
+  { key: 'M5', label: 'M5 人和人的世界' },
+  { key: 'M6', label: 'M6 房子、武器与器物' },
+]
+
 const auth = useAuthStore()
+const route = useRoute()
 const role = computed(() => auth.profile?.role)
 const canEdit = computed(() => ['平台管理员', '素材员'].includes(role.value))
 const canReview = computed(() => ['平台管理员', '审核员'].includes(role.value))
@@ -291,9 +319,36 @@ const currentReading = computed(() => editor.readings[editor.activeReading] || {
 /** 字母/单词无笔画数据，隐藏分组功能 */
 const isWordItem = computed(() => ['字母', '单词'].includes(editor.item?.item_type))
 
+/** 当前编辑的字所包含的偏旁中，已有「审核通过」讲解的版本（按字形包含关系识别） */
+const radicalHints = computed(() => {
+  const it = editor.item
+  if (!it || ['字母', '单词'].includes(it.item_type)) return []
+  return items.value
+    .filter((i) =>
+      i.item_type === '偏旁' &&
+      i.id !== it.id &&
+      it.content.includes(i.content) &&
+      i.courseware?.review_status === '已通过' &&
+      i.courseware?.explanation,
+    )
+    .map((i) => ({ content: i.content, pinyin: i.pinyin, explanation: i.courseware.explanation }))
+})
+
 function itemsByTab(t) {
   return items.value.filter((i) => i.item_type === t)
 }
+
+/** 当前页签的展示分组：偏旁按 M1-M6 模块分组（含「其他」），其余页签为单组 */
+const displayGroups = computed(() => {
+  const list = itemsByTab(tab.value)
+  if (tab.value !== '偏旁') return [{ key: 'all', label: '', items: list }]
+  const groups = MODULES.map((m) => ({
+    key: m.key, label: m.label, items: list.filter((i) => i.module === m.key),
+  })).filter((g) => g.items.length > 0)
+  const others = list.filter((i) => !i.module)
+  if (others.length) groups.push({ key: 'other', label: '其他（待分类）', items: others })
+  return groups
+})
 
 /* ---------- 状态徽标 ---------- */
 function reviewText(s) {
@@ -501,7 +556,11 @@ async function handleReview(reviewStatus) {
   }
 }
 
-onMounted(load)
+onMounted(() => {
+  const q = route.query.tab
+  if (q && TABS.some((t) => t.key === q)) tab.value = q
+  load()
+})
 </script>
 
 <style scoped>
@@ -550,4 +609,12 @@ onMounted(load)
 .upload-btn { display: inline-block; padding: 6px 14px; border: 1px dashed var(--el-color-primary); color: var(--el-color-primary); border-radius: 6px; cursor: pointer; font-size: 13px; }
 .upload-btn:hover { background: var(--el-color-primary-light-9); }
 .footer-status { float: left; line-height: 32px; }
+.radical-hints { margin: 10px 0 4px; padding: 10px 12px; background: var(--el-color-success-light-9); border: 1px solid var(--el-color-success-light-5); border-radius: 8px; }
+.hint-title { font-size: 13px; font-weight: 600; color: var(--el-color-success-dark-2); margin-bottom: 6px; }
+.hint-item { font-size: 13px; line-height: 1.7; display: flex; gap: 6px; }
+.hint-item b { white-space: nowrap; }
+.hint-text { color: var(--bw-ink); }
+.module-section { margin-bottom: 18px; }
+.module-title { display: flex; align-items: baseline; gap: 10px; margin-bottom: 10px; padding-bottom: 6px; border-bottom: 2px solid var(--el-color-primary-light-7); }
+.module-name { font-weight: 600; font-size: 15px; }
 </style>

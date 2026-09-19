@@ -13,6 +13,7 @@ const routes = [
       { path: 'kindergartens', name: 'platform-kgs', component: () => import('../views/platform/Kindergartens.vue'), meta: { roles: ['平台管理员'] } },
       { path: 'packages', name: 'platform-packages', component: () => import('../views/platform/Packages.vue'), meta: { roles: ['平台管理员'] } },
       { path: 'literacy', name: 'platform-literacy', component: () => import('../views/platform/Literacy.vue') },
+      { path: 'my-tasks', name: 'platform-my-tasks', component: () => import('../views/platform/MyTasks.vue'), meta: { roles: ['素材员', '平台管理员'] } },
       { path: 'courses', name: 'platform-courses', component: () => import('../views/platform/Courses.vue'), meta: { roles: ['平台管理员'] } },
       { path: 'accounts', name: 'platform-accounts', component: () => import('../views/platform/Accounts.vue'), meta: { roles: ['平台管理员'] } },
     ],

@@ -428,7 +428,7 @@ export function fetchLiteracyItems(levels = [0, 1]) {
   return gql(
     `query ($levels: [bigint!]!) {
       literacy_item(where: { level: { _in: $levels }, status: { _eq: "启用" } }, order_by: { level: asc, sort_order: asc }) {
-        id item_type level content pinyin meaning components_note teaching_tip sort_order
+        id item_type level content pinyin meaning components_note teaching_tip sort_order module
         courseware { id explanation stroke_groups status variants image review_status edited_by reviewed_by }
       }
     }`,
