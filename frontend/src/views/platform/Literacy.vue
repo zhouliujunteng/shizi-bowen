@@ -65,18 +65,25 @@
             @click="editor.activeReading = ri"
           >
             {{ ri === 0 ? '主读音' : '多音' }} · {{ r.pinyin || '未填拼音' }}
-            <span v-if="ri > 0 && canEdit" class="tab-close" @click.stop="removeReading(ri)">×</span>
+            <span v-if="ri > 0 && canEditItem" class="tab-close" @click.stop="removeReading(ri)">×</span>
           </span>
-          <el-button v-if="canEdit && !isWordItem" size="small" type="primary" plain @click="addVariant">添加多音字</el-button>
+          <el-button v-if="canEditItem && !isWordItem" size="small" type="primary" plain @click="addVariant">添加多音字</el-button>
           <el-input
             v-if="editor.activeReading > 0"
             v-model="currentReading.pinyin"
             size="small"
             placeholder="该读音拼音，如 yuè"
             class="variant-pinyin-input"
-            :disabled="!canEdit"
+            :disabled="!canEditItem"
           />
         </div>
+
+        <!-- 只读提示：他人领取的任务 -->
+        <el-alert
+          v-if="role === '素材员' && editorLock"
+          type="info" :closable="false" class="readonly-alert"
+          :title="`本字由 ${editorLock.user_name} 领取编辑中，你可以查看内容，但无法编辑`"
+        />
 
         <!-- 偏旁已通过讲解提示（编辑含该偏旁的字时自动展示） -->
         <div v-if="radicalHints.length" class="radical-hints">
@@ -94,14 +101,14 @@
               :char="editor.item.content"
               :groups="currentReading.groups"
               :size="320"
-              :editable="canEdit && editor.activeGroup >= 0"
+              :editable="canEditItem && editor.activeGroup >= 0"
               :active-group-index="editor.activeGroup"
               default-color="#c0c4cc"
               @toggle-stroke="toggleStroke"
             />
             <div class="muted center-tip">
               <template v-if="isWordItem">英文内容无需笔画分组，直接填写右侧专属讲解即可</template>
-              <template v-else>{{ canEdit ? (editor.activeGroup >= 0 ? '点击笔画，加入/移出当前分组' : '先在右侧新增或选中一个分组，再点选笔画') : '审核模式：笔画分组只读' }}</template>
+              <template v-else>{{ canEditItem ? (editor.activeGroup >= 0 ? '点击笔画，加入/移出当前分组' : '先在右侧新增或选中一个分组，再点选笔画') : '只读模式：笔画分组不可编辑' }}</template>
             </div>
             <div class="char-meta">
               <div><b>{{ editor.item.content }}</b> {{ editor.item.pinyin }}</div>
@@ -114,10 +121,10 @@
               <div class="section-sub">配图（抽象字可选）</div>
               <div v-if="editor.image" class="image-preview">
                 <img :src="editor.image" alt="配图" />
-                <el-button v-if="canEdit" link type="danger" size="small" @click="editor.image = null">移除</el-button>
+                <el-button v-if="canEditItem" link type="danger" size="small" @click="editor.image = null">移除</el-button>
               </div>
               <template v-else>
-                <label v-if="canEdit" class="upload-btn">
+                <label v-if="canEditItem" class="upload-btn">
                   上传图片
                   <input type="file" accept="image/*" hidden @change="handleImageUpload" />
                 </label>
@@ -131,7 +138,7 @@
             <template v-if="!isWordItem">
             <div class="section-title">
               笔画分组注释<template v-if="editor.readings.length > 1">（{{ currentReading.pinyin || '当前读音' }}）</template>
-              <el-button v-if="canEdit" size="small" type="primary" plain @click="addGroup">新增分组</el-button>
+              <el-button v-if="canEditItem" size="small" type="primary" plain @click="addGroup">新增分组</el-button>
             </div>
             <div v-if="currentReading.groups.length === 0" class="muted empty-groups">
               还没有分组。例如「明」可分为「日」和「月」两组，分别配颜色和注释；也可点选任意几个笔画成组。
@@ -143,10 +150,10 @@
               :class="{ active: editor.activeGroup === gi }"
               @click="editor.activeGroup = gi"
             >
-              <span class="color-dot" :style="{ background: g.color }" @click.stop="canEdit && cycleColor(g)"></span>
-              <el-input v-model="g.label" size="small" placeholder="分组注释，如：日字旁" class="label-input" :disabled="!canEdit" @click.stop />
+              <span class="color-dot" :style="{ background: g.color }" @click.stop="canEditItem && cycleColor(g)"></span>
+              <el-input v-model="g.label" size="small" placeholder="分组注释，如：日字旁" class="label-input" :disabled="!canEditItem" @click.stop />
               <span class="stroke-count">{{ g.strokes.length }}笔</span>
-              <el-button v-if="canEdit" link type="danger" size="small" @click.stop="removeGroup(gi)">删除</el-button>
+              <el-button v-if="canEditItem" link type="danger" size="small" @click.stop="removeGroup(gi)">删除</el-button>
             </div>
             </template>
 
@@ -155,7 +162,7 @@
               v-model="currentReading.explanation"
               type="textarea"
               :rows="5"
-              :disabled="!canEdit"
+              :disabled="!canEditItem"
               placeholder="写给老师看的讲解：这个字的教法、故事、易错点……上课时老师会在课件中看到"
             />
 
@@ -175,7 +182,7 @@
           link type="danger" @click="handleRelease"
         >{{ role === '平台管理员' ? '释放任务' : '撤销领取' }}</el-button>
         <el-button @click="editor.visible = false">取消</el-button>
-        <template v-if="canEdit">
+        <template v-if="canEditItem">
           <el-button :loading="saving" @click="handleSave('草稿')">保存草稿</el-button>
           <el-button type="warning" plain :loading="saving" @click="handleSave('待审核')">提交审核</el-button>
         </template>
@@ -284,7 +291,7 @@ async function handleBatchRelease() {
 /** 领取一批任务：该类别下未通过且未被领取的 20 个（按教学序） */
 async function claimBatch(category) {
   const taken = new Set(claims.value.map((c) => c.item_id))
-  const candidates = items.value
+  const candidates = visibleItems.value
     .filter((i) => i.item_type === category && i.courseware?.review_status !== '已通过' && !taken.has(i.id))
     .sort((a, b) => (a.sort_order || 0) - (b.sort_order || 0))
     .slice(0, 20)
@@ -320,6 +327,27 @@ const currentReading = computed(() => editor.readings[editor.activeReading] || {
 /** 字母/单词无笔画数据，隐藏分组功能 */
 const isWordItem = computed(() => ['字母', '单词'].includes(editor.item?.item_type))
 
+/** 当前编辑条目被他人锁定（素材员只读查看，管理员不受限） */
+const editorLock = computed(() => (editor.item ? lockOf(editor.item) : null))
+const canEditItem = computed(() => canEdit.value && !(role.value === '素材员' && editorLock.value))
+
+/** 同字去重优先级：偏旁 > 字根 > 汉字（一个字只出现在一个区域） */
+const TYPE_RANK = { 偏旁: 0, 字根: 1, 汉字: 2, 字母: 3, 单词: 3 }
+const visibleItems = computed(() => {
+  const best = new Map()
+  for (const i of items.value) {
+    const r = TYPE_RANK[i.item_type] ?? 9
+    const cur = best.get(i.content)
+    if (!cur || r < cur.rank) best.set(i.content, { rank: r, item: i })
+  }
+  return [...best.values()].map((v) => v.item)
+})
+
+/** 当前编辑字的同字兄弟条目（保存/审核时同步课件） */
+function siblingsOf(item) {
+  return items.value.filter((i) => i.content === item.content && i.id !== item.id)
+}
+
 /** 当前编辑的字所包含的偏旁中，已有「审核通过」讲解的版本（按字形包含关系识别） */
 const radicalHints = computed(() => {
   const it = editor.item
@@ -336,7 +364,7 @@ const radicalHints = computed(() => {
 })
 
 function itemsByTab(t) {
-  return items.value.filter((i) => i.item_type === t)
+  return visibleItems.value.filter((i) => i.item_type === t)
 }
 
 /** 当前页签的展示分组：偏旁按 M1-M6 模块分组（含「其他」），其余页签为单组 */
@@ -390,11 +418,6 @@ async function load() {
 
 /* ---------- 编辑器 ---------- */
 function openEditor(it) {
-  const lock = lockOf(it)
-  if (lock && role.value === '素材员') {
-    ElMessage.warning(`「${it.content}」已被 ${lock.user_name} 领取，请先完成自己的任务`)
-    return
-  }
   const cw = it.courseware
   editor.item = it
   editor.readings = [
@@ -520,7 +543,10 @@ async function handleSave(reviewStatus) {
   }
   saving.value = true
   try {
-    await saveCourseware(editor.item.id, buildPayload(reviewStatus))
+    const payload = buildPayload(reviewStatus)
+    await saveCourseware(editor.item.id, payload)
+    // 同字兄弟条目（字根/汉字/偏旁重复项）同步课件，保证课节绑定的条目也有课件
+    await Promise.all(siblingsOf(editor.item).map((s) => saveCourseware(s.id, payload)))
     ElMessage.success(reviewStatus === '待审核' ? '已提交审核' : '草稿已保存')
     editor.visible = false
     await load()
@@ -547,6 +573,7 @@ async function handleReview(reviewStatus) {
   saving.value = true
   try {
     await reviewCourseware(editor.item.id, reviewStatus, auth.profile?.name)
+    await Promise.all(siblingsOf(editor.item).map((s) => reviewCourseware(s.id, reviewStatus, auth.profile?.name)))
     ElMessage.success(reviewStatus === '已通过' ? '已通过审核' : '已退回为草稿')
     editor.visible = false
     await load()
@@ -618,4 +645,5 @@ onMounted(() => {
 .module-section { margin-bottom: 18px; }
 .module-title { display: flex; align-items: baseline; gap: 10px; margin-bottom: 10px; padding-bottom: 6px; border-bottom: 2px solid var(--el-color-primary-light-7); }
 .module-name { font-weight: 600; font-size: 15px; }
+.readonly-alert { margin-top: 10px; }
 </style>
