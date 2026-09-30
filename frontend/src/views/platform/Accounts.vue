@@ -8,7 +8,7 @@
     </template>
 
     <el-alert type="info" :closable="false" class="tip">
-      素材员：登录后可编辑字库课件并提交审核；审核员：登录后审核课件（通过/退回）。两类账号登录后直达「字库课件」页。
+      素材员：登录后可编辑字库课件并提交审核；审核员：拥有与平台管理员相同的权限（数据看板、园所、课程、字库课件的编辑与审核），但无法管理账号角色。两类账号由超级管理员（平台管理员）在此配置。
     </el-alert>
 
     <el-table :data="list" v-loading="loading" stripe>

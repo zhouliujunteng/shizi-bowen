@@ -9,19 +9,40 @@
       </div>
     </template>
 
+    <!-- 搜索 + 筛选 -->
+    <div class="filter-bar">
+      <el-input v-model="search" placeholder="搜索汉字 / 拼音 / 释义" clearable class="search-input" />
+      <el-select
+        v-if="tab === '汉字'"
+        v-model="radicalFilter"
+        placeholder="按部首筛选"
+        clearable
+        filterable
+        class="radical-select"
+      >
+        <el-option v-for="r in radicalOptions" :key="r.id" :value="r.content" :label="`${r.content}${r.module ? ' · ' + r.module : ''}`" />
+      </el-select>
+      <span class="muted">点字块左上角可勾选（支持多选），配合下方锁定/解锁按钮使用</span>
+    </div>
+
     <!-- 素材任务工具条（素材员领取任务；管理员可见进度） -->
-    <div v-if="role === '素材员' || role === '平台管理员'" class="task-bar">
+    <div v-if="canEdit" class="task-bar">
       <template v-if="role === '素材员'">
         <span class="task-label">领取任务（每次 20 个）：</span>
         <el-button size="small" type="primary" plain :loading="claiming" @click="claimBatch('偏旁')">领取部首</el-button>
         <el-button size="small" type="primary" plain :loading="claiming" @click="claimBatch('字根')">领取字根</el-button>
         <el-button size="small" type="primary" plain :loading="claiming" @click="claimBatch('汉字')">领取汉字</el-button>
         <el-button size="small" type="danger" plain :disabled="!myReleasable.length" :loading="claiming" @click="handleBatchRelease">撤销领取</el-button>
-        <span class="task-stats">我的任务：{{ myClaims.length }} 个 · 已通过 {{ myDoneCount }} 个</span>
+        <el-divider direction="vertical" />
       </template>
-      <template v-else>
-        <span class="task-label muted">素材员在此领取任务（每次 20 个，按部首/字根/汉字分类）；被领取的字会锁定并显示领取人，未提交审核前可自行撤销。</span>
-      </template>
+      <span class="task-label">锁定 / 解锁：</span>
+      <el-button size="small" type="primary" :disabled="!selectedCount" :loading="claiming" @click="lockSelected">锁定所选（{{ selectedCount }}）</el-button>
+      <el-button size="small" type="danger" plain :disabled="!selectedCount" :loading="claiming" @click="unlockSelected">解锁所选（{{ selectedCount }}）</el-button>
+      <el-button v-if="selectedCount" link size="small" @click="clearSelection">取消选择</el-button>
+      <span class="task-stats">
+        <template v-if="role === '素材员'">我的任务：{{ myClaims.length }} 个 · 已通过 {{ myDoneCount }} 个 · </template>
+        解锁可释放任何人锁定的任务（含自己的）
+      </span>
     </div>
 
     <div v-loading="loading">
@@ -35,9 +56,16 @@
             v-for="it in g.items"
             :key="it.id"
             class="char-cell"
-            :class="cellClass(it)"
+            :class="{ ...cellClass(it), selected: selectedIds.has(it.id) }"
             @click="openEditor(it)"
           >
+            <span
+              v-if="canEdit"
+              class="cell-check"
+              :class="{ on: selectedIds.has(it.id) }"
+              title="勾选后可批量锁定/解锁"
+              @click.stop="toggleSelect(it)"
+            >✓</span>
             <div class="char-text">{{ it.content }}</div>
             <div class="char-pinyin">{{ it.pinyin }}</div>
             <el-tag size="small" :type="badgeType(it)" class="badge">{{ badgeText(it) }}</el-tag>
@@ -78,12 +106,16 @@
           />
         </div>
 
-        <!-- 只读提示：他人领取的任务 -->
+        <!-- 只读提示：他人领取的任务（可自助解锁后编辑） -->
         <el-alert
           v-if="role === '素材员' && editorLock"
           type="info" :closable="false" class="readonly-alert"
-          :title="`本字由 ${editorLock.user_name} 领取编辑中，你可以查看内容，但无法编辑`"
-        />
+        >
+          <template #title>
+            本字由 {{ editorLock.user_name }} 领取编辑中，你可以查看内容，但无法编辑。
+            <el-button link type="primary" size="small" :loading="saving" @click="handleUnlockAndEdit">解锁并编辑</el-button>
+          </template>
+        </el-alert>
 
         <!-- 偏旁已通过讲解提示（编辑含该偏旁的字时自动展示） -->
         <div v-if="radicalHints.length" class="radical-hints">
@@ -178,9 +210,9 @@
           <template v-if="claimsMap[editor.item?.id]"> · 领取：{{ claimsMap[editor.item.id].user_name }}</template>
         </span>
         <el-button
-          v-if="claimsMap[editor.item?.id] && (role === '平台管理员' || myClaimOf(editor.item))"
+          v-if="claimsMap[editor.item?.id] && canEdit"
           link type="danger" @click="handleRelease"
-        >{{ role === '平台管理员' ? '释放任务' : '撤销领取' }}</el-button>
+        >{{ myClaimOf(editor.item) ? '撤销领取' : (role === '素材员' ? '解锁任务' : '释放任务') }}</el-button>
         <el-button @click="editor.visible = false">取消</el-button>
         <template v-if="canEditItem">
           <el-button :loading="saving" @click="handleSave('草稿')">保存草稿</el-button>
@@ -196,7 +228,7 @@
 </template>
 
 <script setup>
-import { ref, reactive, computed, onMounted } from 'vue'
+import { ref, reactive, computed, onMounted, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import CharStrokes from '../../components/CharStrokes.vue'
@@ -226,7 +258,7 @@ const MODULES = [
 const auth = useAuthStore()
 const route = useRoute()
 const role = computed(() => auth.profile?.role)
-const canEdit = computed(() => ['平台管理员', '素材员'].includes(role.value))
+const canEdit = computed(() => ['平台管理员', '素材员', '审核员'].includes(role.value))
 const canReview = computed(() => ['平台管理员', '审核员'].includes(role.value))
 
 const items = ref([])
@@ -235,6 +267,103 @@ const claiming = ref(false)
 const tab = ref('汉字')
 const loading = ref(false)
 const saving = ref(false)
+
+/* ---------- 搜索与筛选 ---------- */
+const search = ref('')
+const radicalFilter = ref('')
+
+/** 部首下拉选项：全部偏旁条目，按 M1-M6 教学顺序排列 */
+const radicalOptions = computed(() => {
+  const order = Object.fromEntries(MODULES.map((m, i) => [m.key, i]))
+  return items.value
+    .filter((i) => i.item_type === '偏旁')
+    .sort((a, b) => (order[a.module] ?? 99) - (order[b.module] ?? 99) || (a.sort_order || 0) - (b.sort_order || 0))
+})
+
+/* ---------- 勾选锁定 / 解锁（素材员可自助解锁他人锁定） ---------- */
+const selectedIds = ref(new Set())
+const selectedCount = computed(() => selectedIds.value.size)
+
+function toggleSelect(it) {
+  const s = new Set(selectedIds.value)
+  if (s.has(it.id)) s.delete(it.id)
+  else s.add(it.id)
+  selectedIds.value = s
+}
+function clearSelection() {
+  selectedIds.value = new Set()
+}
+watch([tab, search, radicalFilter], clearSelection)
+
+/** 锁定所选：领取勾选的未锁定且未通过的任务（一个也算，支持多选） */
+async function lockSelected() {
+  const taken = new Set(claims.value.map((c) => c.item_id))
+  const sel = items.value.filter((i) => selectedIds.value.has(i.id))
+  const candidates = sel.filter((i) => i.courseware?.review_status !== '已通过' && !taken.has(i.id))
+  const skipped = sel.length - candidates.length
+  if (!candidates.length) {
+    ElMessage.info('所选任务都已被锁定或已通过审核')
+    return
+  }
+  claiming.value = true
+  try {
+    await claimTasks(candidates.map((i) => ({
+      item_id: i.id, user_id: myUserId.value, user_name: auth.profile?.name || '', category: i.item_type,
+    })))
+    ElMessage.success(`已锁定 ${candidates.length} 个任务${skipped ? `，${skipped} 个已被锁定/已通过，自动跳过` : ''}`)
+    clearSelection()
+    await load()
+  } catch (e) {
+    ElMessage.error(e.message || '锁定失败，请重试')
+  } finally {
+    claiming.value = false
+  }
+}
+
+/** 解锁所选：释放勾选任务上的所有领取记录（含他人锁定的） */
+async function unlockSelected() {
+  const sel = new Set(selectedIds.value)
+  const toRelease = claims.value.filter((c) => sel.has(c.item_id))
+  if (!toRelease.length) {
+    ElMessage.info('所选任务当前没有被锁定')
+    return
+  }
+  const otherCount = toRelease.filter((c) => c.user_id !== myUserId.value).length
+  try {
+    await ElMessageBox.confirm(
+      `将解锁所选的 ${toRelease.length} 个任务${otherCount ? `（其中 ${otherCount} 个是他人锁定的）` : ''}，解锁后任何人都可以领取编辑，确定吗？`,
+      '解锁任务',
+      { confirmButtonText: '确定解锁', cancelButtonText: '取消', type: 'warning' },
+    )
+  } catch { return }
+  claiming.value = true
+  try {
+    await releaseTaskClaims(toRelease.map((c) => c.id))
+    ElMessage.success(`已解锁 ${toRelease.length} 个任务`)
+    clearSelection()
+    await load()
+  } catch (e) {
+    ElMessage.error(e.message || '解锁失败，请重试')
+  } finally {
+    claiming.value = false
+  }
+}
+
+/** 编辑器内自助解锁：释放他人（或自己）对本字的领取，解锁后立即可编辑 */
+async function handleUnlockAndEdit() {
+  const c = claimsMap.value[editor.item?.id]
+  if (!c) return
+  saving.value = true
+  try {
+    await releaseTaskClaim(c.id)
+    ElMessage.success('已解锁，现在可以编辑')
+    await load()
+  } catch (e) {
+    ElMessage.error(e.message || '解锁失败')
+  } finally {
+    saving.value = false
+  }
+}
 
 /* ---------- 素材任务领取 ---------- */
 const myUserId = computed(() => auth.profile?.userId)
@@ -331,16 +460,21 @@ const isWordItem = computed(() => ['字母', '单词'].includes(editor.item?.ite
 const editorLock = computed(() => (editor.item ? lockOf(editor.item) : null))
 const canEditItem = computed(() => canEdit.value && !(role.value === '素材员' && editorLock.value))
 
-/** 同字去重优先级：偏旁 > 字根 > 汉字（一个字只出现在一个区域） */
-const TYPE_RANK = { 偏旁: 0, 字根: 1, 汉字: 2, 字母: 3, 单词: 3 }
+/** 同字去重：字根 > 汉字（字母/单词独立）；偏旁不参与去重 —— 一个字既是部首又是单体字（汉字/字根）时，两个页签都会出现 */
+const TYPE_RANK = { 字根: 0, 汉字: 1, 字母: 2, 单词: 2 }
 const visibleItems = computed(() => {
   const best = new Map()
+  const radicals = []
   for (const i of items.value) {
+    if (i.item_type === '偏旁') {
+      radicals.push(i)
+      continue
+    }
     const r = TYPE_RANK[i.item_type] ?? 9
     const cur = best.get(i.content)
     if (!cur || r < cur.rank) best.set(i.content, { rank: r, item: i })
   }
-  return [...best.values()].map((v) => v.item)
+  return [...radicals, ...[...best.values()].map((v) => v.item)]
 })
 
 /** 当前编辑字的同字兄弟条目（保存/审核时同步课件） */
@@ -363,8 +497,25 @@ const radicalHints = computed(() => {
     .map((i) => ({ content: i.content, pinyin: i.pinyin, explanation: i.courseware.explanation }))
 })
 
+/** 搜索过滤：汉字/拼音/释义 关键字（应用于所有页签） */
+const filteredItems = computed(() => {
+  const kw = search.value.trim().toLowerCase()
+  if (!kw) return visibleItems.value
+  return visibleItems.value.filter(
+    (i) =>
+      (i.content || '').toLowerCase().includes(kw) ||
+      (i.pinyin || '').toLowerCase().includes(kw) ||
+      (i.meaning || '').includes(kw),
+  )
+})
+
 function itemsByTab(t) {
-  return visibleItems.value.filter((i) => i.item_type === t)
+  let list = filteredItems.value.filter((i) => i.item_type === t)
+  // L1 汉字按部首筛选：保留包含所选部首的字（部首本身也算本部首）
+  if (t === '汉字' && radicalFilter.value) {
+    list = list.filter((i) => (i.content || '').includes(radicalFilter.value))
+  }
+  return list
 }
 
 /** 当前页签的展示分组：偏旁按 M1-M6 模块分组（含「其他」），其余页签为单组 */
@@ -593,6 +744,17 @@ onMounted(() => {
 
 <style scoped>
 .card-header { display: flex; justify-content: space-between; align-items: center; }
+.filter-bar { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; flex-wrap: wrap; }
+.search-input { width: 240px; }
+.radical-select { width: 170px; }
+.cell-check {
+  position: absolute; top: 4px; left: 4px; width: 18px; height: 18px; line-height: 16px;
+  border: 1px solid var(--bw-border); border-radius: 4px; background: #fff; color: transparent;
+  font-size: 12px; text-align: center; cursor: pointer; user-select: none; transition: all .12s;
+}
+.cell-check:hover { border-color: var(--el-color-primary); }
+.cell-check.on { background: var(--el-color-primary); border-color: var(--el-color-primary); color: #fff; font-weight: 700; }
+.char-cell.selected { border-color: var(--el-color-primary); box-shadow: 0 0 0 2px var(--el-color-primary-light-7); }
 .char-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(88px, 1fr)); gap: 10px; min-height: 200px; }
 .char-cell { border: 1px solid var(--bw-border); border-radius: 8px; padding: 10px 6px; text-align: center; cursor: pointer; position: relative; transition: all .15s; background: #fff; }
 .char-cell:hover { border-color: var(--el-color-primary); box-shadow: 0 2px 8px rgba(79, 70, 229, 0.12); }

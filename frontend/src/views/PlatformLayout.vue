@@ -1,9 +1,9 @@
 <template>
   <el-container class="layout">
     <el-aside width="220px" class="aside">
-      <div class="logo"><h2>{{ auth.isPlatformAdmin ? '平台管理端' : '素材工作台' }}</h2></div>
+      <div class="logo"><h2>{{ layoutTitle }}</h2></div>
       <el-menu :default-active="activeMenu" router class="menu">
-        <template v-if="auth.isPlatformAdmin">
+        <template v-if="auth.isPlatformAdmin || isReviewer">
         <el-menu-item index="/platform">
           <el-icon><DataLine /></el-icon><span>数据看板</span>
         </el-menu-item>
@@ -55,6 +55,10 @@ const router = useRouter()
 const auth = useAuthStore()
 const pwdRef = ref(null)
 const activeMenu = computed(() => route.path)
+const isReviewer = computed(() => auth.profile?.role === '审核员')
+const layoutTitle = computed(() =>
+  auth.isPlatformAdmin ? '平台管理端' : isReviewer.value ? '审核工作台' : '素材工作台',
+)
 
 function handleLogout() {
   auth.logout()
