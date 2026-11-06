@@ -3,7 +3,7 @@ import { getToken } from '../api/graphql'
 import { useAuthStore } from '../stores/auth'
 
 const routes = [
-  { path: '/', name: 'login', component: () => import('../views/Login.vue'), meta: { public: true } },
+  { path: '/', alias: '/login', name: 'login', component: () => import('../views/Login.vue'), meta: { public: true } },
   {
     path: '/platform',
     component: () => import('../views/PlatformLayout.vue'),
@@ -34,6 +34,8 @@ const routes = [
     ],
   },
   { path: '/pending', name: 'pending', component: () => import('../views/Pending.vue'), meta: { auth: true } },
+  // 旧书签或无效地址回到登录入口，避免 router-view 无匹配页面而白屏。
+  { path: '/:pathMatch(.*)*', redirect: { name: 'login' } },
 ]
 
 export const router = createRouter({
@@ -45,7 +47,7 @@ router.beforeEach(async (to) => {
   // 命中叶子路由的角色限制（子路由角色与父路由取并集判断）
   const matchedRoles = to.matched.flatMap((r) => r.meta?.roles || [])
   const leaf = to.matched[to.matched.length - 1]
-  const merged = { ...to.meta, roles: matchedRoles.length ? matchedRoles : leaf.meta?.roles }
+  const merged = { ...to.meta, roles: matchedRoles.length ? matchedRoles : leaf?.meta?.roles }
 
   if (to.meta.public) return true
 
