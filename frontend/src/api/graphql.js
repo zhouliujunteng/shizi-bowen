@@ -32,12 +32,21 @@ export async function gql(query, variables = {}, options = {}) {
   const headers = { 'Content-Type': 'application/json' }
   if (token) headers['Authorization'] = `Bearer ${token}`
 
-  const res = await fetch(GRAPHQL_ENDPOINT, {
-    method: 'POST',
-    headers,
-    body: JSON.stringify({ query, variables }),
-  })
+  const body = JSON.stringify({ query, variables })
+  // Zion 对 mutation 有约 1 次/秒的频率限制，连续调用（如登录后立刻拉资料）会返回 429，
+  // 这里遇 429 自动退避重试，最多 5 次
+  let res
+  for (let attempt = 0; ; attempt++) {
+    res = await fetch(GRAPHQL_ENDPOINT, { method: 'POST', headers, body })
+    if (res.status !== 429 || attempt >= 5) break
+    const retryAfter = Number(res.headers.get('Retry-After'))
+    const delay = retryAfter > 0 ? retryAfter * 1000 : 800 + attempt * 600
+    await new Promise((r) => setTimeout(r, delay))
+  }
 
+  if (res.status === 429) {
+    throw new Error('请求过于频繁，请稍等几秒再试')
+  }
   if (res.status === 403) {
     throw new Error('请求被拒绝（403），请重新登录')
   }
